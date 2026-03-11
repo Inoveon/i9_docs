@@ -11,8 +11,6 @@
             --i9-dark: #12162B;
             --i9-navy: #011E4B;
             --i9-blue: #005BAA;
-            --i9-purple: #4E1194;
-            --i9-violet: #6B14C2;
             --i9-light: #E7E7E7;
             --white: #ffffff;
             --gray-100: #f1f3f5;
@@ -64,8 +62,8 @@
             color: var(--white);
         }
 
-        .slide-purple {
-            background: linear-gradient(135deg, var(--i9-purple) 0%, var(--i9-violet) 100%);
+        .slide-blue {
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
             color: var(--white);
         }
 
@@ -98,7 +96,7 @@
         }
 
         .slide-dark .slide-logo,
-        .slide-purple .slide-logo {
+        .slide-blue .slide-logo {
             filter: brightness(0) invert(1);
             opacity: 0.5;
         }
@@ -156,7 +154,7 @@
         }
 
         .slide-dark .slide-list li .material-icons,
-        .slide-purple .slide-list li .material-icons {
+        .slide-blue .slide-list li .material-icons {
             color: var(--white);
             opacity: 0.8;
         }
@@ -198,13 +196,8 @@
             color: var(--white);
         }
 
-        .info-card-icon.purple {
-            background: var(--i9-purple);
-            color: var(--white);
-        }
-
-        .info-card-icon.violet {
-            background: var(--i9-violet);
+        .info-card-icon.navy {
+            background: var(--i9-navy);
             color: var(--white);
         }
 
@@ -285,7 +278,7 @@
         }
 
         .comparison-table th:nth-child(3) {
-            background: var(--i9-violet);
+            background: var(--i9-navy);
         }
 
         .comparison-table td {
@@ -323,12 +316,12 @@
         }
 
         .comparison-table .total-row td:nth-child(3) {
-            color: var(--i9-violet);
+            color: var(--i9-navy);
         }
 
         /* Price Box */
         .price-box {
-            background: linear-gradient(135deg, var(--i9-violet) 0%, var(--i9-purple) 100%);
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
             color: var(--white);
             border-radius: 20px;
             padding: 40px;
@@ -385,7 +378,7 @@
         }
 
         .column-card.provider h3 {
-            color: var(--i9-violet);
+            color: var(--i9-navy);
         }
 
         .column-card ul {
@@ -597,7 +590,7 @@
             }
 
             .slide-dark,
-            .slide-purple {
+            .slide-blue {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
@@ -770,14 +763,14 @@
                 </div>
                 <div style="background: var(--gray-100); border-radius: 16px; padding: 25px;">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-                        <span class="material-icons" style="color: var(--i9-violet);">layers</span>
+                        <span class="material-icons" style="color: var(--i9-navy);">layers</span>
                         <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--i9-dark); margin: 0;">Ativação de pilares estratégicos do Ecossistema</h3>
                     </div>
                     <p style="color: var(--gray-700); font-size: 0.95rem; margin: 0; padding-left: 36px;">Monitoramento full, Smart View e Smart Queue integrados à governança operacional.</p>
                 </div>
                 <div style="background: var(--gray-100); border-radius: 16px; padding: 25px;">
                     <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
-                        <span class="material-icons" style="color: var(--i9-violet);">verified_user</span>
+                        <span class="material-icons" style="color: var(--i9-navy);">verified_user</span>
                         <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--i9-dark); margin: 0;">Governança estruturada de suporte</h3>
                     </div>
                     <p style="color: var(--gray-700); font-size: 0.95rem; margin: 0; padding-left: 36px;">SLA definido, escalonamento técnico e previsibilidade alinhada à criticidade da operação.</p>
@@ -1050,14 +1043,14 @@
                             Dimensionamento operacional
                         </li>
                         <li style="padding: 10px 0; display: flex; gap: 10px; color: var(--gray-700); font-size: 0.95rem; font-weight: 600;">
-                            <span class="material-icons" style="color: var(--i9-violet); font-size: 1.1rem;">info</span>
+                            <span class="material-icons" style="color: var(--i9-navy); font-size: 1.1rem;">info</span>
                             Exclusivo do ecossistema
                         </li>
                     </ul>
                 </div>
                 <!-- Smart Count Card -->
                 <div class="column-card" style="background: var(--gray-100); border: 1px solid var(--gray-200); padding: 35px;">
-                    <h3 style="color: var(--i9-purple); font-size: 1.3rem;">
+                    <h3 style="color: var(--i9-blue); font-size: 1.3rem;">
                         <span class="material-icons" style="font-size: 1.5rem;">inventory_2</span>
                         Smart Count
                     </h3>
@@ -1066,19 +1059,19 @@
                     </p>
                     <ul style="list-style: none;">
                         <li style="padding: 10px 0; display: flex; gap: 10px; color: var(--gray-700); font-size: 0.95rem;">
-                            <span class="material-icons" style="color: var(--i9-purple); font-size: 1.1rem;">check_circle</span>
+                            <span class="material-icons" style="color: var(--i9-blue); font-size: 1.1rem;">check_circle</span>
                             Contagens e rotinas de inventario
                         </li>
                         <li style="padding: 10px 0; display: flex; gap: 10px; color: var(--gray-700); font-size: 0.95rem;">
-                            <span class="material-icons" style="color: var(--i9-purple); font-size: 1.1rem;">check_circle</span>
+                            <span class="material-icons" style="color: var(--i9-blue); font-size: 1.1rem;">check_circle</span>
                             Ajustes de preco e etiquetas
                         </li>
                         <li style="padding: 10px 0; display: flex; gap: 10px; color: var(--gray-700); font-size: 0.95rem;">
-                            <span class="material-icons" style="color: var(--i9-purple); font-size: 1.1rem;">check_circle</span>
+                            <span class="material-icons" style="color: var(--i9-blue); font-size: 1.1rem;">check_circle</span>
                             Reducao de divergencias
                         </li>
                         <li style="padding: 10px 0; display: flex; gap: 10px; color: var(--gray-700); font-size: 0.95rem;">
-                            <span class="material-icons" style="color: var(--i9-purple); font-size: 1.1rem;">check_circle</span>
+                            <span class="material-icons" style="color: var(--i9-blue); font-size: 1.1rem;">check_circle</span>
                             Integracao ao ecossistema
                         </li>
                     </ul>
@@ -1272,10 +1265,10 @@
                 <div class="column-card provider">
                     <h3><span class="material-icons">business</span> Inoveon</h3>
                     <ul>
-                        <li><span class="material-icons" style="color: var(--i9-violet);">check_circle</span> Disponibilizar soluções conforme escopo contratado</li>
-                        <li><span class="material-icons" style="color: var(--i9-violet);">check_circle</span> Assegurar evolução técnica e funcional do ecossistema</li>
-                        <li><span class="material-icons" style="color: var(--i9-violet);">check_circle</span> Garantir suporte conforme pacote contratado</li>
-                        <li><span class="material-icons" style="color: var(--i9-violet);">check_circle</span> Apoiar transmissão/autorização fiscal</li>
+                        <li><span class="material-icons" style="color: var(--i9-navy);">check_circle</span> Disponibilizar soluções conforme escopo contratado</li>
+                        <li><span class="material-icons" style="color: var(--i9-navy);">check_circle</span> Assegurar evolução técnica e funcional do ecossistema</li>
+                        <li><span class="material-icons" style="color: var(--i9-navy);">check_circle</span> Garantir suporte conforme pacote contratado</li>
+                        <li><span class="material-icons" style="color: var(--i9-navy);">check_circle</span> Apoiar transmissão/autorização fiscal</li>
                     </ul>
                 </div>
             </div>

@@ -13,15 +13,11 @@
             --i9-dark: #12162B;
             --i9-navy: #011E4B;
             --i9-blue: #005BAA;
-            --i9-purple: #4E1194;
-            --i9-violet: #6B14C2;
             --i9-light: #E7E7E7;
 
             --primary: #12162B;
             --secondary: #011E4B;
             --accent-blue: #005BAA;
-            --accent-purple: #4E1194;
-            --accent-violet: #6B14C2;
             --gold: #005BAA;
             --green: #005BAA;
             --light: #E7E7E7;
@@ -34,8 +30,8 @@
             --gray-900: #12162B;
 
             --essencial: #005BAA;
-            --operacional: #4E1194;
-            --full: #6B14C2;
+            --operacional: #011E4B;
+            --full: #005BAA;
         }
 
         * {
@@ -91,8 +87,8 @@
         }
 
         .logo span {
-            color: var(--accent-violet);
-            -webkit-text-fill-color: var(--accent-violet);
+            color: var(--i9-navy);
+            -webkit-text-fill-color: var(--i9-navy);
         }
 
         .header h1 {
@@ -229,7 +225,7 @@
         }
 
         .package-card.featured {
-            border: 3px solid var(--i9-violet);
+            border: 3px solid var(--i9-navy);
         }
 
         .package-card.featured::before {
@@ -237,7 +233,7 @@
             position: absolute;
             top: 20px;
             right: -35px;
-            background: var(--i9-violet);
+            background: var(--i9-navy);
             color: var(--white);
             padding: 8px 50px;
             font-size: 0.75rem;
@@ -256,11 +252,11 @@
         }
 
         .package-header.operacional {
-            background: linear-gradient(135deg, var(--i9-purple) 0%, var(--i9-navy) 100%);
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
         }
 
         .package-header.full {
-            background: linear-gradient(135deg, var(--i9-violet) 0%, var(--i9-purple) 100%);
+            background: linear-gradient(135deg, var(--i9-navy) 0%, var(--i9-blue) 100%);
         }
 
         .package-badge {
@@ -405,8 +401,8 @@
         }
 
         .total-value.essencial-color { color: var(--i9-blue); }
-        .total-value.operacional-color { color: var(--i9-purple); }
-        .total-value.full-color { color: var(--i9-violet); }
+        .total-value.operacional-color { color: var(--i9-blue); }
+        .total-value.full-color { color: var(--i9-navy); }
 
         /* Support Badge */
         .support-badge {
@@ -422,7 +418,7 @@
         }
 
         .support-badge.premium {
-            background: linear-gradient(135deg, var(--i9-violet) 0%, var(--i9-purple) 100%);
+            background: linear-gradient(135deg, var(--i9-navy) 0%, var(--i9-blue) 100%);
             color: var(--white);
         }
 
@@ -437,7 +433,7 @@
 
         .support-full-section h3 {
             font-size: 1.5rem;
-            color: var(--i9-violet);
+            color: var(--i9-navy);
             margin-bottom: 25px;
             display: flex;
             align-items: center;
@@ -478,7 +474,7 @@
         }
 
         .support-price-box {
-            background: linear-gradient(135deg, var(--i9-violet) 0%, var(--i9-purple) 100%);
+            background: linear-gradient(135deg, var(--i9-navy) 0%, var(--i9-blue) 100%);
             color: var(--white);
             padding: 25px;
             border-radius: 16px;
@@ -567,7 +563,7 @@
         }
 
         .responsibility-card.provider h3 {
-            color: var(--i9-violet);
+            color: var(--i9-navy);
         }
 
         .responsibility-list {
@@ -668,7 +664,7 @@
         }
 
         .footer-logo span {
-            color: var(--i9-violet);
+            color: var(--i9-navy);
         }
 
         /* Comparison Table */
@@ -740,8 +736,8 @@
         }
 
         .comparison-header.essencial { background: var(--i9-blue); color: var(--white); }
-        .comparison-header.operacional { background: var(--i9-purple); color: var(--white); }
-        .comparison-header.full { background: var(--i9-violet); color: var(--white); }
+        .comparison-header.operacional { background: var(--i9-blue); color: var(--white); }
+        .comparison-header.full { background: var(--i9-navy); color: var(--white); }
 
         /* Print Styles */
         @media print {
@@ -830,7 +826,7 @@
                 </p>
             </div>
 
-            <div class="commercial-rule" style="background: linear-gradient(135deg, var(--i9-purple) 0%, var(--i9-violet) 100%); margin-top: 20px;">
+            <div class="commercial-rule" style="background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%); margin-top: 20px;">
                 <h3><span class="material-icons">business</span> Abrangência desta Proposta</h3>
                 <p style="color: var(--white);">
                     Esta proposta é válida para <strong>redes de postos com 15 a 25 unidades operacionais</strong>. Condições diferenciadas podem ser negociadas para redes fora desta faixa.
@@ -1175,8 +1171,8 @@
                     <tr style="background: var(--gray-100); font-weight: 600;">
                         <td>Total Mensal</td>
                         <td style="color: var(--i9-blue);">R$ 4.900,00</td>
-                        <td style="color: var(--i9-purple);">R$ 5.200,00</td>
-                        <td style="color: var(--i9-violet);">R$ 7.157,00</td>
+                        <td style="color: var(--i9-blue);">R$ 5.200,00</td>
+                        <td style="color: var(--i9-navy);">R$ 7.157,00</td>
                     </tr>
                 </tbody>
             </table>
@@ -1187,14 +1183,14 @@
     <section class="section">
         <div class="container">
             <h2 class="section-title">
-                <span class="section-title-icon" style="background: var(--i9-purple); color: var(--white);"><span class="material-icons">rocket_launch</span></span>
+                <span class="section-title-icon" style="background: var(--i9-blue); color: var(--white);"><span class="material-icons">rocket_launch</span></span>
                 Implantação do Ecossistema Inoveon
             </h2>
             <p class="section-subtitle">A implantação é conduzida por equipe especializada, seguindo metodologia estruturada, garantindo transição segura, continuidade operacional e rápida adaptação da equipe local.</p>
 
             <div class="responsibilities-grid">
                 <div class="responsibility-card" style="flex: 2;">
-                    <h3 style="color: var(--i9-purple);"><span class="material-icons">checklist</span> Escopo da Implantação</h3>
+                    <h3 style="color: var(--i9-blue);"><span class="material-icons">checklist</span> Escopo da Implantação</h3>
                     <p style="color: var(--gray-700); margin-bottom: 15px;">A Inoveon será responsável por:</p>
                     <ul class="responsibility-list">
                         <li><span class="material-icons">check_circle</span> Planejamento e condução do processo de implantação</li>
@@ -1209,7 +1205,7 @@
                 </div>
 
                 <div class="responsibility-card" style="flex: 1;">
-                    <h3 style="color: var(--i9-violet);"><span class="material-icons">payments</span> Custo de Implantação</h3>
+                    <h3 style="color: var(--i9-navy);"><span class="material-icons">payments</span> Custo de Implantação</h3>
                     <div class="support-price-box" style="margin-top: 20px;">
                         <span>Valor por unidade</span>
                         <strong>R$ 31.000,00</strong>

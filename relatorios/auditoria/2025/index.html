@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Auditoria 2025 - Mudanças em Produção - Grupo Aldo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .info-box h2 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2d5a87;
+        }
+        .info-item label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .info-item span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        th {
+            background: #1e3a5f;
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 12px;
+            vertical-align: top;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .commit-hash {
+            font-family: 'Courier New', monospace;
+            background: #e8f4f8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            color: #2d5a87;
+        }
+        .date {
+            white-space: nowrap;
+            color: #666;
+        }
+        .author {
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+        .description {
+            max-width: 450px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-feat { background: #d4edda; color: #155724; }
+        .badge-fix { background: #f8d7da; color: #721c24; }
+        .badge-docs { background: #cce5ff; color: #004085; }
+        .badge-chore { background: #e2e3e5; color: #383d41; }
+        .badge-refactor { background: #fff3cd; color: #856404; }
+        .badge-other { background: #f0f0f0; color: #666; }
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .summary-card .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+        .summary-card .label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        .month-header {
+            background: #e8f4f8;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        .month-header td {
+            padding: 12px;
+            font-size: 14px;
+            border-bottom: 2px solid #2d5a87;
+        }
+        @media print {
+            body { background: white; font-size: 10px; }
+            .container { max-width: 100%; padding: 10px; }
+            header { background: #1e3a5f; padding: 15px; }
+            table { font-size: 9px; }
+            th, td { padding: 6px 8px; }
+            .summary-cards { grid-template-columns: repeat(5, 1fr); }
+            .info-box { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Relatório de Auditoria - Mudanças Implantadas em Produção</h1>
+            <p>Sistema: Grupo Aldo - Gestão de Postos de Combustível</p>
+            <p>Período: 01/01/2025 a 31/12/2025 (Ano Completo)</p>
+            <p>Data de Extração: 17/02/2026</p>
+        </header>
+
+        <div class="summary-cards">
+            <div class="summary-card">
+                <div class="number">168</div>
+                <div class="label">Total de Commits</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">160</div>
+                <div class="label">Diego Silveira</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">8</div>
+                <div class="label">Rodrigo Felippe</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">12</div>
+                <div class="label">Meses Ativos</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">2</div>
+                <div class="label">Desenvolvedores</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>Informações da Extração</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Repositório</label>
+                    <span>grupo-aldo</span>
+                </div>
+                <div class="info-item">
+                    <label>Branch</label>
+                    <span>master (produção)</span>
+                </div>
+                <div class="info-item">
+                    <label>Período</label>
+                    <span>01/01/2025 - 31/12/2025</span>
+                </div>
+                <div class="info-item">
+                    <label>Comando de Extração</label>
+                    <span>git log --since="2025-01-01" --until="2025-12-31"</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>Registro de Mudanças Transportadas/Implantadas - Ano 2025</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 90px;">Código</th>
+                        <th style="width: 90px;">Data Liberação</th>
+                        <th>Descrição da Mudança</th>
+                        <th style="width: 130px;">Responsável DEV</th>
+                        <th style="width: 130px;">Implantou PROD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- DEZEMBRO 2025 -->
+                    <tr class="month-header"><td colspan="5">DEZEMBRO 2025 (8 commits)</td></tr>
+                    <tr><td><span class="commit-hash">f4e7e6f</span></td><td class="date">20/12/2025</td><td class="description">Ajustes para migração de versão</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a76784d</span></td><td class="date">03/12/2025</td><td class="description">Ajustando tipo de frete</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">ed55cbf</span></td><td class="date">02/12/2025</td><td class="description">Atualizando o orçamento para limpar o relacionamento com variáveis em memória</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">fc18179</span></td><td class="date">02/12/2025</td><td class="description">Adicionando logs</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">aab8e67</span></td><td class="date">02/12/2025</td><td class="description">Adicionando logs</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">d22b829</span></td><td class="date">02/12/2025</td><td class="description">Adicionando botão para consulta de débitos</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1f4770a</span></td><td class="date">02/12/2025</td><td class="description">Merge branch 'master'</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">3c59ea4</span></td><td class="date">02/12/2025</td><td class="description">Ajuste na variável faltante</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+
+                    <!-- NOVEMBRO 2025 -->
+                    <tr class="month-header"><td colspan="5">NOVEMBRO 2025 (28 commits)</td></tr>
+                    <tr><td><span class="commit-hash">e833318</span></td><td class="date">28/11/2025</td><td class="description">Criação de rotina para impressão de vales por período</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">6232a1f</span></td><td class="date">28/11/2025</td><td class="description">Ajustando condição de pagamento no orçamento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">bdb9724</span></td><td class="date">28/11/2025</td><td class="description">Pontos de entrada para condição de pagamento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">d97b088</span></td><td class="date">28/11/2025</td><td class="description">Adicionando VarInfo</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">9c198fb</span></td><td class="date">28/11/2025</td><td class="description">Removendo o doubleClick</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e4a58bd</span></td><td class="date">28/11/2025</td><td class="description">Ajustando para operar sem necessidade de pasta temporária</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">6d38a31</span></td><td class="date">28/11/2025</td><td class="description">Atualização da NFESEFAZ CBS e IBS</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">52d981b</span></td><td class="date">28/11/2025</td><td class="description">Ajustes na pasta</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">1173b39</span></td><td class="date">26/11/2025</td><td class="description">Adicionar .t. na administradora financeira para tipo financiado</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">346aef6</span></td><td class="date">25/11/2025</td><td class="description">Rotina para ajuste de atendimentos com problemas na TEF</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">d18a571</span></td><td class="date">25/11/2025</td><td class="description">Rotina para ajuste de atendimentos com problemas na TEF</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">600b1e2</span></td><td class="date">21/11/2025</td><td class="description">Ajustando parâmetros para preencher chave PIX no rodapé de fatura</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1c56916</span></td><td class="date">21/11/2025</td><td class="description">Ajustando parâmetros de envio de e-mail</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">4d9997e</span></td><td class="date">21/11/2025</td><td class="description">Dias para exibição da lista de abastecimento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">f6a7f16</span></td><td class="date">21/11/2025</td><td class="description">Criando diretório caso não exista</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">9fb8cb4</span></td><td class="date">21/11/2025</td><td class="description">Ajustando SmartPDV para considerar mais de uma forma de pagamento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">405d25f</span></td><td class="date">21/11/2025</td><td class="description">Ajustando hora para finalização de atendimentos do SmartPDV</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">b6e77f6</span></td><td class="date">21/11/2025</td><td class="description">Desconsiderando notas que não vieram da origem loja para saldo</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">6d970d5</span></td><td class="date">21/11/2025</td><td class="description">Ajustando venda assistida para obter valor de itens de NF</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">2761da6</span></td><td class="date">21/11/2025</td><td class="description">Adicionando novos métodos para restrições</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">0df8118</span></td><td class="date">13/11/2025</td><td class="description">Liberar clientes Restritos</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e0c5e53</span></td><td class="date">07/11/2025</td><td class="description">Adição de validação para exibição de sangria para vendedor</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">0fc063a</span></td><td class="date">07/11/2025</td><td class="description">Regra de validação por liberação e bloqueio de clientes restritos</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">4c8f196</span></td><td class="date">07/11/2025</td><td class="description">Adicionando método para obtenção do limite do Cliente</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">f28bbf0</span></td><td class="date">04/11/2025</td><td class="description">Adicionando validação por tipo de erro no retorno da Ticket Log</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">764a119</span></td><td class="date">03/11/2025</td><td class="description">Adicionando tratamento para vendas parceladas</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- OUTUBRO 2025 -->
+                    <tr class="month-header"><td colspan="5">OUTUBRO 2025 (14 commits)</td></tr>
+                    <tr><td><span class="commit-hash">0e96c6b</span></td><td class="date">31/10/2025</td><td class="description">Ajustar situação do cliente de acordo com a retaguarda</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">f357627</span></td><td class="date">31/10/2025</td><td class="description">Ajustar situação do cliente de acordo com a retaguarda</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a060b95</span></td><td class="date">28/10/2025</td><td class="description">Validando se deve gerar ZFG</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">0878aa3</span></td><td class="date">28/10/2025</td><td class="description">Separando fontes em relatório e job de negativação</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">911dcf7</span></td><td class="date">28/10/2025</td><td class="description">Adicionando a logo da ASFRETE</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">2e300c5</span></td><td class="date">20/10/2025</td><td class="description">Evitando duplicidades no cálculo dos impostos</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">b69274f</span></td><td class="date">20/10/2025</td><td class="description">Ajustando série para validação</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">58451f8</span></td><td class="date">20/10/2025</td><td class="description">Nova classe para bloqueio/liberação de clientes</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">f0aaf6d</span></td><td class="date">20/10/2025</td><td class="description">Remoção de acentos</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">c48e913</span></td><td class="date">20/10/2025</td><td class="description">Caso seja nota assinada, não permitir geração de NFCE</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">49b6075</span></td><td class="date">20/10/2025</td><td class="description">Diversos ajustes</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">9da08e7</span></td><td class="date">20/10/2025</td><td class="description">Método para envio de email para clientes que assinaram nota</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">c4ebc27</span></td><td class="date">20/10/2025</td><td class="description">Tratamento para não permitir gerar SE5 sem SE1</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">42129ee</span></td><td class="date">20/10/2025</td><td class="description">Ajuste na integração com o Extranet</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">375f737</span></td><td class="date">06/10/2025</td><td class="description">Ajuste para considerar campo de movimentação interna no bloqueio</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- SETEMBRO 2025 -->
+                    <tr class="month-header"><td colspan="5">SETEMBRO 2025 (6 commits)</td></tr>
+                    <tr><td><span class="commit-hash">b742290</span></td><td class="date">16/09/2025</td><td class="description">Criando parâmetro para validar filiais unificadas</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">bfea802</span></td><td class="date">16/09/2025</td><td class="description">Utilizando tabela ZFI para controle</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">325c8e0</span></td><td class="date">16/09/2025</td><td class="description">Ajustando cores conforme solicitação do financeiro</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">3826ce4</span></td><td class="date">03/09/2025</td><td class="description">API Extranet</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">dcbf085</span></td><td class="date">03/09/2025</td><td class="description">Ajuste condição</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e78a6fd</span></td><td class="date">03/09/2025</td><td class="description">Adicionando validação por grupo para troca de clientes</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1393b8e</span></td><td class="date">03/09/2025</td><td class="description">Adicionando cor verde para observação de status sem restrição</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- AGOSTO 2025 -->
+                    <tr class="month-header"><td colspan="5">AGOSTO 2025 (8 commits)</td></tr>
+                    <tr><td><span class="commit-hash">5487213</span></td><td class="date">18/08/2025</td><td class="description">Removendo caracteres especiais</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">14b8467</span></td><td class="date">18/08/2025</td><td class="description">Novo endpoint para consulta de histórico de cobrança</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">efb33db</span></td><td class="date">18/08/2025</td><td class="description">Ajuste no filtro de filiais excluídas na consulta de débitos</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">80b3241</span></td><td class="date">18/08/2025</td><td class="description">Padronização dos nomes de propriedades JSON na API eFleet</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">70687b6</span></td><td class="date">18/08/2025</td><td class="description">Ajustes no job de bloqueio automático de clientes</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">d90831a</span></td><td class="date">12/08/2025</td><td class="description">Ajustando operação no relatório</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e26ce05</span></td><td class="date">04/08/2025</td><td class="description">Ajuste na geração do encerrante final</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- JULHO 2025 -->
+                    <tr class="month-header"><td colspan="5">JULHO 2025 (18 commits)</td></tr>
+                    <tr><td><span class="commit-hash">06bd421</span></td><td class="date">30/07/2025</td><td class="description">Fonte para consulta de histórico de cobrança</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">cb6d0e4</span></td><td class="date">14/07/2025</td><td class="description">Removendo chamada a ZFN desnecessária</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">299f7bf</span></td><td class="date">14/07/2025</td><td class="description">Exemplo envio documento para o Extranet</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">31bd8d5</span></td><td class="date">14/07/2025</td><td class="description">Merge remote-tracking branch</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1fba479</span></td><td class="date">14/07/2025</td><td class="description">Validar grupo para liberação da rotina</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a4f181d</span></td><td class="date">14/07/2025</td><td class="description">Melhoria para exibição do comprovante baixa de débito</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e393f50</span></td><td class="date">14/07/2025</td><td class="description">Documento Claude</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">2a69a6f</span></td><td class="date">14/07/2025</td><td class="description">Enviando email em caso de falha</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">334ec15</span></td><td class="date">14/07/2025</td><td class="description">Ajuste na criação do movimento bancário</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">8c9743d</span></td><td class="date">14/07/2025</td><td class="description">Teste de inclusão cliente</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">49de899</span></td><td class="date">14/07/2025</td><td class="description">Tratamento para título do prefixo VPR</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">72032ca</span></td><td class="date">14/07/2025</td><td class="description">Tratamento para título do prefixo VPR</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">cc70ae9</span></td><td class="date">11/07/2025</td><td class="description">Teste execauto cliente</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">6dbce00</span></td><td class="date">09/07/2025</td><td class="description">Merge branch 'master'</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">4639946</span></td><td class="date">09/07/2025</td><td class="description">Ajustes no JOB portal da Asfrete</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">17516cb</span></td><td class="date">09/07/2025</td><td class="description">Ajustes em arquivos de JOB Portal</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">c9673ec</span></td><td class="date">02/07/2025</td><td class="description">Rotina para importação da LP2</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a64fd5d</span></td><td class="date">02/07/2025</td><td class="description">Centralizando textos das colunas</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1f4c92a</span></td><td class="date">02/07/2025</td><td class="description">Ajuste para operar com BoletoPIX</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">d2999a0</span></td><td class="date">02/07/2025</td><td class="description">Relatório de cadastros P29 com total de vendas acima de R$ 10.000</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1de36eb</span></td><td class="date">02/07/2025</td><td class="description">Criação de cliente vazio em caso de parâmetros nulos</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">13914ed</span></td><td class="date">02/07/2025</td><td class="description">Adição de novos bloqueios</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- JUNHO 2025 -->
+                    <tr class="month-header"><td colspan="5">JUNHO 2025 (5 commits)</td></tr>
+                    <tr><td><span class="commit-hash">45223c2</span></td><td class="date">13/06/2025</td><td class="description">Adicionando motivos de liberação por senha</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1706af6</span></td><td class="date">10/06/2025</td><td class="description">Liberando ponto de entrada para outras empresas</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">ec40bf1</span></td><td class="date">10/06/2025</td><td class="description">Ajuste para permitir exportar para Excel</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">aacdfdb</span></td><td class="date">04/06/2025</td><td class="description">Adicionando chamada de impressão relatório via parambox</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">b4ffeb0</span></td><td class="date">04/06/2025</td><td class="description">Ajustes para geração de títulos e criação de clientes</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- MAIO 2025 -->
+                    <tr class="month-header"><td colspan="5">MAIO 2025 (9 commits)</td></tr>
+                    <tr><td><span class="commit-hash">6b03fe0</span></td><td class="date">19/05/2025</td><td class="description">Ajuste no valor default no parâmetro de email</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">05d7e84</span></td><td class="date">19/05/2025</td><td class="description">Ajuste no valor default no parâmetro de email</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1356d30</span></td><td class="date">19/05/2025</td><td class="description">Tratando para manipular variáveis somente em caso de retorno do WS</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">175a826</span></td><td class="date">19/05/2025</td><td class="description">Ajuste no título da Rotina</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">638d69f</span></td><td class="date">13/05/2025</td><td class="description">Relatório de P29 com limite consumido</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">6c6ddc5</span></td><td class="date">13/05/2025</td><td class="description">Rotina para validar se existe Cliente de origem por estado</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">169d190</span></td><td class="date">13/05/2025</td><td class="description">Rotina para cadastro de Cliente de origem por Estado</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">9f6ccd7</span></td><td class="date">05/05/2025</td><td class="description">Adicionando descrição da filial a consulta do CTRL+R</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- ABRIL 2025 -->
+                    <tr class="month-header"><td colspan="5">ABRIL 2025 (16 commits)</td></tr>
+                    <tr><td><span class="commit-hash">52196b9</span></td><td class="date">28/04/2025</td><td class="description">Deixando de utilizar rotina de validação de Feriados</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">bb5a5f4</span></td><td class="date">28/04/2025</td><td class="description">Exemplo execauto SLK</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">3a3efe8</span></td><td class="date">28/04/2025</td><td class="description">Transmissão de NFE na rotina de checkup</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a87c7e9</span></td><td class="date">18/04/2025</td><td class="description">Alteração do CTRL_R</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">72aaec6</span></td><td class="date">18/04/2025</td><td class="description">Validação de valores na finalização somente para usuários não fiscais</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">2760a1c</span></td><td class="date">18/04/2025</td><td class="description">Alterar regra de captação de título de ZL1 para SL1</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a78b1e9</span></td><td class="date">18/04/2025</td><td class="description">Não permitir alteração da condição de pagamento pela equipe do posto</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1c44663</span></td><td class="date">11/04/2025</td><td class="description">Adicionando marcação do campo de status para ClubPetro</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">f3b60c4</span></td><td class="date">11/04/2025</td><td class="description">Tratativa para não subir orçamentos com divergência entre SL1 e SL2</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">6a54091</span></td><td class="date">11/04/2025</td><td class="description">Tratativa para não permitir finalizar atendimento com orçamentos posteriores</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e5b67b5</span></td><td class="date">11/04/2025</td><td class="description">Alterando chamada do método setConsumo por Refresh</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">486bb1d</span></td><td class="date">11/04/2025</td><td class="description">Adicionando tratamento de retorno para XML nulo</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">602c724</span></td><td class="date">07/04/2025</td><td class="description">Paleativo para geração da ZFG</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">abd48a8</span></td><td class="date">07/04/2025</td><td class="description">Adicionando validação de valor entre orçamento e itens</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">6d8e323</span></td><td class="date">04/04/2025</td><td class="description">Iniciando variável lContinua como falso</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">b2f24dd</span></td><td class="date">03/04/2025</td><td class="description">Gerar ZFD por data</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1f7bf58</span></td><td class="date">03/04/2025</td><td class="description">Ajustando o campo L2_SITTIB: Removendo ponto</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">923b709</span></td><td class="date">01/04/2025</td><td class="description">Liberação da rotina somente para usuários do Fiscal</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">0111ffd</span></td><td class="date">01/04/2025</td><td class="description">Adicionando bloqueio para clientes com restrição</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- MARÇO 2025 -->
+                    <tr class="month-header"><td colspan="5">MARÇO 2025 (18 commits)</td></tr>
+                    <tr><td><span class="commit-hash">7c27d9d</span></td><td class="date">26/03/2025</td><td class="description">Merge remote-tracking branch</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">b47cf7b</span></td><td class="date">26/03/2025</td><td class="description">Alterando vencimento para vencimento real na consulta</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">33324ce</span></td><td class="date">26/03/2025</td><td class="description">Alterando chamada via job para impressão de NFE assinado</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">523ccbd</span></td><td class="date">26/03/2025</td><td class="description">Ajustes para obter preço de venda de origem para operadores do fiscal</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a51b945</span></td><td class="date">21/03/2025</td><td class="description">Ajustando layout da fatura e adicionando M05/F05 para não emitir boleto</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">8369030</span></td><td class="date">18/03/2025</td><td class="description">Ajuste na captação de itens pendentes</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">2582467</span></td><td class="date">18/03/2025</td><td class="description">Merge branch 'master'</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">28a38da</span></td><td class="date">18/03/2025</td><td class="description">Ajuste na validação</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">f6f7955</span></td><td class="date">15/03/2025</td><td class="description">Merge remote-tracking branch</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">637ea7e</span></td><td class="date">15/03/2025</td><td class="description">Não permitir venda a prazo para cliente negativado</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">ff7bfa8</span></td><td class="date">15/03/2025</td><td class="description">Evitando duplicidades no envio da requisição de venda</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">080e961</span></td><td class="date">15/03/2025</td><td class="description">Alterando forma de envio do consumo: uma requisição por atendimento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a9375e2</span></td><td class="date">13/03/2025</td><td class="description">Adicionando validação de Transportadora X condições especiais</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">040f9f2</span></td><td class="date">11/03/2025</td><td class="description">Ajuste realizado pela equipe do Aldo</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e393971</span></td><td class="date">11/03/2025</td><td class="description">Ajuste realizado pela equipe do Aldo</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">938272f</span></td><td class="date">11/03/2025</td><td class="description">Merge branch 'master'</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">bc86da7</span></td><td class="date">11/03/2025</td><td class="description">Criação da API do eFleet</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">44d4748</span></td><td class="date">07/03/2025</td><td class="description">Merge remote-tracking branch</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">fdc21b4</span></td><td class="date">07/03/2025</td><td class="description">Adicionando retransmissão de NFCE</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">06ba948</span></td><td class="date">07/03/2025</td><td class="description">Trazer atendimentos detalhados ao dar dois cliques</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">aac7dfb</span></td><td class="date">07/03/2025</td><td class="description">Merge branch 'master'</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">e379f01</span></td><td class="date">07/03/2025</td><td class="description">Ajustes para não enviar devedor se for vazio ou igual a 0000000</td><td class="author">Rodrigo Felippe</td><td class="author">Rodrigo Felippe</td></tr>
+                    <tr><td><span class="commit-hash">ac92919</span></td><td class="date">03/03/2025</td><td class="description">Tratando a propriedade bico</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">cdf9102</span></td><td class="date">03/03/2025</td><td class="description">Ajustes para imprimir e copiar a DANFE para o portal V</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- FEVEREIRO 2025 -->
+                    <tr class="month-header"><td colspan="5">FEVEREIRO 2025 (7 commits)</td></tr>
+                    <tr><td><span class="commit-hash">e346cea</span></td><td class="date">23/02/2025</td><td class="description">Adicionando tipos de movimentos bancários para saldo de operador</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">ee9f118</span></td><td class="date">14/02/2025</td><td class="description">Ajustando para imprimir a DANFE dentro do job</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">0672841</span></td><td class="date">14/02/2025</td><td class="description">Adicionando validação para emissão da DANFE via job</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1bb5e87</span></td><td class="date">06/02/2025</td><td class="description">Adicionando emissão de nota assinada</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">f48b009</span></td><td class="date">05/02/2025</td><td class="description">Adicionando emails</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">3a08c3d</span></td><td class="date">03/02/2025</td><td class="description">Ajustando parâmetros para faturamento tipo 4</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">a5d047c</span></td><td class="date">02/02/2025</td><td class="description">Adicionando validações por hora</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">f74c7c4</span></td><td class="date">02/02/2025</td><td class="description">Funções para verificação de itens enviados pelo I9 Smart PDV</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">9ce5bbb</span></td><td class="date">02/02/2025</td><td class="description">Adicionando número do orçamento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+
+                    <!-- JANEIRO 2025 -->
+                    <tr class="month-header"><td colspan="5">JANEIRO 2025 (22 commits)</td></tr>
+                    <tr><td><span class="commit-hash">ac0feae</span></td><td class="date">31/01/2025</td><td class="description">Tornando variável pública para instanciar de fora da Classe</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">70a086b</span></td><td class="date">28/01/2025</td><td class="description">Ajustando consultas para considerar apenas orçamentos finalizados</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e6ac28e</span></td><td class="date">27/01/2025</td><td class="description">Considerando condição de pagamento compartilhada</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">834cc04</span></td><td class="date">26/01/2025</td><td class="description">Adicionando validação para forçar campos do vendedor RFID do Fusion</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">decec71</span></td><td class="date">26/01/2025</td><td class="description">Ajustando índice da ZPR para o índice 1</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">fdd2abf</span></td><td class="date">24/01/2025</td><td class="description">Adicionando validação por Feriados, tipo de faturamento de funcionários</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">8a9f359</span></td><td class="date">22/01/2025</td><td class="description">Gravar retorno para utilização posterior em caso de falha de WS</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">53029b1</span></td><td class="date">20/01/2025</td><td class="description">Removendo validação de abastecimento diretamente no PDV</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">1b2f0c0</span></td><td class="date">20/01/2025</td><td class="description">Adicionando validações de abastecimento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">5cfd98b</span></td><td class="date">17/01/2025</td><td class="description">Alterando a propriedade do Thermoking</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e1f7ed1</span></td><td class="date">17/01/2025</td><td class="description">Adicionando validação para o objeto oASFRETE</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">e83a95d</span></td><td class="date">17/01/2025</td><td class="description">Adicionando validação por abastecimento já baixado em outro orçamento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">0e962b3</span></td><td class="date">17/01/2025</td><td class="description">Adicionando validação para envio dos orçamentos pelo I9 Smart PDV</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">54f085b</span></td><td class="date">17/01/2025</td><td class="description">Adicionar confirmação do operador referente ao envio de orçamento Thermoking</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">0d6c456</span></td><td class="date">17/01/2025</td><td class="description">Tela de confirmação</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">02c43ce</span></td><td class="date">16/01/2025</td><td class="description">Ajuste no relatório de liberações: enviar a partir da retaguarda</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">9a1cd8d</span></td><td class="date">16/01/2025</td><td class="description">Adicionar informações de completada e Thermoking</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">43e9485</span></td><td class="date">16/01/2025</td><td class="description">Adicionar informações de completada e Thermoking</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">95eebb0</span></td><td class="date">14/01/2025</td><td class="description">Adicionado validação para cadastro de condição de pagamento nula</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">24d3453</span></td><td class="date">08/01/2025</td><td class="description">Ajustando rotina de criação de condição de pagamento unificada</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">22ffa86</span></td><td class="date">08/01/2025</td><td class="description">Tornando métodos públicos, alterando uso do número do orçamento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">5ba1c6e</span></td><td class="date">08/01/2025</td><td class="description">Ajuste na rotina de geração de atendimento para orçamento sem atendimento</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                    <tr><td><span class="commit-hash">4077005</span></td><td class="date">02/01/2025</td><td class="description">Adicionando validação por Fields no momento da inserção</td><td class="author">diegosilveira</td><td class="author">diegosilveira</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h2>Desenvolvedores Envolvidos - 2025</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Total de Commits</th>
+                        <th>Papel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="author">diegosilveira</td>
+                        <td>diego.pb.dev@gmail.com</td>
+                        <td>160</td>
+                        <td>Desenvolvedor / Implantador</td>
+                    </tr>
+                    <tr>
+                        <td class="author">Rodrigo Felippe</td>
+                        <td>rodrigofelippeac@gmail.com</td>
+                        <td>8</td>
+                        <td>Desenvolvedor / Implantador</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h2>Observações para Auditoria</h2>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>Controle de Versão:</strong> O projeto utiliza Git como sistema de controle de versão</li>
+                <li><strong>Branch de Produção:</strong> master</li>
+                <li><strong>Rastreabilidade:</strong> Cada mudança possui código único (hash SHA) que garante integridade e rastreabilidade</li>
+                <li><strong>Processo:</strong> Commits são feitos diretamente na branch master (modelo de deploy contínuo)</li>
+                <li><strong>Repositório:</strong> GitLab (https://gitlab.com/leechardes/grupo-aldo)</li>
+                <li><strong>Total de mudanças no período:</strong> 168 commits</li>
+                <li><strong>Período auditado:</strong> 01/01/2025 a 31/12/2025</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>Relatório gerado automaticamente via Git</strong></p>
+            <p>Data de extração: 17/02/2026 | Comando: git log --since="2025-01-01" --until="2025-12-31"</p>
+            <p>Sistema: Grupo Aldo - Gestão de Postos de Combustível | Plataforma: TOTVS Protheus (AdvPL/TLPP)</p>
+        </footer>
+    </div>
+</body>
+</html>

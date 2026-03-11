@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial - Ecossistema Inoveon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <style>
+        :root {
+            /* Cores Inoveon */
+            --i9-dark: #12162B;
+            --i9-navy: #011E4B;
+            --i9-blue: #005BAA;
+            --i9-purple: #4E1194;
+            --i9-violet: #6B14C2;
+            --i9-light: #E7E7E7;
+
+            --primary: #12162B;
+            --secondary: #011E4B;
+            --accent-blue: #005BAA;
+            --accent-purple: #4E1194;
+            --accent-violet: #6B14C2;
+            --gold: #005BAA;
+            --green: #005BAA;
+            --light: #E7E7E7;
+            --white: #ffffff;
+            --gray-100: #f1f3f5;
+            --gray-200: #E7E7E7;
+            --gray-300: #dee2e6;
+            --gray-500: #adb5bd;
+            --gray-700: #495057;
+            --gray-900: #12162B;
+
+            --essencial: #005BAA;
+            --operacional: #4E1194;
+            --full: #6B14C2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent-blue) 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--white) 0%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo span {
+            color: var(--accent-violet);
+            -webkit-text-fill-color: var(--accent-violet);
+        }
+
+        .header h1 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .header-subtitle {
+            font-size: 1.25rem;
+            font-weight: 300;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.85;
+            line-height: 1.8;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section */
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+
+        .material-icons, .material-symbols-outlined {
+            font-size: inherit;
+            vertical-align: middle;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray-700);
+            margin-bottom: 40px;
+        }
+
+        /* Introduction Card */
+        .intro-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: -40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .intro-card h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .intro-card p {
+            color: var(--gray-700);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .intro-card p + p {
+            margin-top: 15px;
+        }
+
+        /* Commercial Rule */
+        .commercial-rule {
+            background: linear-gradient(135deg, var(--accent-blue) 0%, var(--primary) 100%);
+            color: var(--white);
+            border-radius: 16px;
+            padding: 30px 35px;
+            margin-top: 30px;
+        }
+
+        .commercial-rule h3 {
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .commercial-rule p {
+            font-size: 1rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        /* Package Cards */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .package-card {
+            background: var(--white);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .package-card.featured {
+            border: 3px solid var(--i9-violet);
+        }
+
+        .package-card.featured::before {
+            content: 'MAIS COMPLETO';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--i9-violet);
+            color: var(--white);
+            padding: 8px 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+        }
+
+        .package-header {
+            padding: 35px 30px 25px;
+            text-align: center;
+        }
+
+        .package-header.essencial {
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
+        }
+
+        .package-header.operacional {
+            background: linear-gradient(135deg, var(--i9-purple) 0%, var(--i9-navy) 100%);
+        }
+
+        .package-header.full {
+            background: linear-gradient(135deg, var(--i9-violet) 0%, var(--i9-purple) 100%);
+        }
+
+        .package-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .package-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        .package-indication {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+
+        .package-body {
+            padding: 30px;
+            text-align: center;
+        }
+
+        .package-solutions {
+            text-align: left;
+        }
+
+        .package-solutions h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray-500);
+            margin-bottom: 20px;
+        }
+
+        .solution-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .solution-item:last-child {
+            border-bottom: none;
+        }
+
+        .solution-info {
+            flex: 1;
+            padding-right: 15px;
+        }
+
+        .solution-name {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .solution-name .bonus {
+            background: var(--i9-blue);
+            color: var(--white);
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+
+        .solution-desc {
+            font-size: 0.85rem;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+
+        .solution-price {
+            font-weight: 700;
+            color: var(--gray-900);
+            white-space: nowrap;
+            font-size: 0.95rem;
+        }
+
+        .solution-price.bonus {
+            color: var(--i9-blue);
+        }
+
+        .package-total {
+            background: var(--gray-100);
+            margin: 25px -30px -30px;
+            padding: 25px 30px;
+            border-radius: 0 0 24px 24px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .total-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .total-label {
+            font-size: 0.8rem;
+            color: var(--gray-700);
+        }
+
+        .total-value {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .total-row.grand-total {
+            border-top: 2px solid var(--gray-300);
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .total-row.grand-total .total-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .total-row.grand-total .total-value {
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+
+        .total-value.essencial-color { color: var(--i9-blue); }
+        .total-value.operacional-color { color: var(--i9-purple); }
+        .total-value.full-color { color: var(--i9-violet); }
+
+        /* Support Badge */
+        .support-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--gray-200);
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: var(--gray-700);
+            margin-top: 20px;
+        }
+
+        .support-badge.premium {
+            background: linear-gradient(135deg, var(--i9-violet) 0%, var(--i9-purple) 100%);
+            color: var(--white);
+        }
+
+        /* Support Section Full */
+        .support-full-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .support-full-section h3 {
+            font-size: 1.5rem;
+            color: var(--i9-violet);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .support-item {
+            background: var(--gray-100);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .support-item-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .support-item h4 {
+            font-size: 0.9rem;
+            color: var(--gray-900);
+            margin-bottom: 5px;
+        }
+
+        .support-item p {
+            font-size: 0.8rem;
+            color: var(--gray-500);
+        }
+
+        .support-price-box {
+            background: linear-gradient(135deg, var(--i9-violet) 0%, var(--i9-purple) 100%);
+            color: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+        }
+
+        .support-price-box span {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .support-price-box strong {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        /* Bonus Section */
+        .bonus-section {
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .bonus-icon {
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+
+        .bonus-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .bonus-content p {
+            font-size: 1rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .bonus-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        /* Responsibilities */
+        .responsibilities-section {
+            margin-top: 60px;
+        }
+
+        .responsibilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .responsibility-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .responsibility-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .responsibility-card.client h3 {
+            color: var(--i9-blue);
+        }
+
+        .responsibility-card.provider h3 {
+            color: var(--i9-violet);
+        }
+
+        .responsibility-list {
+            list-style: none;
+        }
+
+        .responsibility-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid var(--gray-200);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.95rem;
+            color: var(--gray-700);
+        }
+
+        .responsibility-list li:last-child {
+            border-bottom: none;
+        }
+
+        .responsibility-list li::before {
+            content: '';
+        }
+
+        .responsibility-list li .material-icons {
+            color: var(--i9-blue);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Observations */
+        .observations {
+            background: var(--gray-200);
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-top: 30px;
+        }
+
+        .observations h4 {
+            font-size: 1rem;
+            color: var(--gray-700);
+            margin-bottom: 12px;
+        }
+
+        .observations ul {
+            list-style: none;
+        }
+
+        .observations li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+            color: var(--gray-700);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .observations li::before {
+            content: '';
+        }
+
+        .observations li .material-icons {
+            font-size: 1rem;
+            color: var(--gray-700);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 60px 20px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .footer h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            opacity: 0.8;
+        }
+
+        .footer-logo span {
+            color: var(--i9-violet);
+        }
+
+        /* Comparison Table */
+        .comparison-section {
+            margin-top: 60px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-collapse: collapse;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 18px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .comparison-table th {
+            background: var(--gray-100);
+            font-weight: 600;
+            color: var(--gray-700);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: 500;
+            color: var(--gray-900);
+        }
+
+        .comparison-table tbody tr:hover {
+            background: var(--gray-100);
+        }
+
+        .comparison-table .check {
+            color: var(--i9-blue);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .comparison-table .check .material-icons {
+            font-size: 1.4rem;
+        }
+
+        .comparison-table .dash {
+            color: var(--gray-300);
+        }
+
+        .comparison-table .dash .material-icons {
+            font-size: 1.2rem;
+        }
+
+        .comparison-header {
+            padding: 20px;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .comparison-header.essencial { background: var(--i9-blue); color: var(--white); }
+        .comparison-header.operacional { background: var(--i9-purple); color: var(--white); }
+        .comparison-header.full { background: var(--i9-violet); color: var(--white); }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            .package-card:hover {
+                transform: none;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            }
+
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .support-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .logo {
+                font-size: 2.5rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bonus-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 12px 10px;
+            }
+
+            .support-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo"><img src="Logo 1 - cópia.svg" alt="Inoveon" style="height: 60px;"></div>
+            <h1>Proposta Comercial</h1>
+            <p class="header-subtitle">
+                Ecossistema de Soluções Operacionais para Postos de Combustíveis
+            </p>
+        </div>
+    </header>
+
+    <!-- Introduction -->
+    <div class="container">
+        <div class="intro-card">
+            <h2>Sobre o Ecossistema Inoveon</h2>
+            <p>
+                A <strong>Inoveon</strong> é uma empresa especializada no desenvolvimento de soluções tecnológicas para postos de combustíveis, com foco em <strong>operação, automação, controle financeiro, mobilidade, experiência no atendimento e inteligência operacional</strong>.
+            </p>
+            <p>
+                O Ecossistema Inoveon foi concebido como uma <strong>plataforma integrada</strong>, onde todas as soluções compartilham uma arquitetura unificada, padronização de dados e evolução contínua, garantindo <strong>estabilidade operacional, segurança fiscal e eficiência</strong> na gestão do posto.
+            </p>
+
+            <div class="commercial-rule">
+                <h3><span class="material-icons">assignment</span> Estrutura de Contratação</h3>
+                <p style="color: var(--white);">
+                    As soluções são disponibilizadas por pacotes, definidos conforme o nível de maturidade operacional desejado pelo cliente. <strong>Quanto menor o pacote contratado, maior o valor unitário das soluções</strong>, com ênfase específica no I9 PDV Web, núcleo do Ecossistema Inoveon.
+                </p>
+            </div>
+
+            <div class="commercial-rule" style="background: linear-gradient(135deg, var(--i9-purple) 0%, var(--i9-violet) 100%); margin-top: 20px;">
+                <h3><span class="material-icons">business</span> Abrangência desta Proposta</h3>
+                <p style="color: var(--white);">
+                    Esta proposta é válida para <strong>redes de postos com 15 a 25 unidades operacionais</strong>. Condições diferenciadas podem ser negociadas para redes fora desta faixa.
+                </p>
+                <p style="color: var(--white); margin-top: 12px;">
+                    <span class="material-icons" style="font-size: 1rem; vertical-align: middle; margin-right: 5px;">info</span>
+                    Para contratação de soluções de forma individual, fora dos pacotes disponíveis, <strong>entre em contato com nosso time comercial</strong>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Packages Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-icon" style="background: var(--primary); color: var(--white);"><span class="material-icons">inventory_2</span></span>
+                Pacotes Disponíveis
+            </h2>
+            <p class="section-subtitle">Escolha o pacote ideal para o nível de maturidade operacional do seu posto</p>
+
+            <div class="packages-grid">
+                <!-- Pacote Essencial -->
+                <div class="package-card">
+                    <div class="package-header essencial">
+                        <span class="package-badge">Básico</span>
+                        <h3 class="package-name">ESSENCIAL</h3>
+                        <p class="package-indication">Operações que necessitam de frente de caixa fiscal, controle básico da jornada de atendimento e organização operacional mínima.</p>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-solutions">
+                            <h4><span class="material-icons" style="font-size: 1rem; margin-right: 5px;">inventory_2</span> Soluções Inclusas</h4>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 PDV Web</div>
+                                    <div class="solution-desc">Frente de caixa, controle de pista, automação, transações de frete e frota, financeiro de operadores e fechamento de caixa</div>
+                                </div>
+                                <div class="solution-price">R$ 3.200,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Feed</div>
+                                    <div class="solution-desc">Interação no atendimento, resumo do consumo, assinatura digital, NPS e campanhas</div>
+                                </div>
+                                <div class="solution-price">R$ 900,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Queue</div>
+                                    <div class="solution-desc">Gestão de filas, painel de senhas e mensuração do tempo de espera</div>
+                                </div>
+                                <div class="solution-price">R$ 800,00</div>
+                            </div>
+                        </div>
+
+                        <div class="support-badge">
+                            <span class="material-icons">build</span> Suporte corretivo em horário comercial
+                        </div>
+
+                        <div class="package-total">
+                            <div class="total-row grand-total">
+                                <span class="total-label">Total Licença de Uso</span>
+                                <span class="total-value essencial-color">R$ 4.900,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pacote Operacional -->
+                <div class="package-card">
+                    <div class="package-header operacional">
+                        <span class="package-badge">Intermediário</span>
+                        <h3 class="package-name">OPERACIONAL</h3>
+                        <p class="package-indication">Operações que demandam mobilidade, inventário inteligente, agilidade na pista e maior controle operacional.</p>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-solutions">
+                            <h4><span class="material-icons" style="font-size: 1rem; margin-right: 5px;">inventory_2</span> Soluções Inclusas</h4>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 PDV Web</div>
+                                    <div class="solution-desc">Plataforma central do ecossistema</div>
+                                </div>
+                                <div class="solution-price">R$ 2.500,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Feed</div>
+                                    <div class="solution-desc">Experiência no atendimento e validações</div>
+                                </div>
+                                <div class="solution-price">R$ 700,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Queue</div>
+                                    <div class="solution-desc">Gestão de filas integrada ao PDV</div>
+                                </div>
+                                <div class="solution-price">R$ 600,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart PDV (Mobile)</div>
+                                    <div class="solution-desc">Atendimento em pista, emissão fiscal, pagamentos e assinatura digital</div>
+                                </div>
+                                <div class="solution-price">R$ 800,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Count</div>
+                                    <div class="solution-desc">Inventário inteligente, ajustes de preço, etiquetas e contagens</div>
+                                </div>
+                                <div class="solution-price">R$ 600,00</div>
+                            </div>
+
+                        </div>
+
+                        <div class="support-badge">
+                            <span class="material-icons">build</span> Suporte N2 em horário comercial
+                        </div>
+
+                        <div class="package-total">
+                            <div class="total-row grand-total">
+                                <span class="total-label">Total Licença de Uso</span>
+                                <span class="total-value operacional-color">R$ 5.200,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pacote Full -->
+                <div class="package-card featured">
+                    <div class="package-header full">
+                        <span class="package-badge">Completo</span>
+                        <h3 class="package-name">FULL</h3>
+                        <p class="package-indication">Operações que exigem alta disponibilidade, mobilidade total, visão gerencial, monitoramento contínuo e suporte especializado 24x7.</p>
+                    </div>
+                    <div class="package-body">
+                        <div class="package-solutions">
+                            <h4><span class="material-icons" style="font-size: 1rem; margin-right: 5px;">inventory_2</span> Soluções Inclusas</h4>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 PDV Web</div>
+                                    <div class="solution-desc">Núcleo do Ecossistema Inoveon</div>
+                                </div>
+                                <div class="solution-price">R$ 1.800,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Feed</div>
+                                    <div class="solution-desc">Experiência no atendimento e confirmações</div>
+                                </div>
+                                <div class="solution-price">R$ 500,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Queue</div>
+                                    <div class="solution-desc">Gestão avançada de filas</div>
+                                </div>
+                                <div class="solution-price">R$ 400,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart PDV (Mobile)</div>
+                                    <div class="solution-desc">Atendimento completo em mobilidade</div>
+                                </div>
+                                <div class="solution-price">R$ 600,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart Count</div>
+                                    <div class="solution-desc">Inventário e apoio operacional</div>
+                                </div>
+                                <div class="solution-price">R$ 350,00</div>
+                            </div>
+
+                            <div class="solution-item">
+                                <div class="solution-info">
+                                    <div class="solution-name">I9 Smart View <span class="bonus">BÔNUS</span></div>
+                                    <div class="solution-desc">Relatórios e indicadores</div>
+                                </div>
+                                <div class="solution-price bonus">R$ 0,00</div>
+                            </div>
+                        </div>
+
+                        <div class="support-badge premium">
+                            <span class="material-icons">verified_user</span> Suporte Integral 24x7 Incluso
+                        </div>
+
+                        <div class="package-total">
+                            <div class="total-row">
+                                <span class="total-label">Licença de Uso</span>
+                                <span class="total-value">R$ 4.000,00</span>
+                            </div>
+                            <div class="total-row">
+                                <span class="total-label">Suporte Integral 24x7</span>
+                                <span class="total-value">R$ 3.157,00</span>
+                            </div>
+                            <div class="total-row grand-total">
+                                <span class="total-label">Total Mensal</span>
+                                <span class="total-value full-color">R$ 7.157,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Full Details -->
+            <div class="support-full-section">
+                <h3><span class="material-icons">verified_user</span> Suporte Integral 24x7 – Pacote FULL</h3>
+                <p style="color: var(--gray-700); margin-bottom: 25px;">Atendimento especializado para garantir continuidade operacional em tempo integral:</p>
+
+                <div class="support-grid">
+                    <div class="support-item">
+                        <div class="support-item-icon"><span class="material-icons">nightlight</span></div>
+                        <h4>N1 – Noturno/Madrugada</h4>
+                        <p>Atendimento em horários não comerciais</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-item-icon"><span class="material-icons">light_mode</span></div>
+                        <h4>N2 – Diurno</h4>
+                        <p>Atendimento em horário comercial</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-item-icon"><span class="material-icons">settings</span></div>
+                        <h4>N3 – Protheus</h4>
+                        <p>Desenvolvedor especializado</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-item-icon"><span class="material-icons">code</span></div>
+                        <h4>N3 – Full Stack</h4>
+                        <p>Desenvolvedor especializado</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-item-icon"><span class="material-icons">visibility</span></div>
+                        <h4>Monitoramento</h4>
+                        <p>Serviços, integrações e processos fiscais</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="support-item-icon"><span class="material-icons">analytics</span></div>
+                        <h4>Relatórios</h4>
+                        <p>Métricas de atendimento</p>
+                    </div>
+                </div>
+
+                <div class="support-price-box">
+                    <span>Valor mensal do Suporte Integral</span>
+                    <strong>R$ 3.157,00</strong>
+                </div>
+            </div>
+
+            <!-- Bonus Section -->
+            <div class="bonus-section">
+                <div class="bonus-icon"><span class="material-icons" style="font-size: 4rem;">card_giftcard</span></div>
+                <div class="bonus-content">
+                    <h3>I9 Smart View – Bônus Estratégico</h3>
+                    <p>
+                        O <strong>I9 Smart View</strong> é o módulo de geração e gestão de relatórios, permitindo a visualização de dados de forma dinâmica e eficiente, apoiando a tomada de decisão operacional e gerencial.
+                    </p>
+                    <p style="margin-top: 10px;">
+                        Este módulo é disponibilizado <strong>sem custo adicional</strong> no pacote Inoveon Full, como benefício estratégico, não configurando desconto comercial.
+                    </p>
+                    <span class="bonus-badge">Incluso no pacote Full</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section class="section" style="background: var(--white); padding: 60px 0;">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-icon" style="background: var(--accent-blue); color: var(--white);"><span class="material-icons">compare</span></span>
+                Comparativo de Pacotes
+            </h2>
+            <p class="section-subtitle">Visualize rapidamente as diferenças entre os pacotes</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Solução</th>
+                        <th class="comparison-header essencial">ESSENCIAL</th>
+                        <th class="comparison-header operacional">OPERACIONAL</th>
+                        <th class="comparison-header full">FULL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>I9 PDV Web</td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 3.200</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 2.500</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 1.800</small></td>
+                    </tr>
+                    <tr>
+                        <td>I9 Smart Feed</td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 900</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 700</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 500</small></td>
+                    </tr>
+                    <tr>
+                        <td>I9 Smart Queue</td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 800</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 600</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 400</small></td>
+                    </tr>
+                    <tr>
+                        <td>I9 Smart PDV (Mobile)</td>
+                        <td><span class="dash"><span class="material-icons">remove</span></span></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 800</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 600</small></td>
+                    </tr>
+                    <tr>
+                        <td>I9 Smart Count</td>
+                        <td><span class="dash"><span class="material-icons">remove</span></span></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 600</small></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 350</small></td>
+                    </tr>
+                    <tr>
+                        <td>I9 Smart View</td>
+                        <td><span class="dash"><span class="material-icons">remove</span></span></td>
+                        <td><span class="dash"><span class="material-icons">remove</span></span></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small style="color: var(--i9-blue);">Bônus</small></td>
+                    </tr>
+                    <tr>
+                        <td>Suporte 24x7</td>
+                        <td><span class="dash"><span class="material-icons">remove</span></span></td>
+                        <td><span class="dash"><span class="material-icons">remove</span></span></td>
+                        <td><span class="check"><span class="material-icons">check_circle</span></span><br><small>R$ 3.157</small></td>
+                    </tr>
+                    <tr style="background: var(--gray-100); font-weight: 600;">
+                        <td>Total Mensal</td>
+                        <td style="color: var(--i9-blue);">R$ 4.900,00</td>
+                        <td style="color: var(--i9-purple);">R$ 5.200,00</td>
+                        <td style="color: var(--i9-violet);">R$ 7.157,00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Implantação -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-icon" style="background: var(--i9-purple); color: var(--white);"><span class="material-icons">rocket_launch</span></span>
+                Implantação do Ecossistema Inoveon
+            </h2>
+            <p class="section-subtitle">A implantação é conduzida por equipe especializada, seguindo metodologia estruturada, garantindo transição segura, continuidade operacional e rápida adaptação da equipe local.</p>
+
+            <div class="responsibilities-grid">
+                <div class="responsibility-card" style="flex: 2;">
+                    <h3 style="color: var(--i9-purple);"><span class="material-icons">checklist</span> Escopo da Implantação</h3>
+                    <p style="color: var(--gray-700); margin-bottom: 15px;">A Inoveon será responsável por:</p>
+                    <ul class="responsibility-list">
+                        <li><span class="material-icons">check_circle</span> Planejamento e condução do processo de implantação</li>
+                        <li><span class="material-icons">check_circle</span> Parametrização inicial das soluções contratadas</li>
+                        <li><span class="material-icons">check_circle</span> Apoio à integração com sistemas e automações existentes</li>
+                        <li><span class="material-icons">check_circle</span> Treinamento operacional e funcional das equipes envolvidas</li>
+                        <li><span class="material-icons">check_circle</span> Acompanhamento assistido no início da operação</li>
+                    </ul>
+                    <p style="color: var(--gray-700); margin-top: 20px; font-size: 0.95rem; line-height: 1.7;">
+                        A implantação contempla toda a mão de obra técnica necessária, bem como os custos de deslocamento, estadia e alimentação da equipe Inoveon durante o período de execução.
+                    </p>
+                </div>
+
+                <div class="responsibility-card" style="flex: 1;">
+                    <h3 style="color: var(--i9-violet);"><span class="material-icons">payments</span> Custo de Implantação</h3>
+                    <div class="support-price-box" style="margin-top: 20px;">
+                        <span>Valor por unidade</span>
+                        <strong>R$ 31.000,00</strong>
+                    </div>
+                    <p style="color: var(--gray-700); margin-top: 20px; font-size: 0.9rem; text-align: center;">
+                        <strong>Cobrança:</strong> valor único, não recorrente
+                    </p>
+                    <div style="background: var(--gray-100); padding: 15px; border-radius: 10px; margin-top: 15px;">
+                        <p style="color: var(--gray-700); font-size: 0.85rem; display: flex; align-items: flex-start; gap: 8px;">
+                            <span class="material-icons" style="font-size: 1rem; color: var(--i9-blue);">info</span>
+                            O custo de implantação é aplicado por unidade operacional, independentemente do pacote contratado.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="observations" style="margin-top: 30px;">
+                <h4><span class="material-icons" style="font-size: 1rem; vertical-align: middle; margin-right: 5px;">push_pin</span> Observações Importantes</h4>
+                <ul>
+                    <li><span class="material-icons">info</span> A implantação não inclui customizações exclusivas ou demandas fora do escopo padrão das soluções contratadas.</li>
+                    <li><span class="material-icons">info</span> Necessidades específicas poderão ser avaliadas e orçadas separadamente.</li>
+                    <li><span class="material-icons">info</span> A operação assistida ocorre por período definido no plano de implantação.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Responsibilities -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="section-title-icon" style="background: var(--green); color: var(--white);"><span class="material-icons">fact_check</span></span>
+                Responsabilidades
+            </h2>
+            <p class="section-subtitle">Compromissos de cada parte para o sucesso da operação</p>
+
+            <div class="responsibilities-grid">
+                <div class="responsibility-card client">
+                    <h3><span class="material-icons">person</span> Cliente</h3>
+                    <ul class="responsibility-list">
+                        <li><span class="material-icons">check_circle</span> Garantir infraestrutura adequada (internet, energia, equipamentos e automação homologados)</li>
+                        <li><span class="material-icons">check_circle</span> Manter cadastros, parâmetros fiscais e configurações operacionais atualizados</li>
+                        <li><span class="material-icons">check_circle</span> Utilizar as soluções conforme orientações e boas práticas</li>
+                        <li><span class="material-icons">check_circle</span> Indicar responsáveis para interação técnica e operacional</li>
+                    </ul>
+                </div>
+
+                <div class="responsibility-card provider">
+                    <h3><span class="material-icons">business</span> Inoveon</h3>
+                    <ul class="responsibility-list">
+                        <li><span class="material-icons">check_circle</span> Disponibilizar as soluções conforme o escopo contratado</li>
+                        <li><span class="material-icons">check_circle</span> Assegurar a evolução técnica e funcional do Ecossistema Inoveon</li>
+                        <li><span class="material-icons">check_circle</span> Garantir a transmissão e autorização de documentos fiscais, desde que o ambiente esteja em conformidade</li>
+                        <li><span class="material-icons">check_circle</span> Prestar suporte conforme o pacote contratado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="observations">
+                <h4><span class="material-icons" style="font-size: 1rem; vertical-align: middle; margin-right: 5px;">push_pin</span> Observações Importantes</h4>
+                <ul>
+                    <li><span class="material-icons">info</span> Demandas fora do escopo poderão ser avaliadas e tratadas como serviços adicionais.</li>
+                    <li><span class="material-icons">info</span> Esta proposta possui caráter comercial; os detalhes operacionais, legais e de SLA serão formalizados em contrato específico.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>Pronto para Evoluir?</h2>
+            <p>
+                O Ecossistema Inoveon foi desenvolvido a partir da realidade prática da operação de postos de combustíveis, oferecendo <strong>controle, previsibilidade e eficiência operacional</strong>.
+            </p>
+            <p>
+                A escolha do pacote define o nível de maturidade da operação, mantendo sempre a possibilidade de evolução conforme o crescimento do negócio.
+            </p>
+            <div class="footer-logo"><img src="Logo 1 - cópia.svg" alt="Inoveon" style="height: 50px;"></div>
+        </div>
+    </footer>
+</body>
+</html>

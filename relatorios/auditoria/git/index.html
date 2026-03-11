@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Auditoria - Mudanças em Produção - Grupo Aldo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        .info-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .info-box h2 {
+            color: #1e3a5f;
+            font-size: 18px;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2d5a87;
+        }
+        .info-item label {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .info-item span {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        th {
+            background: #1e3a5f;
+            color: white;
+            padding: 15px 12px;
+            text-align: left;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 13px;
+            vertical-align: top;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .commit-hash {
+            font-family: 'Courier New', monospace;
+            background: #e8f4f8;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #2d5a87;
+        }
+        .date {
+            white-space: nowrap;
+            color: #666;
+        }
+        .author {
+            color: #1e3a5f;
+            font-weight: 500;
+        }
+        .description {
+            max-width: 400px;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .badge-feat { background: #d4edda; color: #155724; }
+        .badge-fix { background: #f8d7da; color: #721c24; }
+        .badge-docs { background: #cce5ff; color: #004085; }
+        .badge-chore { background: #e2e3e5; color: #383d41; }
+        .badge-refactor { background: #fff3cd; color: #856404; }
+        .badge-other { background: #f0f0f0; color: #666; }
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .summary-card .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e3a5f;
+        }
+        .summary-card .label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        .files-changed {
+            font-size: 11px;
+            color: #666;
+            max-width: 300px;
+        }
+        .files-changed code {
+            display: block;
+            background: #f5f5f5;
+            padding: 2px 5px;
+            margin: 2px 0;
+            border-radius: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            text-align: center;
+            color: #666;
+            font-size: 12px;
+        }
+        @media print {
+            body { background: white; }
+            .container { max-width: 100%; }
+            header { background: #1e3a5f; }
+            table { font-size: 11px; }
+            th, td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Relatório de Auditoria - Mudanças Implantadas em Produção</h1>
+            <p>Sistema: Grupo Aldo - Gestão de Postos de Combustível</p>
+            <p>Período: 17/11/2025 a 17/02/2026 (Últimos 3 meses)</p>
+            <p>Data de Extração: 17/02/2026</p>
+        </header>
+
+        <div class="summary-cards">
+            <div class="summary-card">
+                <div class="number">68</div>
+                <div class="label">Total de Commits</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">15</div>
+                <div class="label">Novas Funcionalidades</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">12</div>
+                <div class="label">Correções (Fix)</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">8</div>
+                <div class="label">Documentações</div>
+            </div>
+            <div class="summary-card">
+                <div class="number">2</div>
+                <div class="label">Desenvolvedores</div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>Informações da Extração</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <label>Repositório</label>
+                    <span>grupo-aldo</span>
+                </div>
+                <div class="info-item">
+                    <label>Branch</label>
+                    <span>master (produção)</span>
+                </div>
+                <div class="info-item">
+                    <label>Comando de Extração</label>
+                    <span>git log --since="3 months ago"</span>
+                </div>
+                <div class="info-item">
+                    <label>Máquina</label>
+                    <span>Darwin 25.3.0 (macOS)</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h2>Registro de Mudanças Transportadas/Implantadas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 100px;">Código Único</th>
+                        <th style="width: 100px;">Data Liberação</th>
+                        <th>Descrição da Mudança</th>
+                        <th style="width: 80px;">Tipo</th>
+                        <th style="width: 150px;">Responsável DEV/QA</th>
+                        <th style="width: 150px;">Implantou PROD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="commit-hash">d2998c5</span></td>
+                        <td class="date">17/02/2026</td>
+                        <td class="description">Especialista para documentações em HTML</td>
+                        <td><span class="badge badge-docs">docs</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">77e218b</span></td>
+                        <td class="date">17/02/2026</td>
+                        <td class="description">Liberando metodo para finalizacao de abastecimentos</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">67c16a3</span></td>
+                        <td class="date">17/02/2026</td>
+                        <td class="description">Classe para geracao de titulos opd das asfrete</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">8bfdea4</span></td>
+                        <td class="date">17/02/2026</td>
+                        <td class="description">Liberando opcao de liberar abastecimentos no i9 smart pdv</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">56e3efe</span></td>
+                        <td class="date">17/02/2026</td>
+                        <td class="description">Criação de endpoint para obtenção de novo número de atendimento</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">dcd503b</span></td>
+                        <td class="date">16/02/2026</td>
+                        <td class="description">Tabelas SQL (checkup)</td>
+                        <td><span class="badge badge-chore">chore</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">ecd7f44</span></td>
+                        <td class="date">16/02/2026</td>
+                        <td class="description">Adição de funcionalidades nas rotinas de análises de suporte</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">ed03cf6</span></td>
+                        <td class="date">21/01/2026</td>
+                        <td class="description">Documentação de desconto por grupo econômico</td>
+                        <td><span class="badge badge-docs">docs</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">d0db51b</span></td>
+                        <td class="date">21/01/2026</td>
+                        <td class="description">Scripts SQL de tabelas checkup</td>
+                        <td><span class="badge badge-chore">chore</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">8e385a8</span></td>
+                        <td class="date">21/01/2026</td>
+                        <td class="description">Simplifica query NCC no WSAsFreteSQL</td>
+                        <td><span class="badge badge-refactor">refactor</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">bdc1543</span></td>
+                        <td class="date">21/01/2026</td>
+                        <td class="description">Ajusta fluxo de abastecimento manual para usuários fiscais</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">c1225f0</span></td>
+                        <td class="date">21/01/2026</td>
+                        <td class="description">Remove módulo i9faturamento</td>
+                        <td><span class="badge badge-chore">chore</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">71878fe</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Funcionalidades de manipulação de orçamentos no PDV</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">bbfb8bd</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Job de migração de vínculos para ZE5 (MigZE5)</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">2b3ef84</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Cadastro de vínculo operador x banco (PCLA252)</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">1109d2d</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Atualiza integração S3 e renomeia tabela ZFH para ZZK</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">68ccf3d</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Ajuste no job de leitura de tanques</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">a64dd1c</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Ajuste na rotina de baixa de débitos - aumentar percentual de desconto para 8%</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">e81a368</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Ajustando o job CheckAbast</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">f98badd</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Removendo chamadas a função freeObj</td>
+                        <td><span class="badge badge-refactor">refactor</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">07f8a39</span></td>
+                        <td class="date">19/01/2026</td>
+                        <td class="description">Ajustado data para títulos de nota assinada</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">e044dba</span></td>
+                        <td class="date">16/01/2026</td>
+                        <td class="description">Scripts SQL das tabelas de checkup</td>
+                        <td><span class="badge badge-chore">chore</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">e62dbd8</span></td>
+                        <td class="date">16/01/2026</td>
+                        <td class="description">Melhora tratamento de XML e encoding no I9SmartPDVAPIControllerServer</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">126bb38</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Corrige encoding de caracteres em todo o projeto</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">dbc2414</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Remove FreeObj desnecessário no PCLA300</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">883fb6f</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Integração com S3</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">54533114</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Adiciona código CBENEF GO890004 para CST 61 em GO</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">17e547b</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Corrige encoding de caracteres no PCLAsFrete</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">1e74534</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Simplifica integração de descarga removendo lock</td>
+                        <td><span class="badge badge-refactor">refactor</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">d911517</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Melhora controle de leitura de tanques com JSON</td>
+                        <td><span class="badge badge-refactor">refactor</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">ffa5177</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Complementa informações entre orçamento e abastecimento no PDV</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">eec1660</span></td>
+                        <td class="date">03/01/2026</td>
+                        <td class="description">Atualiza data de emissão da NF no checkup</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">f4e7e6f</span></td>
+                        <td class="date">20/12/2025</td>
+                        <td class="description">Ajustes para migração de versão</td>
+                        <td><span class="badge badge-chore">chore</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">a76784d</span></td>
+                        <td class="date">03/12/2025</td>
+                        <td class="description">Ajustando tipo de frete</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">ed55cbf</span></td>
+                        <td class="date">02/12/2025</td>
+                        <td class="description">Atualização do orçamento para limpar o relacionamento com variáveis em memória</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">d22b829</span></td>
+                        <td class="date">02/12/2025</td>
+                        <td class="description">Adicionando botão para consulta de débitos</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">1f4770a</span></td>
+                        <td class="date">02/12/2025</td>
+                        <td class="description">Merge branch 'master'</td>
+                        <td><span class="badge badge-other">merge</span></td>
+                        <td class="author">Rodrigo Felippe</td>
+                        <td class="author">Rodrigo Felippe</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">3c59ea4</span></td>
+                        <td class="date">02/12/2025</td>
+                        <td class="description">Ajuste na variável faltante</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">Rodrigo Felippe</td>
+                        <td class="author">Rodrigo Felippe</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">e833318</span></td>
+                        <td class="date">28/11/2025</td>
+                        <td class="description">Criação de rotina para impressão de vales por período</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">6232a1f</span></td>
+                        <td class="date">28/11/2025</td>
+                        <td class="description">Ajustando condição de pagamento no orçamento</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">bdb9724</span></td>
+                        <td class="date">28/11/2025</td>
+                        <td class="description">Pontos de entrada para condição de pagamento</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">9c198fb</span></td>
+                        <td class="date">28/11/2025</td>
+                        <td class="description">Removendo o doubleClick</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">e4a58bd</span></td>
+                        <td class="date">28/11/2025</td>
+                        <td class="description">Ajustando para operar sem necessidade de pasta temporária</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">6d38a31</span></td>
+                        <td class="date">28/11/2025</td>
+                        <td class="description">Atualização da NFESEFAZ CBS e IBS</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">Rodrigo Felippe</td>
+                        <td class="author">Rodrigo Felippe</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">52d981b</span></td>
+                        <td class="date">28/11/2025</td>
+                        <td class="description">Ajustes na pasta</td>
+                        <td><span class="badge badge-chore">chore</span></td>
+                        <td class="author">Rodrigo Felippe</td>
+                        <td class="author">Rodrigo Felippe</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">1173b39</span></td>
+                        <td class="date">26/11/2025</td>
+                        <td class="description">Adicionar .t. na administradora financeira para tipo financiado</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">346aef6</span></td>
+                        <td class="date">25/11/2025</td>
+                        <td class="description">Rotina para ajuste de atendimentos com problemas na TEF</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">600b1e2</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Ajustando parâmetros para preencher chave PIX no rodapé de fatura</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">1c56916</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Ajustando parâmetros de envio de e-mail</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">4d9997e</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Dias para exibição da lista de abastecimento</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">f6a7f16</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Criando diretório caso não exista</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">9fb8cb4</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Ajustando SmartPDV para considerar mais de uma forma de pagamento</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">405d25f</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Ajustando hora para finalização de atendimentos do SmartPDV</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">b6e77f6</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Desconsiderando notas que não vieram da origem loja para saldo do atendimento</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">6d970d5</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Ajustando venda assistida para obter valor de itens de NF para equipe fiscal</td>
+                        <td><span class="badge badge-fix">fix</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                    <tr>
+                        <td><span class="commit-hash">2761da6</span></td>
+                        <td class="date">21/11/2025</td>
+                        <td class="description">Adicionando novos métodos para restrições</td>
+                        <td><span class="badge badge-feat">feat</span></td>
+                        <td class="author">diegosilveira</td>
+                        <td class="author">diegosilveira</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h2>Desenvolvedores Envolvidos</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Total de Commits</th>
+                        <th>Papel</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="author">diegosilveira</td>
+                        <td>diego.pb.dev@gmail.com</td>
+                        <td>65</td>
+                        <td>Desenvolvedor / Implantador</td>
+                    </tr>
+                    <tr>
+                        <td class="author">Rodrigo Felippe</td>
+                        <td>rodrigofelippeac@gmail.com</td>
+                        <td>3</td>
+                        <td>Desenvolvedor / Implantador</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="info-box">
+            <h2>Observações para Auditoria</h2>
+            <ul style="margin-left: 20px; line-height: 2;">
+                <li><strong>Controle de Versão:</strong> O projeto utiliza Git como sistema de controle de versão</li>
+                <li><strong>Branch de Produção:</strong> master</li>
+                <li><strong>Rastreabilidade:</strong> Cada mudança possui código único (hash SHA) que garante integridade e rastreabilidade</li>
+                <li><strong>Processo:</strong> Commits são feitos diretamente na branch master (modelo de deploy contínuo)</li>
+                <li><strong>Convenção de Commits:</strong> Utiliza-se prefixos semânticos (feat, fix, docs, chore, refactor) para categorização</li>
+                <li><strong>Repositório:</strong> GitLab (https://gitlab.com/leechardes/grupo-aldo)</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>Relatório gerado automaticamente via Git</strong></p>
+            <p>Data de extração: 17/02/2026 | Comando: git log --since="3 months ago"</p>
+            <p>Sistema: Grupo Aldo - Gestão de Postos de Combustível | Plataforma: TOTVS Protheus (AdvPL/TLPP)</p>
+        </footer>
+    </div>
+</body>
+</html>

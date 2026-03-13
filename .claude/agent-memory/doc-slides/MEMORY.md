@@ -26,3 +26,4 @@
 |------|------|------|--------|-------------|
 | 2026-03-13 | — | — | — | Agente criado |
 | 2026-03-13 | Diagnóstico Organizacional Inoveon | Deck Executivo Expandido | 13 | A definir pelo doc-designer |
+| 2026-03-13 | Pitch Investidor 2026 — i9ON / Inoveon | Pitch para Investidor (expandido 29 slides) | 29 | `presentations/investment/pitch-investidor-2026-slides.md` |

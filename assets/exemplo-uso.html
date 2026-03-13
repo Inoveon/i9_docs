@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Uso - Copy-Paste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --i9-dark: #12162B;
+            --i9-navy: #011E4B;
+            --i9-blue: #005BAA;
+            --i9-light: #E7E7E7;
+            --white: #ffffff;
+            --gray-100: #f1f3f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-100);
+            padding: 40px;
+            color: var(--i9-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .guide-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .guide-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--i9-dark);
+            margin-bottom: 20px;
+        }
+
+        .step {
+            background: var(--gray-100);
+            border-left: 4px solid var(--i9-blue);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: var(--i9-blue);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 700;
+            margin-right: 10px;
+        }
+
+        .code-block {
+            background: #12162B;
+            color: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .highlight {
+            background: rgba(0,91,170,0.1);
+            border: 2px solid var(--i9-blue);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .component-demo {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Guia de Uso -->
+        <div class="guide-section">
+            <h1 class="guide-title">
+                <span class="material-icons" style="font-size: 2.5rem; vertical-align: middle; color: #005BAA;">content_copy</span>
+                Como Usar: Copy-Paste dos Componentes
+            </h1>
+
+            <div class="step">
+                <span class="step-number">1</span>
+                <strong>Abra o arquivo de componentes no Chrome</strong>
+                <p style="margin-top: 10px; color: #495057;">
+                    Navegue até: <code style="background: #E7E7E7; padding: 4px 8px; border-radius: 4px;">assets/graficos-exemplos.html</code> ou
+                    <code style="background: #E7E7E7; padding: 4px 8px; border-radius: 4px;">assets/formularios-componentes.html</code>
+                </p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">2</span>
+                <strong>Encontre o componente que deseja</strong>
+                <p style="margin-top: 10px; color: #495057;">
+                    Role a página até encontrar o componente visual que você quer usar (ex: Card Comparativo, Gráfico de Pizza, Input, etc.)
+                </p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">3</span>
+                <strong>Clique com botão direito → Inspecionar</strong>
+                <p style="margin-top: 10px; color: #495057;">
+                    Clique com o botão direito do mouse no componente e selecione "Inspecionar" (ou pressione F12)
+                </p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">4</span>
+                <strong>Copie o código HTML</strong>
+                <p style="margin-top: 10px; color: #495057;">
+                    No DevTools, clique com botão direito no elemento HTML destacado → Copy → Copy outerHTML
+                </p>
+            </div>
+
+            <div class="step">
+                <span class="step-number">5</span>
+                <strong>Cole no seu projeto</strong>
+                <p style="margin-top: 10px; color: #495057;">
+                    Cole o código diretamente no seu arquivo HTML. O CSS está inline, então funciona imediatamente!
+                </p>
+            </div>
+        </div>
+
+        <!-- Exemplo Prático -->
+        <div class="guide-section">
+            <h2 class="guide-title">Exemplo Prático</h2>
+
+            <p style="font-size: 1.1rem; color: #495057; margin-bottom: 20px;">
+                Vamos copiar este card comparativo abaixo e usar no seu projeto:
+            </p>
+
+            <!-- COMPONENTE DE EXEMPLO PARA COPIAR -->
+            <div class="highlight">
+                <div class="component-demo">
+                    <!-- ⬇️ COPIE ESTE BLOCO COMPLETO ⬇️ -->
+                    <div style="background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 16px; padding: 25px; color: white;">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                            <div>
+                                <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 5px;">Vendas Totais</div>
+                                <div style="font-size: 2rem; font-weight: 800;">R$ 127k</div>
+                                <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">
+                                    <span style="color: #28a745;">▲ 12.5%</span> vs. mês anterior
+                                </div>
+                            </div>
+                            <svg viewBox="0 0 80 40" style="width: 80px; height: 40px;">
+                                <path d="M 0,30 L 20,25 L 40,20 L 60,10 L 80,5"
+                                      stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                                <path d="M 0,30 L 20,25 L 40,20 L 60,10 L 80,5 L 80,40 L 0,40 Z"
+                                      fill="rgba(255,255,255,0.2)"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <!-- ⬆️ ATÉ AQUI ⬆️ -->
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: #005BAA; font-weight: 600;">
+                    <span class="material-icons" style="vertical-align: middle;">arrow_upward</span>
+                    Clique com botão direito neste card azul acima → Inspecionar → Copy outerHTML
+                </p>
+            </div>
+
+            <!-- Como usar -->
+            <h3 style="font-size: 1.3rem; font-weight: 700; color: var(--i9-dark); margin-top: 40px; margin-bottom: 15px;">
+                Depois de copiar, cole assim no seu HTML:
+            </h3>
+
+            <div class="code-block">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Meu Dashboard&lt;/title&gt;
+    &lt;!-- Não esqueça de incluir as fontes --&gt;
+    &lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"&gt;
+    &lt;link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- COLE O COMPONENTE AQUI --&gt;
+    &lt;div style="background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 16px; padding: 25px; color: white;"&gt;
+        ...
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+            </div>
+
+            <!-- Dicas Importantes -->
+            <div style="background: #fff3cd; border-left: 4px solid #ffc107; padding: 20px; border-radius: 8px; margin-top: 30px;">
+                <h4 style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                    <span class="material-icons" style="color: #ffc107;">lightbulb</span>
+                    <span style="font-size: 1.1rem; font-weight: 700; color: #856404;">Dicas Importantes:</span>
+                </h4>
+                <ul style="color: #856404; line-height: 1.8;">
+                    <li><strong>Sempre inclua as fontes</strong> (Inter e Material Icons) no &lt;head&gt;</li>
+                    <li><strong>O CSS está inline</strong>, então você não precisa de arquivo CSS separado</li>
+                    <li><strong>Customize as cores e valores</strong> editando os números e hexadecimais no código</li>
+                    <li><strong>Teste a responsividade</strong> redimensionando a janela do navegador</li>
+                    <li><strong>Para componentes complexos</strong>, copie toda a seção incluindo o container</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Links Úteis -->
+        <div class="guide-section">
+            <h2 class="guide-title">Arquivos de Componentes Disponíveis</h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="padding: 20px; background: var(--gray-100); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                        <span class="material-icons" style="color: #005BAA; font-size: 2rem;">show_chart</span>
+                        <h3 style="font-size: 1.2rem; font-weight: 700;">Gráficos</h3>
+                    </div>
+                    <p style="color: #495057; margin-bottom: 15px;">20+ tipos de visualizações de dados</p>
+                    <code style="background: white; padding: 8px; border-radius: 6px; display: block; font-size: 0.85rem;">
+                        assets/graficos-exemplos.html
+                    </code>
+                </div>
+
+                <div style="padding: 20px; background: var(--gray-100); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                        <span class="material-icons" style="color: #005BAA; font-size: 2rem;">edit</span>
+                        <h3 style="font-size: 1.2rem; font-weight: 700;">Formulários</h3>
+                    </div>
+                    <p style="color: #495057; margin-bottom: 15px;">Inputs, selects, checkboxes, etc.</p>
+                    <code style="background: white; padding: 8px; border-radius: 6px; display: block; font-size: 0.85rem;">
+                        assets/formularios-componentes.html
+                    </code>
+                </div>
+
+                <div style="padding: 20px; background: var(--gray-100); border-radius: 12px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+                        <span class="material-icons" style="color: #005BAA; font-size: 2rem;">widgets</span>
+                        <h3 style="font-size: 1.2rem; font-weight: 700;">Ícones</h3>
+                    </div>
+                    <p style="color: #495057; margin-bottom: 15px;">696 ícones Material Design</p>
+                    <code style="background: white; padding: 8px; border-radius: 6px; display: block; font-size: 0.85rem;">
+                        assets/material-icons-catalog.html
+                    </code>
+                </div>
+            </div>
+        </div>
+
+        <!-- Atalhos do Chrome -->
+        <div class="guide-section" style="background: linear-gradient(135deg, var(--i9-dark) 0%, var(--i9-navy) 50%, var(--i9-blue) 100%); color: white;">
+            <h2 style="font-size: 1.8rem; font-weight: 700; margin-bottom: 20px;">
+                <span class="material-icons" style="font-size: 2rem; vertical-align: middle;">keyboard</span>
+                Atalhos Úteis do Chrome
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                    <strong>F12</strong> - Abrir DevTools
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                    <strong>Ctrl+U / Cmd+Option+U</strong> - Ver código fonte
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                    <strong>Ctrl+F / Cmd+F</strong> - Buscar na página
+                </div>
+                <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                    <strong>Ctrl+Shift+C / Cmd+Shift+C</strong> - Modo inspetor
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

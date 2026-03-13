@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos os Ícones Material Design</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --i9-dark: #12162B;
+            --i9-navy: #011E4B;
+            --i9-blue: #005BAA;
+            --white: #ffffff;
+            --gray-100: #f1f3f5;
+            --gray-700: #495057;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-100);
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--i9-dark) 0%, var(--i9-navy) 50%, var(--i9-blue) 100%);
+            color: var(--white);
+            padding: 40px 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 20px auto 0;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 4px 30px rgba(0,91,170,0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .category-title {
+            color: var(--i9-dark);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--i9-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .icon-item {
+            padding: 20px 10px;
+            text-align: center;
+            border-radius: 12px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .icon-item:hover {
+            background: var(--gray-100);
+            border-color: var(--i9-blue);
+            transform: translateY(-3px);
+        }
+
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: var(--i9-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+        }
+
+        .icon-item:hover .icon-circle {
+            background: var(--i9-navy);
+            box-shadow: 0 4px 15px rgba(0,91,170,0.3);
+        }
+
+        .icon-circle .material-icons {
+            font-size: 30px;
+            color: var(--white);
+        }
+
+        .icon-name {
+            font-size: 0.75rem;
+            color: var(--gray-700);
+            word-break: break-word;
+            font-weight: 500;
+        }
+
+        .stats {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-item {
+            padding: 15px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--i9-blue);
+        }
+
+        .stat-label {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray-700);
+        }
+
+        .copy-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--i9-blue);
+            color: var(--white);
+            padding: 15px 25px;
+            border-radius: 30px;
+            box-shadow: 0 4px 20px rgba(0,91,170,0.3);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .copy-notification.show {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🎨 Catálogo Completo - Material Design Icons</h1>
+        <p>Clique em qualquer ícone para copiar o nome</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar ícone... (ex: business, rocket, analytics)">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalIcons">0</div>
+                    <div class="stat-label">Total de Ícones</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="visibleIcons">0</div>
+                    <div class="stat-label">Ícones Visíveis</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="categoriesCount">0</div>
+                    <div class="stat-label">Categorias</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="categoriesContainer"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <span class="material-icons" style="font-size: 4rem; opacity: 0.3;">search_off</span>
+            <h2>Nenhum ícone encontrado</h2>
+            <p>Tente buscar por outro termo</p>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="copyNotification">
+        <span class="material-icons">check_circle</span>
+        <span id="copiedText"></span>
+    </div>
+
+    <script>
+        // Catálogo completo de ícones Material Design organizados por categoria
+        const iconCategories = {
+            "Negócios & Empresa": [
+                "business", "domain", "apartment", "store", "storefront", "account_balance",
+                "corporate_fare", "business_center", "work", "badge", "cardboard", "assured_workload"
+            ],
+            "Validação & Sucesso": [
+                "verified", "verified_user", "check_circle", "check", "done", "done_all",
+                "task_alt", "beenhere", "verified_user", "assignment_turned_in", "fact_check"
+            ],
+            "Crescimento & Análise": [
+                "trending_up", "trending_down", "trending_flat", "show_chart", "analytics",
+                "insights", "assessment", "timeline", "multiline_chart", "waterfall_chart",
+                "stacked_line_chart", "area_chart", "candlestick_chart"
+            ],
+            "Educação & Aprendizado": [
+                "school", "menu_book", "auto_stories", "import_contacts", "book", "library_books",
+                "class", "historyedu", "cast_for_education", "psychology", "lightbulb", "tips_and_updates"
+            ],
+            "Pesquisa & Análise": [
+                "search", "find_in_page", "search_check", "youtube_searched_for", "manage_search",
+                "pageview", "preview", "troubleshoot", "travel_explore", "saved_search"
+            ],
+            "Decisão & Estratégia": [
+                "rocket_launch", "rocket", "flag", "tour", "explore", "my_location",
+                "near_me", "navigation", "alt_route", "fork_right", "signpost", "route"
+            ],
+            "Tecnologia & Inovação": [
+                "computer", "devices", "phonelink", "tablet", "laptop", "desktop_windows",
+                "smartphone", "memory", "developer_board", "important_devices", "terminal",
+                "code", "integration_instructions", "api", "developer_mode", "webhook"
+            ],
+            "Cloud & Servidores": [
+                "cloud", "cloud_upload", "cloud_download", "cloud_done", "cloud_queue",
+                "cloud_sync", "backup", "settings_backup_restore", "dns", "storage", "database"
+            ],
+            "Segurança": [
+                "security", "lock", "shield", "admin_panel_settings", "verified_user",
+                "gpp_good", "gpp_maybe", "policy", "privacy_tip", "fingerprint", "vpn_key"
+            ],
+            "Comunicação": [
+                "email", "message", "chat", "forum", "comment", "feedback", "contact_mail",
+                "mark_email_read", "markunread", "drafts", "send", "forward_to_inbox"
+            ],
+            "Pessoas & Equipe": [
+                "person", "people", "group", "groups", "supervisor_account", "account_circle",
+                "face", "manage_accounts", "person_add", "group_add", "engineering", "support_agent"
+            ],
+            "Documentos & Arquivos": [
+                "description", "article", "note", "topic", "wysiwyg", "source", "text_snippet",
+                "file_copy", "content_copy", "insert_drive_file", "folder", "folder_open"
+            ],
+            "Mídia & Design": [
+                "image", "photo", "photo_library", "collections", "perm_media", "video_library",
+                "movie", "play_circle", "palette", "brush", "format_paint", "color_lens"
+            ],
+            "E-commerce & Vendas": [
+                "shopping_cart", "shopping_bag", "local_mall", "add_shopping_cart", "point_of_sale",
+                "payments", "credit_card", "account_balance_wallet", "currency_exchange", "paid",
+                "sell", "storefront", "local_atm", "monetization_on", "attach_money"
+            ],
+            "Localização & Mapas": [
+                "location_on", "place", "map", "explore", "room", "pin_drop", "my_location",
+                "near_me", "public", "language", "travel_explore", "where_to_vote"
+            ],
+            "Tempo & Agenda": [
+                "schedule", "access_time", "alarm", "timer", "hourglass_empty", "today",
+                "calendar_today", "event", "date_range", "calendar_month", "update", "history"
+            ],
+            "Configurações & Ferramentas": [
+                "settings", "build", "construction", "handyman", "home_repair_service",
+                "tune", "admin_panel_settings", "engineering", "biotech", "science"
+            ],
+            "Construção & Fundação": [
+                "construction", "build", "handyman", "home_repair_service", "engineering",
+                "foundation", "carpenter", "plumbing", "roofing", "hardware", "architecture",
+                "design_services", "straighten", "square_foot", "format_shapes"
+            ],
+            "Notificações & Alertas": [
+                "notifications", "notifications_active", "notification_important", "warning",
+                "error", "info", "priority_high", "campaign", "announcement", "report_problem"
+            ],
+            "Navegação & Direção": [
+                "arrow_forward", "arrow_back", "arrow_upward", "arrow_downward", "navigate_next",
+                "navigate_before", "first_page", "last_page", "chevron_right", "chevron_left",
+                "expand_more", "expand_less", "unfold_more", "unfold_less"
+            ],
+            "Ações & Controles": [
+                "add", "remove", "add_circle", "remove_circle", "edit", "delete", "close",
+                "save", "download", "upload", "refresh", "sync", "undo", "redo", "star"
+            ],
+            "Visualização": [
+                "visibility", "visibility_off", "remove_red_eye", "preview", "pageview",
+                "find_in_page", "search", "zoom_in", "zoom_out", "fullscreen", "fullscreen_exit"
+            ],
+            "Energia & Performance": [
+                "speed", "offline_bolt", "flash_on", "bolt", "electric_bolt", "power",
+                "battery_full", "battery_charging_full", "energy_savings_leaf"
+            ],
+            "Conexão & Rede": [
+                "wifi", "signal_wifi_4_bar", "cell_tower", "router", "lan", "hub",
+                "link", "link_off", "public", "cloud", "sync", "sync_disabled"
+            ],
+            "Saúde & Médico": [
+                "local_hospital", "medical_services", "health_and_safety", "medication",
+                "vaccines", "healing", "favorite", "monitor_heart", "bloodtype"
+            ],
+            "Transporte & Veículos": [
+                "local_shipping", "local_gas_station", "ev_station", "car_rental", "directions_car",
+                "two_wheeler", "motorcycle", "airport_shuttle", "flight", "train", "directions_bus"
+            ],
+            "Comida & Bebida": [
+                "restaurant", "local_cafe", "local_bar", "local_pizza", "fastfood",
+                "lunch_dining", "dinner_dining", "breakfast_dining", "local_dining"
+            ],
+            "Casa & Família": [
+                "home", "house", "cottage", "apartment", "villa", "cabin", "family_restroom",
+                "child_care", "baby_changing_station", "escalator_warning"
+            ],
+            "Esportes & Fitness": [
+                "fitness_center", "sports", "sports_soccer", "sports_basketball", "pool",
+                "surfing", "skateboarding", "hiking", "run_circle", "self_improvement"
+            ],
+            "Natureza & Clima": [
+                "wb_sunny", "nights_stay", "cloud", "thunderstorm", "ac_unit", "beach_access",
+                "park", "nature", "nature_people", "terrain", "eco", "water_drop"
+            ],
+            "Redes Sociais": [
+                "share", "thumb_up", "favorite", "star", "bookmark", "flag", "rss_feed",
+                "public", "language", "forum", "chat_bubble", "comment"
+            ]
+        };
+
+        let allIcons = [];
+        const container = document.getElementById('categoriesContainer');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const copyNotification = document.getElementById('copyNotification');
+        const copiedText = document.getElementById('copiedText');
+
+        // Renderizar categorias e ícones
+        function renderIcons(filter = '') {
+            container.innerHTML = '';
+            let visibleCount = 0;
+            let hasResults = false;
+
+            Object.entries(iconCategories).forEach(([category, icons]) => {
+                const filteredIcons = filter
+                    ? icons.filter(icon => icon.toLowerCase().includes(filter.toLowerCase()))
+                    : icons;
+
+                if (filteredIcons.length > 0) {
+                    hasResults = true;
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category';
+
+                    categoryDiv.innerHTML = `
+                        <h2 class="category-title">
+                            <span class="material-icons">folder</span>
+                            ${category}
+                            <span style="margin-left: auto; font-size: 0.9rem; color: var(--i9-blue);">(${filteredIcons.length})</span>
+                        </h2>
+                        <div class="icons-grid">
+                            ${filteredIcons.map(icon => `
+                                <div class="icon-item" onclick="copyIconName('${icon}')">
+                                    <div class="icon-circle">
+                                        <span class="material-icons">${icon}</span>
+                                    </div>
+                                    <div class="icon-name">${icon}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+
+                    container.appendChild(categoryDiv);
+                    visibleCount += filteredIcons.length;
+                }
+            });
+
+            noResults.style.display = hasResults ? 'none' : 'block';
+            document.getElementById('visibleIcons').textContent = visibleCount;
+        }
+
+        // Copiar nome do ícone
+        function copyIconName(iconName) {
+            navigator.clipboard.writeText(iconName);
+            copiedText.textContent = `Copiado: ${iconName}`;
+            copyNotification.classList.add('show');
+            setTimeout(() => {
+                copyNotification.classList.remove('show');
+            }, 2000);
+        }
+
+        // Busca
+        searchInput.addEventListener('input', (e) => {
+            renderIcons(e.target.value);
+        });
+
+        // Contar total de ícones
+        const totalIconsCount = Object.values(iconCategories).reduce((sum, icons) => sum + icons.length, 0);
+        document.getElementById('totalIcons').textContent = totalIconsCount;
+        document.getElementById('visibleIcons').textContent = totalIconsCount;
+        document.getElementById('categoriesCount').textContent = Object.keys(iconCategories).length;
+
+        // Renderizar inicialmente
+        renderIcons();
+
+        // Tornar função global
+        window.copyIconName = copyIconName;
+    </script>
+</body>
+</html>

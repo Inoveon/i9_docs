@@ -1,0 +1,2355 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Gráficos e Visualizações | Inoveon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --i9-dark: #12162B;
+            --i9-navy: #011E4B;
+            --i9-blue: #005BAA;
+            --i9-light: #E7E7E7;
+            --white: #ffffff;
+            --gray-100: #f1f3f5;
+            --gray-200: #E7E7E7;
+            --gray-300: #dee2e6;
+            --gray-500: #adb5bd;
+            --gray-700: #495057;
+            --gray-900: #12162B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-100);
+            padding: 20px;
+            color: var(--gray-900);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--i9-dark) 0%, var(--i9-navy) 50%, var(--i9-blue) 100%);
+            color: var(--white);
+            padding: 50px 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--i9-dark);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--i9-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title .material-icons {
+            font-size: 2.2rem;
+            color: var(--i9-blue);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .chart-card {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+        }
+
+        .chart-card:hover {
+            border-color: var(--i9-blue);
+            box-shadow: 0 8px 30px rgba(0,91,170,0.15);
+            transform: translateY(-5px);
+        }
+
+        .chart-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--i9-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chart-title .material-icons {
+            color: var(--i9-blue);
+        }
+
+        /* KPI Cards */
+        .kpi-card {
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
+            border-radius: 20px;
+            padding: 35px;
+            color: var(--white);
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,91,170,0.3);
+        }
+
+        .kpi-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .kpi-icon .material-icons {
+            font-size: 2.5rem;
+        }
+
+        .kpi-value {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .kpi-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Barras de Progresso */
+        .progress-item {
+            margin-bottom: 25px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-label {
+            font-weight: 600;
+            color: var(--i9-dark);
+        }
+
+        .progress-value {
+            font-weight: 700;
+            color: var(--i9-blue);
+        }
+
+        .progress-bar-bg {
+            height: 12px;
+            background: var(--gray-200);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
+            border-radius: 10px;
+            transition: width 1s ease;
+        }
+
+        /* Tabela Comparativa */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comparison-table th {
+            background: var(--i9-dark);
+            color: var(--white);
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--gray-200);
+        }
+
+        .comparison-table tr:hover {
+            background: var(--gray-100);
+        }
+
+        .check-icon {
+            color: var(--i9-blue);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 30px;
+            width: 3px;
+            background: var(--i9-blue);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -32px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--i9-blue);
+            border-radius: 50%;
+            border: 4px solid var(--white);
+            box-shadow: 0 0 0 3px var(--i9-blue);
+        }
+
+        .timeline-content {
+            background: var(--gray-100);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .timeline-date {
+            font-weight: 700;
+            color: var(--i9-blue);
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--i9-dark);
+            margin-bottom: 8px;
+        }
+
+        .timeline-desc {
+            color: var(--gray-700);
+            font-size: 0.95rem;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-blue {
+            background: var(--i9-blue);
+            color: var(--white);
+        }
+
+        .badge-navy {
+            background: var(--i9-navy);
+            color: var(--white);
+        }
+
+        .badge-light {
+            background: var(--gray-200);
+            color: var(--gray-700);
+        }
+
+        /* Metric Grid */
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-box {
+            background: var(--gray-100);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--i9-blue);
+        }
+
+        .metric-box .material-icons {
+            font-size: 2rem;
+            color: var(--i9-blue);
+            margin-bottom: 10px;
+        }
+
+        .metric-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--i9-dark);
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Catálogo de Gráficos e Visualizações</h1>
+        <p>Exemplos prontos para uso em apresentações e relatórios Inoveon</p>
+    </div>
+
+    <div class="container">
+        <!-- KPIs -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">speed</span>
+                KPIs e Métricas
+            </h2>
+            <div class="grid-3">
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <span class="material-icons">people</span>
+                    </div>
+                    <div class="kpi-value">1.247</div>
+                    <div class="kpi-label">Usuários Ativos</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <span class="material-icons">trending_up</span>
+                    </div>
+                    <div class="kpi-value">+42%</div>
+                    <div class="kpi-label">Crescimento Mensal</div>
+                </div>
+
+                <div class="kpi-card">
+                    <div class="kpi-icon">
+                        <span class="material-icons">attach_money</span>
+                    </div>
+                    <div class="kpi-value">R$ 2.5M</div>
+                    <div class="kpi-label">Receita Anual</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Barras Verticais -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">bar_chart</span>
+                Gráficos de Barras
+            </h2>
+            <div class="grid-2">
+                <!-- Barras Verticais -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">bar_chart</span>
+                        Vendas por Trimestre
+                    </h3>
+                    <svg viewBox="0 0 500 300" style="width: 100%; height: auto;">
+                        <!-- Eixos -->
+                        <line x1="50" y1="250" x2="450" y2="250" stroke="#dee2e6" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="250" stroke="#dee2e6" stroke-width="2"/>
+
+                        <!-- Barras -->
+                        <rect x="80" y="120" width="60" height="130" fill="url(#gradBlue)" rx="4"/>
+                        <rect x="170" y="80" width="60" height="170" fill="url(#gradBlue)" rx="4"/>
+                        <rect x="260" y="140" width="60" height="110" fill="url(#gradBlue)" rx="4"/>
+                        <rect x="350" y="60" width="60" height="190" fill="url(#gradBlue)" rx="4"/>
+
+                        <!-- Labels -->
+                        <text x="110" y="270" text-anchor="middle" fill="#495057" font-size="14" font-weight="600">Q1</text>
+                        <text x="200" y="270" text-anchor="middle" fill="#495057" font-size="14" font-weight="600">Q2</text>
+                        <text x="290" y="270" text-anchor="middle" fill="#495057" font-size="14" font-weight="600">Q3</text>
+                        <text x="380" y="270" text-anchor="middle" fill="#495057" font-size="14" font-weight="600">Q4</text>
+
+                        <!-- Valores -->
+                        <text x="110" y="110" text-anchor="middle" fill="#005BAA" font-size="16" font-weight="700">65</text>
+                        <text x="200" y="70" text-anchor="middle" fill="#005BAA" font-size="16" font-weight="700">85</text>
+                        <text x="290" y="130" text-anchor="middle" fill="#005BAA" font-size="16" font-weight="700">55</text>
+                        <text x="380" y="50" text-anchor="middle" fill="#005BAA" font-size="16" font-weight="700">95</text>
+
+                        <defs>
+                            <linearGradient id="gradBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#005BAA;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#011E4B;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+                <!-- Barras Horizontais -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">equalizer</span>
+                        Performance por Região
+                    </h3>
+                    <svg viewBox="0 0 500 300" style="width: 100%; height: auto;">
+                        <!-- Barras Horizontais -->
+                        <rect x="120" y="50" width="320" height="35" fill="url(#gradBlue)" rx="4"/>
+                        <rect x="120" y="105" width="250" height="35" fill="url(#gradBlue)" rx="4"/>
+                        <rect x="120" y="160" width="280" height="35" fill="url(#gradBlue)" rx="4"/>
+                        <rect x="120" y="215" width="200" height="35" fill="url(#gradBlue)" rx="4"/>
+
+                        <!-- Labels -->
+                        <text x="110" y="73" text-anchor="end" fill="#495057" font-size="14" font-weight="600">Sudeste</text>
+                        <text x="110" y="128" text-anchor="end" fill="#495057" font-size="14" font-weight="600">Sul</text>
+                        <text x="110" y="183" text-anchor="end" fill="#495057" font-size="14" font-weight="600">Nordeste</text>
+                        <text x="110" y="238" text-anchor="end" fill="#495057" font-size="14" font-weight="600">Centro-Oeste</text>
+
+                        <!-- Valores -->
+                        <text x="450" y="73" fill="#005BAA" font-size="14" font-weight="700">85%</text>
+                        <text x="380" y="128" fill="#005BAA" font-size="14" font-weight="700">67%</text>
+                        <text x="410" y="183" fill="#005BAA" font-size="14" font-weight="700">75%</text>
+                        <text x="330" y="238" fill="#005BAA" font-size="14" font-weight="700">52%</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Linha -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">show_chart</span>
+                Gráficos de Linha
+            </h2>
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <span class="material-icons">timeline</span>
+                    Crescimento de Usuários (2024)
+                </h3>
+                <svg viewBox="0 0 600 300" style="width: 100%; height: auto;">
+                    <!-- Grid -->
+                    <line x1="60" y1="50" x2="60" y2="250" stroke="#dee2e6" stroke-width="2"/>
+                    <line x1="60" y1="250" x2="550" y2="250" stroke="#dee2e6" stroke-width="2"/>
+                    <line x1="60" y1="200" x2="550" y2="200" stroke="#e7e7e7" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line x1="60" y1="150" x2="550" y2="150" stroke="#e7e7e7" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line x1="60" y1="100" x2="550" y2="100" stroke="#e7e7e7" stroke-width="1" stroke-dasharray="5,5"/>
+
+                    <!-- Linha -->
+                    <polyline points="60,220 140,190 220,160 300,140 380,100 460,80 540,60"
+                              fill="none" stroke="url(#lineGrad)" stroke-width="3" stroke-linecap="round"/>
+
+                    <!-- Área sob a linha -->
+                    <path d="M 60,220 L 140,190 L 220,160 L 300,140 L 380,100 L 460,80 L 540,60 L 540,250 L 60,250 Z"
+                          fill="url(#areaGrad)" opacity="0.3"/>
+
+                    <!-- Pontos -->
+                    <circle cx="60" cy="220" r="6" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="140" cy="190" r="6" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="220" cy="160" r="6" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="300" cy="140" r="6" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="380" cy="100" r="6" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="460" cy="80" r="6" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="540" cy="60" r="6" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+
+                    <!-- Labels Meses -->
+                    <text x="60" y="270" text-anchor="middle" fill="#495057" font-size="12">Jan</text>
+                    <text x="140" y="270" text-anchor="middle" fill="#495057" font-size="12">Fev</text>
+                    <text x="220" y="270" text-anchor="middle" fill="#495057" font-size="12">Mar</text>
+                    <text x="300" y="270" text-anchor="middle" fill="#495057" font-size="12">Abr</text>
+                    <text x="380" y="270" text-anchor="middle" fill="#495057" font-size="12">Mai</text>
+                    <text x="460" y="270" text-anchor="middle" fill="#495057" font-size="12">Jun</text>
+                    <text x="540" y="270" text-anchor="middle" fill="#495057" font-size="12">Jul</text>
+
+                    <defs>
+                        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#005BAA;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#011E4B;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="areaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#005BAA;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#005BAA;stop-opacity:0.05" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Gráfico de Pizza/Donut -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">pie_chart</span>
+                Gráficos de Pizza e Donut
+            </h2>
+            <div class="grid-2">
+                <!-- Pizza -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">donut_small</span>
+                        Distribuição de Clientes
+                    </h3>
+                    <svg viewBox="0 0 400 250" style="width: 100%; height: auto;">
+                        <!-- Círculo Pizza -->
+                        <circle cx="200" cy="120" r="90" fill="#005BAA"/>
+                        <path d="M 200,120 L 200,30 A 90,90 0 0,1 275.3,73.2 Z" fill="#011E4B"/>
+                        <path d="M 200,120 L 275.3,73.2 A 90,90 0 0,1 275.3,166.8 Z" fill="#12162B"/>
+                        <path d="M 200,120 L 275.3,166.8 A 90,90 0 0,1 200,210 Z" fill="#495057"/>
+                    </svg>
+                    <!-- Legenda abaixo -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #005BAA; border-radius: 3px;"></div>
+                            <span style="font-size: 0.9rem; color: #495057; font-weight: 600;">Pequeno (40%)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #011E4B; border-radius: 3px;"></div>
+                            <span style="font-size: 0.9rem; color: #495057; font-weight: 600;">Médio (25%)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #12162B; border-radius: 3px;"></div>
+                            <span style="font-size: 0.9rem; color: #495057; font-weight: 600;">Grande (25%)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #495057; border-radius: 3px;"></div>
+                            <span style="font-size: 0.9rem; color: #495057; font-weight: 600;">Enterprise (10%)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Donut -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">donut_large</span>
+                        Satisfação dos Clientes
+                    </h3>
+                    <svg viewBox="0 0 400 250" style="width: 100%; height: auto;">
+                        <!-- Donut externo -->
+                        <circle cx="200" cy="120" r="90" fill="none" stroke="#005BAA" stroke-width="35"/>
+                        <circle cx="200" cy="120" r="90" fill="none" stroke="#011E4B" stroke-width="35"
+                                stroke-dasharray="251.2 628" transform="rotate(-90 200 120)"/>
+                        <circle cx="200" cy="120" r="90" fill="none" stroke="#E7E7E7" stroke-width="35"
+                                stroke-dasharray="125.6 628" transform="rotate(54 200 120)"/>
+
+                        <!-- Centro -->
+                        <circle cx="200" cy="120" r="55" fill="white"/>
+                        <text x="200" y="115" text-anchor="middle" fill="#005BAA" font-size="32" font-weight="800">87%</text>
+                        <text x="200" y="138" text-anchor="middle" fill="#495057" font-size="13">Satisfeitos</text>
+                    </svg>
+                    <!-- Legenda abaixo -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 20px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #005BAA; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057; font-weight: 600;">Muito Satisfeito (50%)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #011E4B; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057; font-weight: 600;">Satisfeito (37%)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #E7E7E7; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057; font-weight: 600;">Neutro (13%)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barras de Progresso -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">linear_scale</span>
+                Barras de Progresso
+            </h2>
+            <div class="grid-2">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">track_changes</span>
+                        Progresso de Implementação
+                    </h3>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">I9 PDV Web</span>
+                            <span class="progress-value">95%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">I9 Relatórios</span>
+                            <span class="progress-value">78%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 78%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">I9 Mobile</span>
+                            <span class="progress-value">62%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 62%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span class="progress-label">I9 Admin</span>
+                            <span class="progress-value">45%</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 45%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">assignment</span>
+                        Métricas de Performance
+                    </h3>
+                    <div class="metric-grid">
+                        <div class="metric-box">
+                            <span class="material-icons">analytics</span>
+                            <div class="metric-number">1.2k</div>
+                            <div class="metric-label">Transações/dia</div>
+                        </div>
+                        <div class="metric-box">
+                            <span class="material-icons">speed</span>
+                            <div class="metric-number">99.8%</div>
+                            <div class="metric-label">Uptime</div>
+                        </div>
+                        <div class="metric-box">
+                            <span class="material-icons">schedule</span>
+                            <div class="metric-number">2.3s</div>
+                            <div class="metric-label">Tempo Médio</div>
+                        </div>
+                        <div class="metric-box">
+                            <span class="material-icons">verified</span>
+                            <div class="metric-number">4.8</div>
+                            <div class="metric-label">Avaliação</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela Comparativa -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">table_chart</span>
+                Tabelas Comparativas
+            </h2>
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <span class="material-icons">compare</span>
+                    Comparação de Planos
+                </h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Recurso</th>
+                            <th style="text-align: center;">Básico</th>
+                            <th style="text-align: center;">Pro</th>
+                            <th style="text-align: center;">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>PDV Web</strong></td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Relatórios Avançados</strong></td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>App Mobile</strong></td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>API Customizada</strong></td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Suporte 24/7</strong></td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;">-</td>
+                            <td style="text-align: center;"><span class="material-icons check-icon">check_circle</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Valor Mensal</strong></td>
+                            <td style="text-align: center;"><span class="badge badge-light">R$ 99</span></td>
+                            <td style="text-align: center;"><span class="badge badge-blue">R$ 299</span></td>
+                            <td style="text-align: center;"><span class="badge badge-navy">R$ 799</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">timeline</span>
+                Timeline e Roadmap
+            </h2>
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <span class="material-icons">event</span>
+                    Roadmap 2024
+                </h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Q1 2024</div>
+                            <div class="timeline-title">Lançamento I9 PDV Web</div>
+                            <div class="timeline-desc">Sistema completo de ponto de venda com gestão de produtos, vendas e estoque.</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Q2 2024</div>
+                            <div class="timeline-title">I9 Relatórios e Analytics</div>
+                            <div class="timeline-desc">Dashboard completo com análises em tempo real e relatórios customizáveis.</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Q3 2024</div>
+                            <div class="timeline-title">I9 Mobile App</div>
+                            <div class="timeline-desc">Aplicativo móvel para gestão remota e vendas externas.</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">Q4 2024</div>
+                            <div class="timeline-title">Expansão e Integrações</div>
+                            <div class="timeline-desc">Integração com sistemas externos e APIs de terceiros.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos Avançados -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">auto_graph</span>
+                Gráficos Avançados
+            </h2>
+
+            <!-- Funil de Vendas -->
+            <div class="chart-card" style="margin-bottom: 30px;">
+                <h3 class="chart-title">
+                    <span class="material-icons">filter_list</span>
+                    Funil de Vendas
+                </h3>
+                <svg viewBox="0 0 600 350" style="width: 100%; height: auto;">
+                    <!-- Funil -->
+                    <path d="M 150,50 L 450,50 L 400,120 L 200,120 Z" fill="url(#gradBlue)" opacity="0.9"/>
+                    <path d="M 200,120 L 400,120 L 360,190 L 240,190 Z" fill="url(#gradBlue)" opacity="0.75"/>
+                    <path d="M 240,190 L 360,190 L 330,260 L 270,260 Z" fill="url(#gradBlue)" opacity="0.6"/>
+                    <path d="M 270,260 L 330,260 L 315,320 L 285,320 Z" fill="url(#gradBlue)" opacity="0.45"/>
+
+                    <!-- Labels e Valores -->
+                    <text x="500" y="85" fill="#495057" font-size="14" font-weight="600">Leads (1.000)</text>
+                    <text x="500" y="155" fill="#495057" font-size="14" font-weight="600">Qualificados (450)</text>
+                    <text x="500" y="225" fill="#495057" font-size="14" font-weight="600">Propostas (180)</text>
+                    <text x="500" y="290" fill="#495057" font-size="14" font-weight="600">Fechados (75)</text>
+
+                    <!-- Percentuais -->
+                    <text x="300" y="90" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">100%</text>
+                    <text x="300" y="160" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">45%</text>
+                    <text x="300" y="230" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">18%</text>
+                    <text x="300" y="295" text-anchor="middle" fill="#fff" font-size="16" font-weight="700">7.5%</text>
+                </svg>
+            </div>
+
+            <!-- Gauge -->
+            <div class="grid-2">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">speed</span>
+                        Gauge / Velocímetro
+                    </h3>
+                    <svg viewBox="0 0 400 250" style="width: 100%; height: auto;">
+                        <!-- Arco de fundo -->
+                        <path d="M 80,200 A 120,120 0 0,1 320,200" fill="none" stroke="#E7E7E7" stroke-width="25" stroke-linecap="round"/>
+
+                        <!-- Arco de progresso (75%) -->
+                        <path d="M 80,200 A 120,120 0 0,1 290,130" fill="none" stroke="url(#gradBlue)" stroke-width="25" stroke-linecap="round"/>
+
+                        <!-- Centro -->
+                        <circle cx="200" cy="200" r="80" fill="#fff" stroke="#E7E7E7" stroke-width="2"/>
+                        <text x="200" y="190" text-anchor="middle" fill="#005BAA" font-size="48" font-weight="800">75%</text>
+                        <text x="200" y="220" text-anchor="middle" fill="#495057" font-size="14">Performance</text>
+
+                        <!-- Labels -->
+                        <text x="60" y="230" fill="#495057" font-size="12">0%</text>
+                        <text x="330" y="230" fill="#495057" font-size="12">100%</text>
+                    </svg>
+                </div>
+
+                <!-- Gráfico de Radar -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">radar</span>
+                        Gráfico Radar
+                    </h3>
+                    <svg viewBox="0 0 400 300" style="width: 100%; height: auto;">
+                        <!-- Grid hexagonal -->
+                        <polygon points="200,50 270,90 270,170 200,210 130,170 130,90" fill="none" stroke="#E7E7E7" stroke-width="1"/>
+                        <polygon points="200,80 250,110 250,150 200,180 150,150 150,110" fill="none" stroke="#E7E7E7" stroke-width="1"/>
+                        <polygon points="200,110 230,125 230,135 200,150 170,135 170,125" fill="none" stroke="#E7E7E7" stroke-width="1"/>
+
+                        <!-- Linhas radiais -->
+                        <line x1="200" y1="130" x2="200" y2="50" stroke="#E7E7E7" stroke-width="1"/>
+                        <line x1="200" y1="130" x2="270" y2="90" stroke="#E7E7E7" stroke-width="1"/>
+                        <line x1="200" y1="130" x2="270" y2="170" stroke="#E7E7E7" stroke-width="1"/>
+                        <line x1="200" y1="130" x2="200" y2="210" stroke="#E7E7E7" stroke-width="1"/>
+                        <line x1="200" y1="130" x2="130" y2="170" stroke="#E7E7E7" stroke-width="1"/>
+                        <line x1="200" y1="130" x2="130" y2="90" stroke="#E7E7E7" stroke-width="1"/>
+
+                        <!-- Dados -->
+                        <polygon points="200,70 260,100 250,160 200,190 150,155 160,95" fill="url(#gradBlue)" opacity="0.4" stroke="#005BAA" stroke-width="2"/>
+
+                        <!-- Labels -->
+                        <text x="200" y="40" text-anchor="middle" fill="#495057" font-size="12" font-weight="600">Velocidade</text>
+                        <text x="285" y="95" fill="#495057" font-size="12" font-weight="600">Qualidade</text>
+                        <text x="285" y="175" fill="#495057" font-size="12" font-weight="600">Custo</text>
+                        <text x="200" y="235" text-anchor="middle" fill="#495057" font-size="12" font-weight="600">Suporte</text>
+                        <text x="105" y="175" fill="#495057" font-size="12" font-weight="600">Inovação</text>
+                        <text x="105" y="95" fill="#495057" font-size="12" font-weight="600">Escalabilidade</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heatmap e Waterfall -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">grid_on</span>
+                Heatmap e Gráficos Especiais
+            </h2>
+
+            <div class="grid-2">
+                <!-- Heatmap -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">calendar_view_month</span>
+                        Heatmap - Atividades por Hora
+                    </h3>
+                    <div style="overflow-x: auto;">
+                        <table style="border-collapse: separate; border-spacing: 4px; width: 100%; margin-top: 15px;">
+                            <thead>
+                                <tr>
+                                    <th style="font-size: 0.75rem; padding: 5px; text-align: left; color: #495057;"></th>
+                                    <th style="font-size: 0.75rem; padding: 5px; text-align: center; color: #495057;">Seg</th>
+                                    <th style="font-size: 0.75rem; padding: 5px; text-align: center; color: #495057;">Ter</th>
+                                    <th style="font-size: 0.75rem; padding: 5px; text-align: center; color: #495057;">Qua</th>
+                                    <th style="font-size: 0.75rem; padding: 5px; text-align: center; color: #495057;">Qui</th>
+                                    <th style="font-size: 0.75rem; padding: 5px; text-align: center; color: #495057;">Sex</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="font-size: 0.75rem; padding: 5px; color: #495057; font-weight: 600;">8h</td>
+                                    <td style="background: rgba(0,91,170,0.2); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.3); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.4); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.3); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.5); padding: 15px; border-radius: 4px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 0.75rem; padding: 5px; color: #495057; font-weight: 600;">12h</td>
+                                    <td style="background: rgba(0,91,170,0.6); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.7); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.8); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.9); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,1); padding: 15px; border-radius: 4px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 0.75rem; padding: 5px; color: #495057; font-weight: 600;">16h</td>
+                                    <td style="background: rgba(0,91,170,0.5); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.6); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.7); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.6); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.4); padding: 15px; border-radius: 4px;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size: 0.75rem; padding: 5px; color: #495057; font-weight: 600;">20h</td>
+                                    <td style="background: rgba(0,91,170,0.2); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.3); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.2); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.3); padding: 15px; border-radius: 4px;"></td>
+                                    <td style="background: rgba(0,91,170,0.1); padding: 15px; border-radius: 4px;"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="margin-top: 15px; display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #495057;">
+                            <span>Baixa</span>
+                            <div style="width: 20px; height: 20px; background: rgba(0,91,170,0.2); border-radius: 3px;"></div>
+                            <div style="width: 20px; height: 20px; background: rgba(0,91,170,0.4); border-radius: 3px;"></div>
+                            <div style="width: 20px; height: 20px; background: rgba(0,91,170,0.6); border-radius: 3px;"></div>
+                            <div style="width: 20px; height: 20px; background: rgba(0,91,170,0.8); border-radius: 3px;"></div>
+                            <div style="width: 20px; height: 20px; background: rgba(0,91,170,1); border-radius: 3px;"></div>
+                            <span>Alta</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waterfall Chart -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">waterfall_chart</span>
+                        Gráfico Cascata (Waterfall)
+                    </h3>
+                    <svg viewBox="0 0 500 300" style="width: 100%; height: auto;">
+                        <!-- Eixos -->
+                        <line x1="50" y1="250" x2="450" y2="250" stroke="#dee2e6" stroke-width="2"/>
+                        <line x1="50" y1="50" x2="50" y2="250" stroke="#dee2e6" stroke-width="2"/>
+
+                        <!-- Barras Positivas (verde/azul) -->
+                        <rect x="70" y="150" width="50" height="100" fill="#005BAA" rx="4"/>
+                        <rect x="160" y="120" width="50" height="30" fill="#005BAA" rx="4"/>
+
+                        <!-- Barras Negativas (vermelho/cinza) -->
+                        <rect x="250" y="150" width="50" height="-40" fill="#495057" rx="4"/>
+
+                        <!-- Barra Total -->
+                        <rect x="340" y="110" width="50" height="140" fill="#011E4B" rx="4"/>
+
+                        <!-- Linhas conectoras pontilhadas -->
+                        <line x1="120" y1="150" x2="160" y2="150" stroke="#adb5bd" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="210" y1="120" x2="250" y2="120" stroke="#adb5bd" stroke-width="1" stroke-dasharray="3,3"/>
+                        <line x1="300" y1="110" x2="340" y2="110" stroke="#adb5bd" stroke-width="1" stroke-dasharray="3,3"/>
+
+                        <!-- Labels -->
+                        <text x="95" y="270" text-anchor="middle" fill="#495057" font-size="12" font-weight="600">Inicial</text>
+                        <text x="185" y="270" text-anchor="middle" fill="#495057" font-size="12" font-weight="600">+Vendas</text>
+                        <text x="275" y="270" text-anchor="middle" fill="#495057" font-size="12" font-weight="600">-Custos</text>
+                        <text x="365" y="270" text-anchor="middle" fill="#495057" font-size="12" font-weight="600">Final</text>
+
+                        <!-- Valores -->
+                        <text x="95" y="140" text-anchor="middle" fill="#005BAA" font-size="14" font-weight="700">100k</text>
+                        <text x="185" y="110" text-anchor="middle" fill="#005BAA" font-size="14" font-weight="700">+30k</text>
+                        <text x="275" y="100" text-anchor="middle" fill="#495057" font-size="14" font-weight="700">-20k</text>
+                        <text x="365" y="100" text-anchor="middle" fill="#011E4B" font-size="14" font-weight="700">110k</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cards de Status e Alertas -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">notifications</span>
+                Cards de Status e Alertas
+            </h2>
+
+            <div class="grid-3">
+                <!-- Sucesso -->
+                <div style="background: linear-gradient(135deg, #28a745 0%, #20883b 100%); border-radius: 16px; padding: 25px; color: white;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span class="material-icons" style="font-size: 2rem;">check_circle</span>
+                        <h3 style="font-size: 1.2rem; font-weight: 700;">Sucesso!</h3>
+                    </div>
+                    <p style="opacity: 0.95; font-size: 0.95rem;">Operação realizada com sucesso. Todos os dados foram salvos corretamente.</p>
+                </div>
+
+                <!-- Aviso -->
+                <div style="background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); border-radius: 16px; padding: 25px; color: white;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span class="material-icons" style="font-size: 2rem;">warning</span>
+                        <h3 style="font-size: 1.2rem; font-weight: 700;">Atenção</h3>
+                    </div>
+                    <p style="opacity: 0.95; font-size: 0.95rem;">Alguns itens requerem sua atenção. Verifique os detalhes antes de continuar.</p>
+                </div>
+
+                <!-- Erro -->
+                <div style="background: linear-gradient(135deg, #dc3545 0%, #bd2130 100%); border-radius: 16px; padding: 25px; color: white;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
+                        <span class="material-icons" style="font-size: 2rem;">error</span>
+                        <h3 style="font-size: 1.2rem; font-weight: 700;">Erro</h3>
+                    </div>
+                    <p style="opacity: 0.95; font-size: 0.95rem;">Ocorreu um erro durante a operação. Por favor, tente novamente mais tarde.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pricing Tables -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">payments</span>
+                Tabelas de Preços
+            </h2>
+
+            <div class="grid-3">
+                <!-- Básico -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 20px; padding: 35px; text-align: center;">
+                    <h3 style="color: #005BAA; font-size: 1.5rem; margin-bottom: 10px;">Básico</h3>
+                    <div style="margin: 25px 0;">
+                        <span style="font-size: 3rem; font-weight: 800; color: #12162B;">R$ 99</span>
+                        <span style="color: #495057; font-size: 1rem;">/mês</span>
+                    </div>
+                    <ul style="list-style: none; margin: 25px 0; text-align: left;">
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.2rem;">check</span>
+                            <span style="color: #495057;">Até 5 usuários</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.2rem;">check</span>
+                            <span style="color: #495057;">10GB armazenamento</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.2rem;">check</span>
+                            <span style="color: #495057;">Suporte por email</span>
+                        </li>
+                    </ul>
+                    <button style="width: 100%; padding: 15px; background: white; border: 2px solid #005BAA; color: #005BAA; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 1rem;">Escolher Plano</button>
+                </div>
+
+                <!-- Pro (Destaque) -->
+                <div style="background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 20px; padding: 35px; text-align: center; transform: scale(1.05); box-shadow: 0 12px 40px rgba(0,91,170,0.3); position: relative;">
+                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #28a745; color: white; padding: 6px 20px; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">POPULAR</div>
+                    <h3 style="color: white; font-size: 1.5rem; margin-bottom: 10px;">Pro</h3>
+                    <div style="margin: 25px 0;">
+                        <span style="font-size: 3rem; font-weight: 800; color: white;">R$ 299</span>
+                        <span style="color: rgba(255,255,255,0.8); font-size: 1rem;">/mês</span>
+                    </div>
+                    <ul style="list-style: none; margin: 25px 0; text-align: left;">
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: white; font-size: 1.2rem;">check</span>
+                            <span style="color: rgba(255,255,255,0.95);">Até 25 usuários</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: white; font-size: 1.2rem;">check</span>
+                            <span style="color: rgba(255,255,255,0.95);">100GB armazenamento</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: white; font-size: 1.2rem;">check</span>
+                            <span style="color: rgba(255,255,255,0.95);">Suporte prioritário</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: white; font-size: 1.2rem;">check</span>
+                            <span style="color: rgba(255,255,255,0.95);">API avançada</span>
+                        </li>
+                    </ul>
+                    <button style="width: 100%; padding: 15px; background: white; border: none; color: #005BAA; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 1rem;">Escolher Plano</button>
+                </div>
+
+                <!-- Enterprise -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 20px; padding: 35px; text-align: center;">
+                    <h3 style="color: #005BAA; font-size: 1.5rem; margin-bottom: 10px;">Enterprise</h3>
+                    <div style="margin: 25px 0;">
+                        <span style="font-size: 3rem; font-weight: 800; color: #12162B;">R$ 799</span>
+                        <span style="color: #495057; font-size: 1rem;">/mês</span>
+                    </div>
+                    <ul style="list-style: none; margin: 25px 0; text-align: left;">
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.2rem;">check</span>
+                            <span style="color: #495057;">Usuários ilimitados</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.2rem;">check</span>
+                            <span style="color: #495057;">1TB armazenamento</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.2rem;">check</span>
+                            <span style="color: #495057;">Suporte 24/7</span>
+                        </li>
+                        <li style="padding: 10px 0; display: flex; align-items: center; gap: 10px;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.2rem;">check</span>
+                            <span style="color: #495057;">Customizações</span>
+                        </li>
+                    </ul>
+                    <button style="width: 100%; padding: 15px; background: white; border: 2px solid #005BAA; color: #005BAA; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 1rem;">Escolher Plano</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step Progress -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">alt_route</span>
+                Progresso de Etapas
+            </h2>
+
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <span class="material-icons">fact_check</span>
+                    Processo de Onboarding
+                </h3>
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 30px; position: relative;">
+                    <!-- Linha de conexão -->
+                    <div style="position: absolute; top: 25px; left: 50px; right: 50px; height: 3px; background: #E7E7E7; z-index: 0;"></div>
+                    <div style="position: absolute; top: 25px; left: 50px; width: 50%; height: 3px; background: #005BAA; z-index: 0;"></div>
+
+                    <!-- Step 1 - Completo -->
+                    <div style="display: flex; flex-direction: column; align-items: center; z-index: 1; flex: 1;">
+                        <div style="width: 50px; height: 50px; background: #005BAA; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,91,170,0.3);">
+                            <span class="material-icons" style="color: white; font-size: 1.8rem;">check</span>
+                        </div>
+                        <span style="margin-top: 12px; font-weight: 700; color: #005BAA;">Cadastro</span>
+                        <span style="font-size: 0.85rem; color: #adb5bd;">Completo</span>
+                    </div>
+
+                    <!-- Step 2 - Completo -->
+                    <div style="display: flex; flex-direction: column; align-items: center; z-index: 1; flex: 1;">
+                        <div style="width: 50px; height: 50px; background: #005BAA; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,91,170,0.3);">
+                            <span class="material-icons" style="color: white; font-size: 1.8rem;">check</span>
+                        </div>
+                        <span style="margin-top: 12px; font-weight: 700; color: #005BAA;">Verificação</span>
+                        <span style="font-size: 0.85rem; color: #adb5bd;">Completo</span>
+                    </div>
+
+                    <!-- Step 3 - Em progresso -->
+                    <div style="display: flex; flex-direction: column; align-items: center; z-index: 1; flex: 1;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,91,170,0.4); border: 4px solid white;">
+                            <span style="color: white; font-size: 1.5rem; font-weight: 800;">3</span>
+                        </div>
+                        <span style="margin-top: 12px; font-weight: 700; color: #005BAA;">Configuração</span>
+                        <span style="font-size: 0.85rem; color: #005BAA;">Em andamento</span>
+                    </div>
+
+                    <!-- Step 4 - Pendente -->
+                    <div style="display: flex; flex-direction: column; align-items: center; z-index: 1; flex: 1;">
+                        <div style="width: 50px; height: 50px; background: #E7E7E7; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <span style="color: #adb5bd; font-size: 1.5rem; font-weight: 800;">4</span>
+                        </div>
+                        <span style="margin-top: 12px; font-weight: 600; color: #adb5bd;">Conclusão</span>
+                        <span style="font-size: 0.85rem; color: #adb5bd;">Pendente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista com Avatares -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">people</span>
+                Listas de Equipe
+            </h2>
+
+            <div class="grid-2">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">groups</span>
+                        Membros da Equipe
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f1f3f5; border-radius: 12px; margin-bottom: 12px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #005BAA, #011E4B); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">JD</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; color: #12162B;">João da Silva</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Desenvolvedor Full-stack</div>
+                            </div>
+                            <span class="badge badge-blue">Ativo</span>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f1f3f5; border-radius: 12px; margin-bottom: 12px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #011E4B, #12162B); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">MS</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; color: #12162B;">Maria Santos</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Designer UI/UX</div>
+                            </div>
+                            <span class="badge badge-blue">Ativo</span>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; background: #f1f3f5; border-radius: 12px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #495057, #12162B); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">PC</div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; color: #12162B;">Pedro Costa</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Product Manager</div>
+                            </div>
+                            <span class="badge badge-light">Offline</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">inventory</span>
+                        Produtos em Destaque
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; border: 2px solid #E7E7E7; border-radius: 12px; margin-bottom: 12px;">
+                            <div style="width: 50px; height: 50px; background: #005BAA; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <span class="material-icons" style="color: white; font-size: 1.8rem;">point_of_sale</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; color: #12162B;">I9 PDV Web</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Sistema de Ponto de Venda</div>
+                            </div>
+                            <span style="color: #005BAA; font-weight: 700; font-size: 1.1rem;">R$ 299</span>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; border: 2px solid #E7E7E7; border-radius: 12px; margin-bottom: 12px;">
+                            <div style="width: 50px; height: 50px; background: #011E4B; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <span class="material-icons" style="color: white; font-size: 1.8rem;">analytics</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; color: #12162B;">I9 Analytics</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Relatórios e Dashboards</div>
+                            </div>
+                            <span style="color: #005BAA; font-weight: 700; font-size: 1.1rem;">R$ 199</span>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 15px; padding: 15px; border: 2px solid #E7E7E7; border-radius: 12px;">
+                            <div style="width: 50px; height: 50px; background: #12162B; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                                <span class="material-icons" style="color: white; font-size: 1.8rem;">phonelink</span>
+                            </div>
+                            <div style="flex: 1;">
+                                <div style="font-weight: 700; color: #12162B;">I9 Mobile</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Aplicativo Mobile</div>
+                            </div>
+                            <span style="color: #005BAA; font-weight: 700; font-size: 1.1rem;">R$ 149</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráfico de Área -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">show_chart</span>
+                Gráfico de Área (Area Chart)
+            </h2>
+
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <span class="material-icons">area_chart</span>
+                    Crescimento de Vendas Mensais
+                </h3>
+                <svg viewBox="0 0 700 300" style="width: 100%; height: auto;">
+                    <!-- Gradiente para área -->
+                    <defs>
+                        <linearGradient id="areaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#005BAA;stop-opacity:0.6" />
+                            <stop offset="100%" style="stop-color:#005BAA;stop-opacity:0.05" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Grid -->
+                    <line x1="50" y1="250" x2="650" y2="250" stroke="#E7E7E7" stroke-width="2"/>
+                    <line x1="50" y1="50" x2="50" y2="250" stroke="#E7E7E7" stroke-width="2"/>
+                    <line x1="50" y1="200" x2="650" y2="200" stroke="#E7E7E7" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line x1="50" y1="150" x2="650" y2="150" stroke="#E7E7E7" stroke-width="1" stroke-dasharray="5,5"/>
+                    <line x1="50" y1="100" x2="650" y2="100" stroke="#E7E7E7" stroke-width="1" stroke-dasharray="5,5"/>
+
+                    <!-- Área preenchida -->
+                    <path d="M 50,230 L 150,200 L 250,180 L 350,140 L 450,120 L 550,90 L 650,70 L 650,250 L 50,250 Z"
+                          fill="url(#areaGrad)" stroke="none"/>
+
+                    <!-- Linha principal -->
+                    <path d="M 50,230 L 150,200 L 250,180 L 350,140 L 450,120 L 550,90 L 650,70"
+                          stroke="#005BAA" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    <!-- Pontos de dados -->
+                    <circle cx="50" cy="230" r="5" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="150" cy="200" r="5" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="250" cy="180" r="5" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="350" cy="140" r="5" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="450" cy="120" r="5" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="550" cy="90" r="5" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+                    <circle cx="650" cy="70" r="5" fill="#005BAA" stroke="#fff" stroke-width="2"/>
+
+                    <!-- Labels eixo X -->
+                    <text x="50" y="275" text-anchor="middle" fill="#495057" font-size="12">Jan</text>
+                    <text x="150" y="275" text-anchor="middle" fill="#495057" font-size="12">Fev</text>
+                    <text x="250" y="275" text-anchor="middle" fill="#495057" font-size="12">Mar</text>
+                    <text x="350" y="275" text-anchor="middle" fill="#495057" font-size="12">Abr</text>
+                    <text x="450" y="275" text-anchor="middle" fill="#495057" font-size="12">Mai</text>
+                    <text x="550" y="275" text-anchor="middle" fill="#495057" font-size="12">Jun</text>
+                    <text x="650" y="275" text-anchor="middle" fill="#495057" font-size="12">Jul</text>
+
+                    <!-- Labels eixo Y -->
+                    <text x="35" y="255" text-anchor="end" fill="#495057" font-size="11">0</text>
+                    <text x="35" y="205" text-anchor="end" fill="#495057" font-size="11">25k</text>
+                    <text x="35" y="155" text-anchor="end" fill="#495057" font-size="11">50k</text>
+                    <text x="35" y="105" text-anchor="end" fill="#495057" font-size="11">75k</text>
+                    <text x="35" y="55" text-anchor="end" fill="#495057" font-size="11">100k</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Bullet Charts -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">speed</span>
+                Bullet Charts - Métricas de Performance
+            </h2>
+
+            <div class="grid-2">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">trending_up</span>
+                        Meta de Vendas Q1
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <!-- Bullet Chart 1 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 0.9rem; font-weight: 600; color: #12162B;">Receita</span>
+                                <span style="font-size: 0.85rem; color: #495057;">R$ 875k / R$ 1M</span>
+                            </div>
+                            <div style="position: relative; height: 30px; background: #E7E7E7; border-radius: 8px; overflow: hidden;">
+                                <div style="position: absolute; width: 60%; height: 100%; background: #dee2e6;"></div>
+                                <div style="position: absolute; width: 87.5%; height: 100%; background: linear-gradient(90deg, #005BAA, #011E4B); border-radius: 8px 0 0 8px;"></div>
+                                <div style="position: absolute; left: 60%; top: 0; bottom: 0; width: 3px; background: #12162B;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bullet Chart 2 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 0.9rem; font-weight: 600; color: #12162B;">Novos Clientes</span>
+                                <span style="font-size: 0.85rem; color: #495057;">142 / 150</span>
+                            </div>
+                            <div style="position: relative; height: 30px; background: #E7E7E7; border-radius: 8px; overflow: hidden;">
+                                <div style="position: absolute; width: 70%; height: 100%; background: #dee2e6;"></div>
+                                <div style="position: absolute; width: 94.6%; height: 100%; background: linear-gradient(90deg, #28a745, #20883b); border-radius: 8px 0 0 8px;"></div>
+                                <div style="position: absolute; left: 70%; top: 0; bottom: 0; width: 3px; background: #12162B;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bullet Chart 3 -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 0.9rem; font-weight: 600; color: #12162B;">Satisfação</span>
+                                <span style="font-size: 0.85rem; color: #495057;">72% / 85%</span>
+                            </div>
+                            <div style="position: relative; height: 30px; background: #E7E7E7; border-radius: 8px; overflow: hidden;">
+                                <div style="position: absolute; width: 85%; height: 100%; background: #dee2e6;"></div>
+                                <div style="position: absolute; width: 72%; height: 100%; background: linear-gradient(90deg, #ffc107, #e0a800); border-radius: 8px 0 0 8px;"></div>
+                                <div style="position: absolute; left: 85%; top: 0; bottom: 0; width: 3px; background: #12162B;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">account_balance</span>
+                        Métricas Financeiras
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <!-- Bullet Chart 4 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 0.9rem; font-weight: 600; color: #12162B;">Margem de Lucro</span>
+                                <span style="font-size: 0.85rem; color: #495057;">38% / 40%</span>
+                            </div>
+                            <div style="position: relative; height: 30px; background: #E7E7E7; border-radius: 8px; overflow: hidden;">
+                                <div style="position: absolute; width: 40%; height: 100%; background: #dee2e6;"></div>
+                                <div style="position: absolute; width: 95%; height: 100%; background: linear-gradient(90deg, #005BAA, #011E4B); border-radius: 8px 0 0 8px;"></div>
+                                <div style="position: absolute; left: 40%; top: 0; bottom: 0; width: 3px; background: #12162B;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bullet Chart 5 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 0.9rem; font-weight: 600; color: #12162B;">ROI</span>
+                                <span style="font-size: 0.85rem; color: #495057;">215% / 200%</span>
+                            </div>
+                            <div style="position: relative; height: 30px; background: #E7E7E7; border-radius: 8px; overflow: hidden;">
+                                <div style="position: absolute; width: 100%; height: 100%; background: #dee2e6;"></div>
+                                <div style="position: absolute; width: 107.5%; height: 100%; background: linear-gradient(90deg, #28a745, #20883b); border-radius: 8px 0 0 8px;"></div>
+                                <div style="position: absolute; left: 100%; top: 0; bottom: 0; width: 3px; background: #12162B;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Bullet Chart 6 -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 0.9rem; font-weight: 600; color: #12162B;">Redução de Custos</span>
+                                <span style="font-size: 0.85rem; color: #495057;">12% / 20%</span>
+                            </div>
+                            <div style="position: relative; height: 30px; background: #E7E7E7; border-radius: 8px; overflow: hidden;">
+                                <div style="position: absolute; width: 100%; height: 100%; background: #dee2e6;"></div>
+                                <div style="position: absolute; width: 60%; height: 100%; background: linear-gradient(90deg, #dc3545, #bd2130); border-radius: 8px 0 0 8px;"></div>
+                                <div style="position: absolute; left: 100%; top: 0; bottom: 0; width: 3px; background: #12162B;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sparklines -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">insights</span>
+                Sparklines - Mini Gráficos
+            </h2>
+
+            <div class="grid-3">
+                <!-- Sparkline 1 -->
+                <div style="background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 16px; padding: 25px; color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                        <div>
+                            <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 5px;">Vendas Totais</div>
+                            <div style="font-size: 2rem; font-weight: 800;">R$ 127k</div>
+                            <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">
+                                <span style="color: #28a745;">▲ 12.5%</span> vs. mês anterior
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 80 40" style="width: 80px; height: 40px;">
+                            <path d="M 0,30 L 20,25 L 40,20 L 60,10 L 80,5"
+                                  stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M 0,30 L 20,25 L 40,20 L 60,10 L 80,5 L 80,40 L 0,40 Z"
+                                  fill="rgba(255,255,255,0.2)"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Sparkline 2 -->
+                <div style="background: linear-gradient(135deg, #28a745 0%, #20883b 100%); border-radius: 16px; padding: 25px; color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                        <div>
+                            <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 5px;">Conversões</div>
+                            <div style="font-size: 2rem; font-weight: 800;">3.847</div>
+                            <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">
+                                <span>▲ 8.2%</span> vs. mês anterior
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 80 40" style="width: 80px; height: 40px;">
+                            <path d="M 0,35 L 20,32 L 40,28 L 60,22 L 80,15"
+                                  stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M 0,35 L 20,32 L 40,28 L 60,22 L 80,15 L 80,40 L 0,40 Z"
+                                  fill="rgba(255,255,255,0.2)"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Sparkline 3 -->
+                <div style="background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); border-radius: 16px; padding: 25px; color: white;">
+                    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 15px;">
+                        <div>
+                            <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 5px;">Ticket Médio</div>
+                            <div style="font-size: 2rem; font-weight: 800;">R$ 2.450</div>
+                            <div style="font-size: 0.85rem; opacity: 0.8; margin-top: 5px;">
+                                <span style="color: #dc3545;">▼ 2.1%</span> vs. mês anterior
+                            </div>
+                        </div>
+                        <svg viewBox="0 0 80 40" style="width: 80px; height: 40px;">
+                            <path d="M 0,15 L 20,18 L 40,22 L 60,28 L 80,32"
+                                  stroke="rgba(255,255,255,0.8)" stroke-width="2" fill="none" stroke-linecap="round"/>
+                            <path d="M 0,15 L 20,18 L 40,22 L 60,28 L 80,32 L 80,40 L 0,40 Z"
+                                  fill="rgba(255,255,255,0.2)"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comparison Cards -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">compare_arrows</span>
+                Cards Comparativos
+            </h2>
+
+            <div class="grid-2">
+                <!-- Comparação Período -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">date_range</span>
+                        Comparação Trimestral
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                            <div style="text-align: center; padding: 20px; background: #f1f3f5; border-radius: 12px;">
+                                <div style="font-size: 0.85rem; color: #495057; margin-bottom: 8px;">Q1 2026</div>
+                                <div style="font-size: 2.2rem; font-weight: 800; color: #005BAA;">R$ 285k</div>
+                                <div style="font-size: 0.8rem; color: #495057; margin-top: 5px;">Janeiro - Março</div>
+                            </div>
+                            <div style="text-align: center; padding: 20px; background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 12px; color: white;">
+                                <div style="font-size: 0.85rem; opacity: 0.9; margin-bottom: 8px;">Q2 2026</div>
+                                <div style="font-size: 2.2rem; font-weight: 800;">R$ 342k</div>
+                                <div style="font-size: 0.8rem; opacity: 0.9; margin-top: 5px;">Abril - Junho</div>
+                            </div>
+                        </div>
+                        <div style="text-align: center; padding: 20px; background: #28a745; color: white; border-radius: 12px;">
+                            <div style="font-size: 1rem; font-weight: 600; margin-bottom: 5px;">Crescimento</div>
+                            <div style="font-size: 2rem; font-weight: 800;">+20%</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">+R$ 57k em receita</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparação Performance -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">analytics</span>
+                        Performance vs. Meta
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">Realizado</span>
+                                <span style="font-weight: 700; color: #005BAA; font-size: 1.1rem;">R$ 875k</span>
+                            </div>
+                            <div style="height: 12px; background: #E7E7E7; border-radius: 6px; overflow: hidden;">
+                                <div style="width: 87.5%; height: 100%; background: linear-gradient(90deg, #005BAA, #011E4B); border-radius: 6px;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 20px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">Meta</span>
+                                <span style="font-weight: 700; color: #495057; font-size: 1.1rem;">R$ 1M</span>
+                            </div>
+                            <div style="height: 12px; background: #E7E7E7; border-radius: 6px; overflow: hidden;">
+                                <div style="width: 100%; height: 100%; background: #E7E7E7; border-radius: 6px; border: 2px dashed #495057;"></div>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 25px;">
+                            <div style="text-align: center; padding: 15px; background: #f1f3f5; border-radius: 10px;">
+                                <div style="font-size: 0.8rem; color: #495057;">Faltam</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #005BAA;">R$ 125k</div>
+                            </div>
+                            <div style="text-align: center; padding: 15px; background: #f1f3f5; border-radius: 10px;">
+                                <div style="font-size: 0.8rem; color: #495057;">Atingido</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: #28a745;">87.5%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mais Cards Comparativos -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">compare</span>
+                Mais Cards Comparativos - Variações
+            </h2>
+
+            <!-- Comparação Antes vs Depois -->
+            <div class="grid-2" style="margin-bottom: 30px;">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">restore</span>
+                        Antes vs Depois - Implementação
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;">
+                            <!-- Antes -->
+                            <div style="padding: 25px; background: #f8d7da; border-radius: 12px; text-align: center; border: 2px solid #dc3545;">
+                                <div style="font-size: 0.85rem; color: #721c24; font-weight: 600; margin-bottom: 10px;">ANTES</div>
+                                <div style="font-size: 2.5rem; font-weight: 800; color: #dc3545; margin-bottom: 10px;">4.2h</div>
+                                <div style="font-size: 0.85rem; color: #721c24;">Tempo médio de resposta</div>
+                                <div style="margin-top: 15px; padding: 10px; background: rgba(220,53,69,0.1); border-radius: 8px;">
+                                    <span class="material-icons" style="color: #dc3545; font-size: 1.2rem; vertical-align: middle;">error</span>
+                                    <span style="font-size: 0.8rem; color: #721c24; margin-left: 5px;">Insatisfatório</span>
+                                </div>
+                            </div>
+
+                            <!-- Seta -->
+                            <div style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+                                <span class="material-icons" style="font-size: 2.5rem; color: #005BAA;">arrow_forward</span>
+                                <span style="font-size: 0.75rem; color: #495057; font-weight: 600;">Melhoria</span>
+                            </div>
+
+                            <!-- Depois -->
+                            <div style="padding: 25px; background: #d4edda; border-radius: 12px; text-align: center; border: 2px solid #28a745;">
+                                <div style="font-size: 0.85rem; color: #155724; font-weight: 600; margin-bottom: 10px;">DEPOIS</div>
+                                <div style="font-size: 2.5rem; font-weight: 800; color: #28a745; margin-bottom: 10px;">1.8h</div>
+                                <div style="font-size: 0.85rem; color: #155724;">Tempo médio de resposta</div>
+                                <div style="margin-top: 15px; padding: 10px; background: rgba(40,167,69,0.1); border-radius: 8px;">
+                                    <span class="material-icons" style="color: #28a745; font-size: 1.2rem; vertical-align: middle;">check_circle</span>
+                                    <span style="font-size: 0.8rem; color: #155724; margin-left: 5px;">Excelente</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 25px; padding: 20px; background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 12px; color: white; text-align: center;">
+                            <div style="font-size: 0.9rem; opacity: 0.9; margin-bottom: 5px;">Redução Total</div>
+                            <div style="font-size: 2.2rem; font-weight: 800;">-57%</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 5px;">Economia de 2.4h por ticket</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparação Planos -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">low_priority</span>
+                        Plano Atual vs Upgrade
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                            <!-- Plano Atual -->
+                            <div style="padding: 20px; background: #f1f3f5; border-radius: 12px; border: 2px solid #E7E7E7;">
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+                                    <span class="material-icons" style="color: #495057;">workspace_premium</span>
+                                    <span style="font-size: 0.85rem; color: #495057; font-weight: 700;">PLANO BÁSICO</span>
+                                </div>
+                                <div style="font-size: 2rem; font-weight: 800; color: #12162B; margin-bottom: 5px;">R$ 99</div>
+                                <div style="font-size: 0.8rem; color: #495057; margin-bottom: 15px;">/mês</div>
+                                <div style="font-size: 0.85rem; color: #495057; line-height: 1.8;">
+                                    <div>✓ 5 usuários</div>
+                                    <div>✓ 10GB storage</div>
+                                    <div>✓ Email support</div>
+                                    <div style="opacity: 0.4;">✗ API access</div>
+                                    <div style="opacity: 0.4;">✗ Priority support</div>
+                                </div>
+                            </div>
+
+                            <!-- Plano Upgrade -->
+                            <div style="padding: 20px; background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 12px; color: white; position: relative;">
+                                <div style="position: absolute; top: -10px; right: 10px; background: #28a745; padding: 4px 12px; border-radius: 12px; font-size: 0.7rem; font-weight: 700;">RECOMENDADO</div>
+                                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+                                    <span class="material-icons">stars</span>
+                                    <span style="font-size: 0.85rem; font-weight: 700; opacity: 0.9;">PLANO PRO</span>
+                                </div>
+                                <div style="font-size: 2rem; font-weight: 800; margin-bottom: 5px;">R$ 299</div>
+                                <div style="font-size: 0.8rem; opacity: 0.8; margin-bottom: 15px;">/mês</div>
+                                <div style="font-size: 0.85rem; opacity: 0.95; line-height: 1.8;">
+                                    <div>✓ 25 usuários</div>
+                                    <div>✓ 100GB storage</div>
+                                    <div>✓ 24/7 support</div>
+                                    <div>✓ API access</div>
+                                    <div>✓ Priority support</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 15px; background: #fff3cd; border-radius: 10px; border-left: 4px solid #ffc107;">
+                            <div style="font-size: 0.85rem; color: #856404; font-weight: 600;">
+                                <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">lightbulb</span>
+                                Economize R$ 200/mês com upgrade anual
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparação Múltipla (3 opções) -->
+            <div class="chart-card" style="margin-bottom: 30px;">
+                <h3 class="chart-title">
+                    <span class="material-icons">ballot</span>
+                    Comparação Múltipla - 3 Alternativas
+                </h3>
+                <div style="margin-top: 20px;">
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                        <!-- Opção A -->
+                        <div style="padding: 25px; background: white; border: 2px solid #E7E7E7; border-radius: 12px; text-align: center;">
+                            <div style="width: 50px; height: 50px; background: rgba(0,91,170,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                                <span class="material-icons" style="color: #005BAA; font-size: 1.8rem;">cloud</span>
+                            </div>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #12162B; margin-bottom: 10px;">Cloud Básico</div>
+                            <div style="font-size: 2rem; font-weight: 800; color: #005BAA; margin-bottom: 15px;">R$ 149</div>
+                            <div style="text-align: left; font-size: 0.85rem; color: #495057; line-height: 2;">
+                                <div>✓ 50GB storage</div>
+                                <div>✓ 99.9% uptime</div>
+                                <div>✓ Email support</div>
+                            </div>
+                            <div style="margin-top: 20px; padding: 8px; background: #f1f3f5; border-radius: 6px;">
+                                <div style="font-size: 0.75rem; color: #495057; font-weight: 600;">Setup: 2 dias</div>
+                            </div>
+                        </div>
+
+                        <!-- Opção B (Recomendada) -->
+                        <div style="padding: 25px; background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 12px; text-align: center; color: white; transform: scale(1.05); box-shadow: 0 8px 25px rgba(0,91,170,0.3); position: relative;">
+                            <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #28a745; padding: 5px 15px; border-radius: 12px; font-size: 0.7rem; font-weight: 700;">MELHOR CUSTO-BENEFÍCIO</div>
+                            <div style="width: 50px; height: 50px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 10px auto 15px;">
+                                <span class="material-icons" style="color: white; font-size: 1.8rem;">cloud_done</span>
+                            </div>
+                            <div style="font-size: 1.1rem; font-weight: 700; margin-bottom: 10px;">Cloud Pro</div>
+                            <div style="font-size: 2rem; font-weight: 800; margin-bottom: 15px;">R$ 299</div>
+                            <div style="text-align: left; font-size: 0.85rem; opacity: 0.95; line-height: 2;">
+                                <div>✓ 200GB storage</div>
+                                <div>✓ 99.99% uptime</div>
+                                <div>✓ Priority support</div>
+                            </div>
+                            <div style="margin-top: 20px; padding: 8px; background: rgba(255,255,255,0.2); border-radius: 6px;">
+                                <div style="font-size: 0.75rem; font-weight: 600;">Setup: 1 dia</div>
+                            </div>
+                        </div>
+
+                        <!-- Opção C -->
+                        <div style="padding: 25px; background: white; border: 2px solid #E7E7E7; border-radius: 12px; text-align: center;">
+                            <div style="width: 50px; height: 50px; background: rgba(18,22,43,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px;">
+                                <span class="material-icons" style="color: #12162B; font-size: 1.8rem;">cloud_sync</span>
+                            </div>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #12162B; margin-bottom: 10px;">Cloud Enterprise</div>
+                            <div style="font-size: 2rem; font-weight: 800; color: #12162B; margin-bottom: 15px;">R$ 799</div>
+                            <div style="text-align: left; font-size: 0.85rem; color: #495057; line-height: 2;">
+                                <div>✓ 1TB storage</div>
+                                <div>✓ 99.999% uptime</div>
+                                <div>✓ 24/7 dedicated</div>
+                            </div>
+                            <div style="margin-top: 20px; padding: 8px; background: #f1f3f5; border-radius: 6px;">
+                                <div style="font-size: 0.75rem; color: #495057; font-weight: 600;">Setup: Imediato</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparação de Performance com Gráficos -->
+            <div class="grid-2">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">speed</span>
+                        Performance: Servidor A vs B
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px;">
+                            <!-- Servidor A -->
+                            <div>
+                                <div style="text-align: center; margin-bottom: 15px;">
+                                    <div style="font-size: 0.85rem; color: #495057; font-weight: 600; margin-bottom: 8px;">SERVIDOR A</div>
+                                    <div style="font-size: 2rem; font-weight: 800; color: #005BAA;">3.2s</div>
+                                    <div style="font-size: 0.75rem; color: #495057;">tempo de resposta</div>
+                                </div>
+                                <svg viewBox="0 0 100 80" style="width: 100%; height: 80px;">
+                                    <rect x="10" y="40" width="80" height="30" fill="#E7E7E7" rx="4"/>
+                                    <rect x="10" y="40" width="64" height="30" fill="#005BAA" rx="4"/>
+                                    <text x="50" y="60" text-anchor="middle" fill="white" font-size="12" font-weight="700">80%</text>
+                                </svg>
+                            </div>
+
+                            <!-- Servidor B -->
+                            <div>
+                                <div style="text-align: center; margin-bottom: 15px;">
+                                    <div style="font-size: 0.85rem; color: #495057; font-weight: 600; margin-bottom: 8px;">SERVIDOR B</div>
+                                    <div style="font-size: 2rem; font-weight: 800; color: #28a745;">1.4s</div>
+                                    <div style="font-size: 0.75rem; color: #495057;">tempo de resposta</div>
+                                </div>
+                                <svg viewBox="0 0 100 80" style="width: 100%; height: 80px;">
+                                    <rect x="10" y="40" width="80" height="30" fill="#E7E7E7" rx="4"/>
+                                    <rect x="10" y="40" width="80" height="30" fill="#28a745" rx="4"/>
+                                    <text x="50" y="60" text-anchor="middle" fill="white" font-size="12" font-weight="700">100%</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <div style="padding: 20px; background: #d4edda; border-radius: 12px; border-left: 4px solid #28a745;">
+                            <div style="font-size: 0.85rem; color: #155724; font-weight: 600; margin-bottom: 8px;">
+                                <span class="material-icons" style="font-size: 1.2rem; vertical-align: middle; color: #28a745;">verified</span>
+                                Servidor B é 56% mais rápido
+                            </div>
+                            <div style="font-size: 0.8rem; color: #155724;">Recomendado para aplicações de alta performance</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparação Mensal vs Anual -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">event</span>
+                        Pagamento: Mensal vs Anual
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <!-- Mensal -->
+                        <div style="padding: 20px; background: #f1f3f5; border-radius: 12px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <div style="font-size: 0.85rem; color: #495057; font-weight: 600; margin-bottom: 5px;">PLANO MENSAL</div>
+                                    <div style="font-size: 1.8rem; font-weight: 800; color: #12162B;">R$ 299<span style="font-size: 0.9rem; font-weight: 400; color: #495057;">/mês</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 0.75rem; color: #495057;">Total anual</div>
+                                    <div style="font-size: 1.3rem; font-weight: 700; color: #495057;">R$ 3.588</div>
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; color: #495057;">
+                                ✓ Sem compromisso<br>
+                                ✓ Cancele quando quiser
+                            </div>
+                        </div>
+
+                        <!-- Anual -->
+                        <div style="padding: 20px; background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 12px; color: white; position: relative; margin-bottom: 15px;">
+                            <div style="position: absolute; top: -10px; right: 15px; background: #28a745; padding: 5px 15px; border-radius: 12px; font-size: 0.7rem; font-weight: 700;">ECONOMIZE 20%</div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                                <div>
+                                    <div style="font-size: 0.85rem; opacity: 0.9; font-weight: 600; margin-bottom: 5px;">PLANO ANUAL</div>
+                                    <div style="font-size: 1.8rem; font-weight: 800;">R$ 239<span style="font-size: 0.9rem; font-weight: 400; opacity: 0.8;">/mês</span></div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-size: 0.75rem; opacity: 0.8;">Total anual</div>
+                                    <div style="font-size: 1.3rem; font-weight: 700;">R$ 2.868</div>
+                                </div>
+                            </div>
+                            <div style="font-size: 0.8rem; opacity: 0.95;">
+                                ✓ 12 meses pelo preço de 10<br>
+                                ✓ Suporte prioritário incluído
+                            </div>
+                        </div>
+
+                        <div style="text-align: center; padding: 15px; background: #28a745; color: white; border-radius: 10px; font-weight: 700;">
+                            <div style="font-size: 0.85rem; opacity: 0.9;">Você economiza</div>
+                            <div style="font-size: 2rem; margin-top: 5px;">R$ 720/ano</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard de Estatísticas -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">dashboard</span>
+                Dashboard de Estatísticas
+            </h2>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                <!-- Stat Card 1 -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <div style="width: 45px; height: 45px; background: rgba(0,91,170,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.5rem;">shopping_cart</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: #495057;">Pedidos</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; color: #12162B;">1.247</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #28a745; font-weight: 600;">
+                        <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">trending_up</span> +15.3%
+                    </div>
+                </div>
+
+                <!-- Stat Card 2 -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <div style="width: 45px; height: 45px; background: rgba(40,167,69,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: #28a745; font-size: 1.5rem;">monetization_on</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: #495057;">Receita</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; color: #12162B;">R$ 127k</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #28a745; font-weight: 600;">
+                        <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">trending_up</span> +12.5%
+                    </div>
+                </div>
+
+                <!-- Stat Card 3 -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <div style="width: 45px; height: 45px; background: rgba(255,193,7,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: #ffc107; font-size: 1.5rem;">group</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: #495057;">Usuários</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; color: #12162B;">12.4k</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #28a745; font-weight: 600;">
+                        <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">trending_up</span> +8.2%
+                    </div>
+                </div>
+
+                <!-- Stat Card 4 -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <div style="width: 45px; height: 45px; background: rgba(220,53,69,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: #dc3545; font-size: 1.5rem;">trending_down</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: #495057;">Bounce Rate</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; color: #12162B;">32.5%</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #dc3545; font-weight: 600;">
+                        <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">trending_down</span> -3.1%
+                    </div>
+                </div>
+
+                <!-- Stat Card 5 -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <div style="width: 45px; height: 45px; background: rgba(1,30,75,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: #011E4B; font-size: 1.5rem;">schedule</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: #495057;">Tempo Médio</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; color: #12162B;">4m 32s</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #28a745; font-weight: 600;">
+                        <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">trending_up</span> +18.7%
+                    </div>
+                </div>
+
+                <!-- Stat Card 6 -->
+                <div style="background: white; border: 2px solid #E7E7E7; border-radius: 16px; padding: 20px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+                        <div style="width: 45px; height: 45px; background: rgba(0,91,170,0.1); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <span class="material-icons" style="color: #005BAA; font-size: 1.5rem;">star</span>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.8rem; color: #495057;">Avaliação</div>
+                            <div style="font-size: 1.5rem; font-weight: 800; color: #12162B;">4.8/5.0</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #28a745; font-weight: 600;">
+                        <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">trending_up</span> +0.3
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Treemap -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">view_module</span>
+                Treemap - Distribuição Hierárquica
+            </h2>
+
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <span class="material-icons">pie_chart</span>
+                    Vendas por Categoria
+                </h3>
+                <div style="margin-top: 20px; display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 5px; height: 300px;">
+                    <!-- Eletrônicos -->
+                    <div style="background: linear-gradient(135deg, #005BAA 0%, #011E4B 100%); border-radius: 12px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 1.2rem; font-weight: 700; margin-bottom: 5px;">Eletrônicos</div>
+                            <div style="font-size: 0.9rem; opacity: 0.9;">45% do total</div>
+                        </div>
+                        <div style="font-size: 2rem; font-weight: 800;">R$ 450k</div>
+                    </div>
+
+                    <!-- Vestuário -->
+                    <div style="background: linear-gradient(135deg, #28a745 0%, #20883b 100%); border-radius: 12px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 1rem; font-weight: 700; margin-bottom: 5px;">Vestuário</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">25%</div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight: 800;">R$ 250k</div>
+                    </div>
+
+                    <!-- Alimentos -->
+                    <div style="background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%); border-radius: 12px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 1rem; font-weight: 700; margin-bottom: 5px;">Alimentos</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">18%</div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight: 800;">R$ 180k</div>
+                    </div>
+
+                    <!-- Outros -->
+                    <div style="background: linear-gradient(135deg, #495057 0%, #12162B 100%); border-radius: 12px; padding: 20px; color: white; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <div style="font-size: 1rem; font-weight: 700; margin-bottom: 5px;">Outros</div>
+                            <div style="font-size: 0.85rem; opacity: 0.9;">12%</div>
+                        </div>
+                        <div style="font-size: 1.5rem; font-weight: 800;">R$ 120k</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mais Barras de Progresso -->
+        <div class="section">
+            <h2 class="section-title">
+                <span class="material-icons">insights</span>
+                Barras de Progresso - Variações
+            </h2>
+
+            <!-- Barras Graduadas por Cor -->
+            <div class="grid-2" style="margin-bottom: 30px;">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">gradient</span>
+                        Barras com Gradiente
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <!-- Progress 1 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">
+                                    <span class="material-icons" style="font-size: 1.2rem; vertical-align: middle; color: #005BAA;">code</span>
+                                    Desenvolvimento
+                                </span>
+                                <span style="font-weight: 700; color: #005BAA; font-size: 1.1rem;">92%</span>
+                            </div>
+                            <div style="height: 16px; background: #E7E7E7; border-radius: 20px; overflow: hidden;">
+                                <div style="width: 92%; height: 100%; background: linear-gradient(90deg, #005BAA 0%, #011E4B 100%); border-radius: 20px; transition: width 0.5s ease;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Progress 2 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">
+                                    <span class="material-icons" style="font-size: 1.2rem; vertical-align: middle; color: #28a745;">check_circle</span>
+                                    Testes
+                                </span>
+                                <span style="font-weight: 700; color: #28a745; font-size: 1.1rem;">85%</span>
+                            </div>
+                            <div style="height: 16px; background: #E7E7E7; border-radius: 20px; overflow: hidden;">
+                                <div style="width: 85%; height: 100%; background: linear-gradient(90deg, #28a745 0%, #20883b 100%); border-radius: 20px; transition: width 0.5s ease;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Progress 3 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">
+                                    <span class="material-icons" style="font-size: 1.2rem; vertical-align: middle; color: #ffc107;">description</span>
+                                    Documentação
+                                </span>
+                                <span style="font-weight: 700; color: #ffc107; font-size: 1.1rem;">67%</span>
+                            </div>
+                            <div style="height: 16px; background: #E7E7E7; border-radius: 20px; overflow: hidden;">
+                                <div style="width: 67%; height: 100%; background: linear-gradient(90deg, #ffc107 0%, #e0a800 100%); border-radius: 20px; transition: width 0.5s ease;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Progress 4 -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">
+                                    <span class="material-icons" style="font-size: 1.2rem; vertical-align: middle; color: #dc3545;">rocket_launch</span>
+                                    Deploy
+                                </span>
+                                <span style="font-weight: 700; color: #dc3545; font-size: 1.1rem;">34%</span>
+                            </div>
+                            <div style="height: 16px; background: #E7E7E7; border-radius: 20px; overflow: hidden;">
+                                <div style="width: 34%; height: 100%; background: linear-gradient(90deg, #dc3545 0%, #bd2130 100%); border-radius: 20px; transition: width 0.5s ease;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barras com Animação de Pulso -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">speed</span>
+                        Barras Animadas (Pulsantes)
+                    </h3>
+                    <div style="margin-top: 20px;">
+                        <!-- Progress Animado 1 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">Upload em Andamento</span>
+                                <span style="font-weight: 700; color: #005BAA; font-size: 1.1rem;">45%</span>
+                            </div>
+                            <div style="height: 16px; background: #E7E7E7; border-radius: 20px; overflow: hidden; position: relative;">
+                                <div style="width: 45%; height: 100%; background: #005BAA; border-radius: 20px; position: relative; overflow: hidden;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: shimmer 1.5s infinite;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Animado 2 -->
+                        <div style="margin-bottom: 25px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">Processando Dados</span>
+                                <span style="font-weight: 700; color: #28a745; font-size: 1.1rem;">78%</span>
+                            </div>
+                            <div style="height: 16px; background: #E7E7E7; border-radius: 20px; overflow: hidden;">
+                                <div style="width: 78%; height: 100%; background: #28a745; border-radius: 20px; box-shadow: 0 0 15px rgba(40, 167, 69, 0.6); animation: pulse 2s infinite;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Progress Animado 3 -->
+                        <div>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                <span style="font-weight: 600; color: #12162B;">Sincronizando</span>
+                                <span style="font-weight: 700; color: #ffc107; font-size: 1.1rem;">100%</span>
+                            </div>
+                            <div style="height: 16px; background: #E7E7E7; border-radius: 20px; overflow: hidden;">
+                                <div style="width: 100%; height: 100%; background: linear-gradient(90deg, #ffc107, #e0a800, #ffc107); background-size: 200% 100%; border-radius: 20px; animation: gradient-move 2s ease infinite;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barras Empilhadas (Stacked) -->
+            <div class="chart-card" style="margin-bottom: 30px;">
+                <h3 class="chart-title">
+                    <span class="material-icons">stacked_bar_chart</span>
+                    Barras Empilhadas (Multi-Segmento)
+                </h3>
+                <div style="margin-top: 20px;">
+                    <!-- Stacked Progress 1 -->
+                    <div style="margin-bottom: 30px;">
+                        <div style="margin-bottom: 10px; font-weight: 600; color: #12162B;">Distribuição de Recursos do Projeto</div>
+                        <div style="height: 30px; background: #E7E7E7; border-radius: 12px; overflow: hidden; display: flex;">
+                            <div style="width: 40%; background: #005BAA; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 700;">Frontend 40%</div>
+                            <div style="width: 35%; background: #011E4B; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 700;">Backend 35%</div>
+                            <div style="width: 15%; background: #28a745; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 700;">Testes 15%</div>
+                            <div style="width: 10%; background: #ffc107; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 700;">Docs 10%</div>
+                        </div>
+                    </div>
+
+                    <!-- Stacked Progress 2 -->
+                    <div style="margin-bottom: 30px;">
+                        <div style="margin-bottom: 10px; font-weight: 600; color: #12162B;">Origem do Tráfego</div>
+                        <div style="height: 30px; background: #E7E7E7; border-radius: 12px; overflow: hidden; display: flex;">
+                            <div style="width: 55%; background: linear-gradient(90deg, #005BAA 0%, #011E4B 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 700;">Orgânico 55%</div>
+                            <div style="width: 25%; background: linear-gradient(90deg, #28a745 0%, #20883b 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 700;">Pago 25%</div>
+                            <div style="width: 20%; background: linear-gradient(90deg, #495057 0%, #12162B 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 0.85rem; font-weight: 700;">Direto 20%</div>
+                        </div>
+                    </div>
+
+                    <!-- Legenda -->
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #005BAA; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057;">Frontend / Orgânico</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #011E4B; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057;">Backend</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #28a745; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057;">Testes / Pago</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #ffc107; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057;">Documentação</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <div style="width: 16px; height: 16px; background: #495057; border-radius: 3px;"></div>
+                            <span style="font-size: 0.85rem; color: #495057;">Tráfego Direto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Barras Circulares -->
+            <div class="grid-2">
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">donut_large</span>
+                        Barras Circulares (Ring Progress)
+                    </h3>
+                    <div style="margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                        <!-- Circular 1 -->
+                        <div style="text-align: center;">
+                            <svg viewBox="0 0 120 120" style="width: 120px; height: 120px; transform: rotate(-90deg);">
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#E7E7E7" stroke-width="10"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#005BAA" stroke-width="10"
+                                        stroke-dasharray="314" stroke-dashoffset="47" stroke-linecap="round"/>
+                            </svg>
+                            <div style="margin-top: 10px;">
+                                <div style="font-size: 1.5rem; font-weight: 800; color: #005BAA;">85%</div>
+                                <div style="font-size: 0.85rem; color: #495057;">CPU Usage</div>
+                            </div>
+                        </div>
+
+                        <!-- Circular 2 -->
+                        <div style="text-align: center;">
+                            <svg viewBox="0 0 120 120" style="width: 120px; height: 120px; transform: rotate(-90deg);">
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#E7E7E7" stroke-width="10"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#28a745" stroke-width="10"
+                                        stroke-dasharray="314" stroke-dashoffset="94" stroke-linecap="round"/>
+                            </svg>
+                            <div style="margin-top: 10px;">
+                                <div style="font-size: 1.5rem; font-weight: 800; color: #28a745;">70%</div>
+                                <div style="font-size: 0.85rem; color: #495057;">RAM Usage</div>
+                            </div>
+                        </div>
+
+                        <!-- Circular 3 -->
+                        <div style="text-align: center;">
+                            <svg viewBox="0 0 120 120" style="width: 120px; height: 120px; transform: rotate(-90deg);">
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#E7E7E7" stroke-width="10"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#ffc107" stroke-width="10"
+                                        stroke-dasharray="314" stroke-dashoffset="157" stroke-linecap="round"/>
+                            </svg>
+                            <div style="margin-top: 10px;">
+                                <div style="font-size: 1.5rem; font-weight: 800; color: #ffc107;">50%</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Disk Usage</div>
+                            </div>
+                        </div>
+
+                        <!-- Circular 4 -->
+                        <div style="text-align: center;">
+                            <svg viewBox="0 0 120 120" style="width: 120px; height: 120px; transform: rotate(-90deg);">
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#E7E7E7" stroke-width="10"/>
+                                <circle cx="60" cy="60" r="50" fill="none" stroke="#dc3545" stroke-width="10"
+                                        stroke-dasharray="314" stroke-dashoffset="31" stroke-linecap="round"/>
+                            </svg>
+                            <div style="margin-top: 10px;">
+                                <div style="font-size: 1.5rem; font-weight: 800; color: #dc3545;">90%</div>
+                                <div style="font-size: 0.85rem; color: #495057;">Network</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Barras Verticais -->
+                <div class="chart-card">
+                    <h3 class="chart-title">
+                        <span class="material-icons">bar_chart</span>
+                        Barras Verticais de Progresso
+                    </h3>
+                    <div style="margin-top: 20px; display: flex; justify-content: space-around; align-items: flex-end; height: 250px; gap: 20px;">
+                        <!-- Vertical Bar 1 -->
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%;">
+                            <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                <div style="width: 100%; background: #E7E7E7; border-radius: 12px 12px 0 0; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                    <div style="width: 100%; height: 85%; background: linear-gradient(0deg, #005BAA 0%, #011E4B 100%); border-radius: 12px 12px 0 0;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; text-align: center;">
+                                <div style="font-size: 1.2rem; font-weight: 800; color: #005BAA;">85%</div>
+                                <div style="font-size: 0.8rem; color: #495057;">Jan</div>
+                            </div>
+                        </div>
+
+                        <!-- Vertical Bar 2 -->
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%;">
+                            <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                <div style="width: 100%; background: #E7E7E7; border-radius: 12px 12px 0 0; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                    <div style="width: 100%; height: 92%; background: linear-gradient(0deg, #28a745 0%, #20883b 100%); border-radius: 12px 12px 0 0;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; text-align: center;">
+                                <div style="font-size: 1.2rem; font-weight: 800; color: #28a745;">92%</div>
+                                <div style="font-size: 0.8rem; color: #495057;">Fev</div>
+                            </div>
+                        </div>
+
+                        <!-- Vertical Bar 3 -->
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%;">
+                            <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                <div style="width: 100%; background: #E7E7E7; border-radius: 12px 12px 0 0; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                    <div style="width: 100%; height: 78%; background: linear-gradient(0deg, #ffc107 0%, #e0a800 100%); border-radius: 12px 12px 0 0;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; text-align: center;">
+                                <div style="font-size: 1.2rem; font-weight: 800; color: #ffc107;">78%</div>
+                                <div style="font-size: 0.8rem; color: #495057;">Mar</div>
+                            </div>
+                        </div>
+
+                        <!-- Vertical Bar 4 -->
+                        <div style="flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%;">
+                            <div style="flex: 1; width: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                <div style="width: 100%; background: #E7E7E7; border-radius: 12px 12px 0 0; position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end;">
+                                    <div style="width: 100%; height: 65%; background: linear-gradient(0deg, #dc3545 0%, #bd2130 100%); border-radius: 12px 12px 0 0;"></div>
+                                </div>
+                            </div>
+                            <div style="margin-top: 10px; text-align: center;">
+                                <div style="font-size: 1.2rem; font-weight: 800; color: #dc3545;">65%</div>
+                                <div style="font-size: 0.8rem; color: #495057;">Abr</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Animações CSS -->
+            <style>
+                @keyframes shimmer {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(200%); }
+                }
+
+                @keyframes pulse {
+                    0%, 100% { opacity: 1; box-shadow: 0 0 15px rgba(40, 167, 69, 0.6); }
+                    50% { opacity: 0.8; box-shadow: 0 0 25px rgba(40, 167, 69, 0.9); }
+                }
+
+                @keyframes gradient-move {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+            </style>
+        </div>
+
+    </div>
+
+    <script>
+        // Animação das barras de progresso ao carregar
+        window.addEventListener('load', () => {
+            const progressBars = document.querySelectorAll('.progress-bar-fill');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

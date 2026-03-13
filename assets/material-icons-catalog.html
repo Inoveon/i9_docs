@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Completo - Material Design Icons | Inoveon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        :root {
+            --i9-dark: #12162B;
+            --i9-navy: #011E4B;
+            --i9-blue: #005BAA;
+            --i9-light: #E7E7E7;
+            --white: #ffffff;
+            --gray-100: #f1f3f5;
+            --gray-200: #E7E7E7;
+            --gray-700: #495057;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--gray-100);
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--i9-dark) 0%, var(--i9-navy) 50%, var(--i9-blue) 100%);
+            color: var(--white);
+            padding: 50px 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 18px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-family: 'Inter', sans-serif;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            box-shadow: 0 6px 35px rgba(0,91,170,0.4);
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .stats {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 30px;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--i9-blue);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--gray-700);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .category {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .category:hover {
+            box-shadow: 0 8px 35px rgba(0,91,170,0.12);
+        }
+
+        .category-title {
+            color: var(--i9-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--i9-blue);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-title .material-icons {
+            font-size: 2rem;
+        }
+
+        .category-count {
+            margin-left: auto;
+            font-size: 1rem;
+            color: var(--i9-blue);
+            background: rgba(0, 91, 170, 0.1);
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .icon-item {
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            background: var(--gray-100);
+        }
+
+        .icon-item:hover {
+            background: var(--white);
+            border-color: var(--i9-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,91,170,0.15);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            background: var(--i9-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            transition: all 0.3s;
+        }
+
+        .icon-item:hover .icon-circle {
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
+            box-shadow: 0 6px 20px rgba(0,91,170,0.4);
+            transform: scale(1.1);
+        }
+
+        .icon-circle .material-icons {
+            font-size: 35px;
+            color: var(--white);
+        }
+
+        .icon-name {
+            font-size: 0.8rem;
+            color: var(--gray-700);
+            word-break: break-word;
+            font-weight: 600;
+        }
+
+        .icon-item:hover .icon-name {
+            color: var(--i9-blue);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--gray-700);
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .no-results .material-icons {
+            font-size: 5rem;
+            opacity: 0.2;
+            margin-bottom: 20px;
+        }
+
+        .no-results h2 {
+            font-size: 1.8rem;
+            color: var(--i9-dark);
+            margin-bottom: 10px;
+        }
+
+        .copy-notification {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%);
+            color: var(--white);
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(0,91,170,0.4);
+            display: none;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            animation: slideIn 0.4s ease;
+        }
+
+        .copy-notification.show {
+            display: flex;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(500px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .footer {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .footer p {
+            color: var(--gray-700);
+            line-height: 1.8;
+        }
+
+        .footer strong {
+            color: var(--i9-blue);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .icons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 15px;
+            }
+
+            .icon-circle {
+                width: 60px;
+                height: 60px;
+            }
+
+            .icon-circle .material-icons {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Catálogo Completo - Material Design Icons</h1>
+        <p>Biblioteca completa de ícones para projetos Inoveon</p>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="🔍 Buscar ícone... (ex: business, rocket, analytics, settings)">
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalIcons">0</div>
+                    <div class="stat-label">Total de Ícones</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="visibleIcons">0</div>
+                    <div class="stat-label">Ícones Visíveis</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="categoriesCount">0</div>
+                    <div class="stat-label">Categorias</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="categoriesContainer"></div>
+        <div id="noResults" class="no-results" style="display: none;">
+            <span class="material-icons">search_off</span>
+            <h2>Nenhum ícone encontrado</h2>
+            <p>Tente buscar por outro termo ou explore as categorias abaixo</p>
+        </div>
+
+        <div class="footer">
+            <p>
+                <strong>Como usar:</strong> Clique em qualquer ícone para copiar o nome automaticamente.<br>
+                Use no HTML com: <code>&lt;span class="material-icons"&gt;nome_do_icone&lt;/span&gt;</code><br>
+                <strong>Documentação oficial:</strong> <a href="https://fonts.google.com/icons" target="_blank" style="color: var(--i9-blue);">Material Design Icons</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="copyNotification">
+        <span class="material-icons">check_circle</span>
+        <span id="copiedText"></span>
+    </div>
+
+    <script>
+        // Catálogo COMPLETO de ícones Material Design organizados por categoria
+        const iconCategories = {
+            "Negócios & Empresa": [
+                "business", "domain", "apartment", "store", "storefront", "account_balance",
+                "corporate_fare", "business_center", "work", "badge", "cardboard", "assured_workload",
+                "work_outline", "work_history", "workspace_premium", "cases", "receipt_long"
+            ],
+            "Validação & Sucesso": [
+                "verified", "verified_user", "check_circle", "check", "done", "done_all",
+                "task_alt", "beenhere", "assignment_turned_in", "fact_check", "check_box",
+                "check_circle_outline", "done_outline", "how_to_reg", "rule", "playlist_add_check",
+                "published_with_changes", "approval", "new_releases", "stars", "workspace_premium"
+            ],
+            "Crescimento & Análise": [
+                "trending_up", "trending_down", "trending_flat", "show_chart", "analytics",
+                "insights", "assessment", "timeline", "multiline_chart", "waterfall_chart",
+                "stacked_line_chart", "area_chart", "candlestick_chart", "bar_chart", "pie_chart",
+                "donut_small", "donut_large", "ssid_chart", "data_usage", "poll", "equalizer"
+            ],
+            "Educação & Aprendizado": [
+                "school", "menu_book", "auto_stories", "import_contacts", "book", "library_books",
+                "class", "historyedu", "cast_for_education", "psychology", "lightbulb", "tips_and_updates",
+                "science", "biotech", "calculate", "functions", "abc", "subject", "quiz", "help"
+            ],
+            "Pesquisa & Análise": [
+                "search", "find_in_page", "search_check", "youtube_searched_for", "manage_search",
+                "pageview", "preview", "troubleshoot", "travel_explore", "saved_search",
+                "find_replace", "zoom_in", "zoom_out", "content_paste_search", "document_scanner"
+            ],
+            "Decisão & Estratégia": [
+                "rocket_launch", "rocket", "flag", "tour", "explore", "my_location",
+                "near_me", "navigation", "alt_route", "fork_right", "signpost", "route",
+                "directions", "assistant_direction", "swap_calls", "compare_arrows", "insights",
+                "track_changes", "model_training", "science", "psychology"
+            ],
+            "Tecnologia & Inovação": [
+                "computer", "devices", "phonelink", "tablet", "laptop", "desktop_windows",
+                "smartphone", "memory", "developer_board", "important_devices", "terminal",
+                "code", "integration_instructions", "api", "developer_mode", "webhook",
+                "data_object", "css", "html", "javascript", "token", "sdk", "deployed_code"
+            ],
+            "Cloud & Servidores": [
+                "cloud", "cloud_upload", "cloud_download", "cloud_done", "cloud_queue",
+                "cloud_sync", "backup", "settings_backup_restore", "dns", "storage", "database",
+                "cloud_circle", "cloud_off", "filter_drama", "wb_cloudy", "backup_table"
+            ],
+            "Segurança": [
+                "security", "lock", "shield", "admin_panel_settings", "verified_user",
+                "gpp_good", "gpp_maybe", "policy", "privacy_tip", "fingerprint", "vpn_key",
+                "lock_open", "lock_clock", "enhanced_encryption", "https", "vpn_lock",
+                "password", "key", "no_encryption", "gpp_bad"
+            ],
+            "Comunicação": [
+                "email", "message", "chat", "forum", "comment", "feedback", "contact_mail",
+                "mark_email_read", "markunread", "drafts", "send", "forward_to_inbox",
+                "inbox", "outbox", "mail_outline", "alternate_email", "chat_bubble",
+                "chat_bubble_outline", "question_answer", "textsms", "sms", "phonelink_ring"
+            ],
+            "Pessoas & Equipe": [
+                "person", "people", "group", "groups", "supervisor_account", "account_circle",
+                "face", "manage_accounts", "person_add", "group_add", "engineering", "support_agent",
+                "person_outline", "person_remove", "people_outline", "switch_account",
+                "account_box", "contacts", "portrait", "group_work", "diversity_3"
+            ],
+            "Documentos & Arquivos": [
+                "description", "article", "note", "topic", "wysiwyg", "source", "text_snippet",
+                "file_copy", "content_copy", "insert_drive_file", "folder", "folder_open",
+                "draft", "file_present", "attach_file", "cloud_upload", "cloud_download",
+                "picture_as_pdf", "request_quote", "assignment", "post_add"
+            ],
+            "Mídia & Design": [
+                "image", "photo", "photo_library", "collections", "perm_media", "video_library",
+                "movie", "play_circle", "palette", "brush", "format_paint", "color_lens",
+                "photo_camera", "videocam", "camera_alt", "music_note", "album", "audiotrack",
+                "mic", "volume_up", "graphic_eq", "auto_awesome", "edit", "tune"
+            ],
+            "E-commerce & Vendas": [
+                "shopping_cart", "shopping_bag", "local_mall", "add_shopping_cart", "point_of_sale",
+                "payments", "credit_card", "account_balance_wallet", "currency_exchange", "paid",
+                "sell", "storefront", "local_atm", "monetization_on", "attach_money",
+                "euro", "currency_pound", "currency_yen", "price_check", "receipt",
+                "payment", "shopping_basket", "redeem", "card_giftcard", "loyalty"
+            ],
+            "Localização & Mapas": [
+                "location_on", "place", "map", "explore", "room", "pin_drop", "my_location",
+                "near_me", "public", "language", "travel_explore", "where_to_vote",
+                "location_city", "location_searching", "directions", "navigation", "compass_calibration",
+                "satellite", "terrain", "layers", "edit_location", "add_location"
+            ],
+            "Tempo & Agenda": [
+                "schedule", "access_time", "alarm", "timer", "hourglass_empty", "today",
+                "calendar_today", "event", "date_range", "calendar_month", "update", "history",
+                "watch_later", "pending", "timelapse", "more_time", "alarm_on", "alarm_off",
+                "event_available", "event_busy", "event_note", "edit_calendar"
+            ],
+            "Configurações & Ferramentas": [
+                "settings", "build", "construction", "handyman", "home_repair_service",
+                "tune", "admin_panel_settings", "engineering", "biotech", "science",
+                "settings_applications", "settings_suggest", "toggle_on", "toggle_off",
+                "miscellaneous_services", "build_circle", "precision_manufacturing"
+            ],
+            "Construção & Fundação": [
+                "construction", "build", "handyman", "home_repair_service", "engineering",
+                "foundation", "carpenter", "plumbing", "roofing", "hardware", "architecture",
+                "design_services", "straighten", "square_foot", "format_shapes",
+                "precision_manufacturing", "factory", "warehouse", "inventory"
+            ],
+            "Notificações & Alertas": [
+                "notifications", "notifications_active", "notification_important", "warning",
+                "error", "info", "priority_high", "campaign", "announcement", "report_problem",
+                "notifications_none", "notifications_off", "add_alert", "error_outline",
+                "warning_amber", "info_outline", "new_releases", "tips_and_updates"
+            ],
+            "Navegação & Direção": [
+                "arrow_forward", "arrow_back", "arrow_upward", "arrow_downward", "navigate_next",
+                "navigate_before", "first_page", "last_page", "chevron_right", "chevron_left",
+                "expand_more", "expand_less", "unfold_more", "unfold_less", "arrow_forward_ios",
+                "arrow_back_ios", "arrow_circle_up", "arrow_circle_down", "north", "south",
+                "east", "west", "keyboard_arrow_up", "keyboard_arrow_down"
+            ],
+            "Ações & Controles": [
+                "add", "remove", "add_circle", "remove_circle", "edit", "delete", "close",
+                "save", "download", "upload", "refresh", "sync", "undo", "redo", "star",
+                "favorite", "share", "copy", "cut", "paste", "file_copy", "filter_list",
+                "sort", "clear", "cancel", "block", "restore", "autorenew"
+            ],
+            "Visualização": [
+                "visibility", "visibility_off", "remove_red_eye", "preview", "pageview",
+                "find_in_page", "search", "zoom_in", "zoom_out", "fullscreen", "fullscreen_exit",
+                "picture_in_picture", "fit_screen", "aspect_ratio", "crop", "photo_size_select_large",
+                "photo_size_select_small", "view_list", "view_module", "view_quilt"
+            ],
+            "Energia & Performance": [
+                "speed", "offline_bolt", "flash_on", "bolt", "electric_bolt", "power",
+                "battery_full", "battery_charging_full", "energy_savings_leaf", "power_settings_new",
+                "battery_alert", "battery_unknown", "ev_station", "electrical_services"
+            ],
+            "Conexão & Rede": [
+                "wifi", "signal_wifi_4_bar", "cell_tower", "router", "lan", "hub",
+                "link", "link_off", "public", "cloud", "sync", "sync_disabled",
+                "wifi_off", "network_check", "network_wifi", "bluetooth", "bluetooth_connected",
+                "usb", "cable", "sensors", "cast", "cast_connected"
+            ],
+            "Saúde & Médico": [
+                "local_hospital", "medical_services", "health_and_safety", "medication",
+                "vaccines", "healing", "favorite", "monitor_heart", "bloodtype",
+                "coronavirus", "masks", "sanitizer", "sick", "emergency"
+            ],
+            "Transporte & Veículos": [
+                "local_shipping", "local_gas_station", "ev_station", "car_rental", "directions_car",
+                "two_wheeler", "motorcycle", "airport_shuttle", "flight", "train", "directions_bus",
+                "directions_bike", "directions_walk", "commute", "traffic", "local_taxi",
+                "delivery_dining", "electric_car", "electric_bike", "electric_scooter"
+            ],
+            "Comida & Bebida": [
+                "restaurant", "local_cafe", "local_bar", "local_pizza", "fastfood",
+                "lunch_dining", "dinner_dining", "breakfast_dining", "local_dining",
+                "restaurant_menu", "brunch_dining", "ramen_dining", "takeout_dining",
+                "coffee", "emoji_food_beverage", "cake", "icecream"
+            ],
+            "Casa & Família": [
+                "home", "house", "cottage", "apartment", "villa", "cabin", "family_restroom",
+                "child_care", "baby_changing_station", "escalator_warning", "home_work",
+                "other_houses", "holiday_village", "gite", "bungalow"
+            ],
+            "Esportes & Fitness": [
+                "fitness_center", "sports", "sports_soccer", "sports_basketball", "pool",
+                "surfing", "skateboarding", "hiking", "run_circle", "self_improvement",
+                "sports_tennis", "sports_baseball", "sports_football", "sports_volleyball",
+                "sports_golf", "sports_hockey", "kayaking", "snowboarding", "downhill_skiing"
+            ],
+            "Natureza & Clima": [
+                "wb_sunny", "nights_stay", "cloud", "thunderstorm", "ac_unit", "beach_access",
+                "park", "nature", "nature_people", "terrain", "eco", "water_drop",
+                "wb_cloudy", "wb_twilight", "brightness_5", "brightness_6", "filter_drama",
+                "grain", "grass", "local_florist", "yard", "forest"
+            ],
+            "Redes Sociais & Compartilhamento": [
+                "share", "thumb_up", "favorite", "star", "bookmark", "flag", "rss_feed",
+                "public", "language", "forum", "chat_bubble", "comment",
+                "thumb_down", "thumb_up_off_alt", "thumb_down_off_alt", "volunteer_activism",
+                "how_to_vote", "campaign", "groups", "emoji_emotions"
+            ],
+            "Mídia & Entretenimento": [
+                "play_arrow", "pause", "stop", "skip_next", "skip_previous", "fast_forward",
+                "fast_rewind", "replay", "shuffle", "repeat", "volume_up", "volume_down",
+                "volume_off", "volume_mute", "mic", "mic_off", "headphones", "speaker",
+                "queue_music", "playlist_play", "library_music", "video_library"
+            ],
+            "Acessibilidade": [
+                "accessibility", "accessible", "accessible_forward", "hearing", "hearing_disabled",
+                "record_voice_over", "sign_language", "interpreter_mode", "braille",
+                "closed_caption", "subtitles", "no_adult_content", "elderly", "blind"
+            ],
+            "Estados & Status": [
+                "check_circle", "cancel", "error", "warning", "help", "info",
+                "offline_pin", "online_prediction", "pending", "autorenew", "cached",
+                "sync_problem", "done_all", "unpublished", "published_with_changes",
+                "update", "new_releases", "fiber_new", "fiber_manual_record"
+            ],
+            "Interface & Controles UI": [
+                "menu", "more_vert", "more_horiz", "apps", "dashboard", "widgets",
+                "grid_view", "list", "table_chart", "view_carousel", "view_column",
+                "view_agenda", "splitscreen", "window", "tab", "open_in_new",
+                "open_in_browser", "launch", "exit_to_app", "keyboard", "mouse"
+            ]
+        };
+
+        let allIcons = [];
+        const container = document.getElementById('categoriesContainer');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const copyNotification = document.getElementById('copyNotification');
+        const copiedText = document.getElementById('copiedText');
+
+        // Renderizar categorias e ícones
+        function renderIcons(filter = '') {
+            container.innerHTML = '';
+            let visibleCount = 0;
+            let hasResults = false;
+
+            Object.entries(iconCategories).forEach(([category, icons]) => {
+                const filteredIcons = filter
+                    ? icons.filter(icon => icon.toLowerCase().includes(filter.toLowerCase()))
+                    : icons;
+
+                if (filteredIcons.length > 0) {
+                    hasResults = true;
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'category';
+
+                    categoryDiv.innerHTML = `
+                        <h2 class="category-title">
+                            <span class="material-icons">folder</span>
+                            ${category}
+                            <span class="category-count">${filteredIcons.length} ícones</span>
+                        </h2>
+                        <div class="icons-grid">
+                            ${filteredIcons.map(icon => `
+                                <div class="icon-item" onclick="copyIconName('${icon}')">
+                                    <div class="icon-circle">
+                                        <span class="material-icons">${icon}</span>
+                                    </div>
+                                    <div class="icon-name">${icon}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+
+                    container.appendChild(categoryDiv);
+                    visibleCount += filteredIcons.length;
+                }
+            });
+
+            noResults.style.display = hasResults ? 'none' : 'block';
+            document.getElementById('visibleIcons').textContent = visibleCount;
+        }
+
+        // Copiar nome do ícone
+        function copyIconName(iconName) {
+            navigator.clipboard.writeText(iconName);
+            copiedText.textContent = `Copiado: ${iconName}`;
+            copyNotification.classList.add('show');
+            setTimeout(() => {
+                copyNotification.classList.remove('show');
+            }, 2500);
+        }
+
+        // Busca em tempo real
+        searchInput.addEventListener('input', (e) => {
+            renderIcons(e.target.value);
+        });
+
+        // Contar total de ícones
+        const totalIconsCount = Object.values(iconCategories).reduce((sum, icons) => sum + icons.length, 0);
+        document.getElementById('totalIcons').textContent = totalIconsCount;
+        document.getElementById('visibleIcons').textContent = totalIconsCount;
+        document.getElementById('categoriesCount').textContent = Object.keys(iconCategories).length;
+
+        // Renderizar inicialmente
+        renderIcons();
+
+        // Tornar função global
+        window.copyIconName = copyIconName;
+
+        // Atalho de teclado para busca
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -112,12 +112,12 @@ Se o usuário solicitar ajustes em Plan Mode:
 
 ## MAPA DE TIPOS DE DOCUMENTO
 
-| Se o usuário quer... | Tipo | Sequência |
-|----------------------|------|-----------|
-| Apresentação, slides, pitch, deck | `apresentação` | writer → **slides** → designer → reviewer → organizer |
-| Proposta comercial, orçamento, cotação | `proposta` | writer → **proposal** → designer → reviewer → organizer |
-| Relatório, dashboard, KPIs, métricas | `relatório` | writer → **report** → designer → reviewer → organizer |
-| Documento geral, guia, manual | `documento` | writer → designer → reviewer → organizer |
+| Se o usuário quer... | Tipo | Sequência | Pergunta de foco |
+|----------------------|------|-----------|-----------------|
+| Apresentação, slides, pitch, deck | `apresentação` | writer → **slides** → designer → reviewer → organizer | Pergunta 5: navegação? |
+| Proposta comercial, orçamento, cotação | `proposta` | writer → **proposal** → designer → reviewer → organizer | — |
+| Relatório, dashboard, KPIs, métricas | `relatório` | writer → **report** → designer → reviewer → organizer | — |
+| Documento geral, guia, manual | `documento` | writer → designer → reviewer → organizer | — |
 
 ---
 

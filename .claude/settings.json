@@ -1,0 +1,39 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Write",
+      "Edit",
+      "Read",
+      "Bash",
+      "WebSearch",
+      "WebFetch",
+      "mcp__chrome-devtools__list_console_messages",
+      "mcp__chrome-devtools__resize_page",
+      "mcp__chrome-devtools__select_page",
+      "mcp__chrome-devtools__new_page"
+    ],
+    "ask": [
+      "Bash(git push --force *)",
+      "Bash(git push -f *)",
+      "Bash(git reset --hard *)",
+      "Bash(git clean -f *)",
+      "Bash(git rebase *)",
+      "Bash(git branch -D *)",
+      "Bash(docker system prune *)",
+      "Bash(docker volume rm *)",
+      "Bash(docker rm *)",
+      "Bash(npm publish *)",
+      "Bash(rm -rf *)",
+      "Bash(sudo rm *)",
+      "Bash(make deploy *)",
+      "Bash(ansible-playbook *prod*)",
+      "Bash(ansible-playbook *main*)"
+    ],
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+    ]
+  }
+}

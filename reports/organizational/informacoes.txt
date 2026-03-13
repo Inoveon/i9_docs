@@ -1,0 +1,167 @@
+  Sobre a Empresa:
+
+  1. Qual é o ramo/segmento de atuação da Inoveon?
+    - Com uma vasta experiência em diversas tecnologias, a I9ON
+    Tecnologia se destaca pela sua capacidade de oferecer
+    soluções personalizadas que atendem às necessidades
+    específicas de cada cliente. Nossa especialização no software
+    TOTVS Protheus, incluindo customizações avançadas em
+    ADVPL (Advanced Protheus Language), nos permite entregar
+    soluções robustas e eficazes, mas nossa expertise vai muito
+    além, abrangendo todo o espectro de desenvolvimento de
+    software.
+
+  2. Quantos funcionários/colaboradores a empresa possui atualmente?
+
+    - Lee Chardes
+        CEO and Full Stack Developer
+    - Rodrigo Felippe
+        CFO 
+        Project Manager and Full
+        Stack Developer, Comercial
+        Dev Ops, Suport
+    - Diego Rodrigues 
+        Full Stack Developer and
+        Training Specialist
+        Suport
+    - Glaucia Justino
+        Junior Developer, Support
+        and Training Specialist
+    - Mariana Theotônio 
+        Support
+    - Gislaine Justino
+        Support
+    Debora Theotônio
+        UX/UI Designer 
+        Marketing
+    - Welinton Silva
+        Full Stack Developer, Java
+        and Microservices Specialist
+
+  3. Há quanto tempo a empresa está no mercado?
+  - 10 anos
+  4. Quais são os principais produtos/serviços oferecidos?
+    
+    Consultoria Especialidade ERP Protheus:
+        Oferecemos consultoria especializada em diversas rotinas do ERP
+        Protheus, garantindo a otimização dos processos e a personalização
+        do sistema de acordo com as necessidades do cliente.
+    i9 PDV Posto (Protheus):
+        Uma solução integrada ao Protheus para pontos de venda em postos
+        de combustível, otimizando o gerenciamento e as operações de
+        venda.
+    i9 SmartFeed:
+        Um sistema avançado para gestão de informações e alimentação
+        de dados, projetado para integrar e otimizar processos.    
+    i9 SmartPDV:
+        Aplicativo móvel para emissão de tickets e vendas a partir de
+        dispositivos como celulares, SmartPOS e totens de autoatendimento.
+    i9 SmartCount:
+        Sistema de contagem inteligente, ideal para operações que
+        requerem precisão e eficiência no controle de inventário.
+
+    Produto que gera mais suporte é  25% Consultoria Especialidade ERP Protheus, responsabilidade rodrigo e diego(e equipe de  suporte) e 70% i9 PDV Posto (Protheus) 
+    responsabilidade rodrigo e diego e equipe de suporte. 
+
+  Estrutura Atual:
+
+  5. Quais departamentos/áreas existem hoje? (ex: Comercial, Operações, Financeiro, RH, TI, etc.)
+   Desenvolvimento e Suporte 
+  6. Quantas pessoas trabalham em cada área?
+    4 desenvolverores e  3 suportes
+  7. Existe um organograma formal? Se sim, como está estruturado?
+    Não
+  8. Quem são os líderes/gestores de cada área?
+    - Apenas socios: 
+    Lee Chardes - Socio 65%
+    Rodrigo Felippe - Socio 30%
+    Diego Rodrigues - Socio 5%
+
+  Problemas Identificados:
+
+  9. Quais são os principais problemas operacionais que vocês enfrentam?
+    - Alguns com muitas demandas e outros com poucas 
+  10. Existem gargalos ou processos que não funcionam bem?
+     - Sim, suporte nao evolui, o desenvovimento nao anda, manter produtos gera muito suporte. 
+  11. Há sobreposição de funções ou lacunas de responsabilidade?
+     - Sim 
+  12. Como está a comunicação entre as áreas?
+     -  Pessima
+  Objetivos e Crescimento:
+
+  13. Quais são as metas de crescimento da empresa?
+    - Organização
+  14. Existem planos de expansão ou novos serviços/produtos?
+    - Sim, criação de novos produtos. 
+  15. Qual o faturamento atual e projeção para os próximos anos?
+    - Faturamento atual 900 mil anos
+
+
+
+Para melhorar a análise e criar uma estrutura onde os sócios permaneçam envolvidos operacionalmente de acordo com suas potencialidades, preciso saber:
+
+  Sobre os Pontos Fortes dos Sócios:
+
+  Lee Chardes (65% - CEO):
+
+  1. Qual é sua principal expertise técnica? (linguagens, frameworks)
+    Melhor desenvolvedor
+  2. Tem habilidade/interesse em arquitetura de sistemas?
+    Sim
+  3. Como é seu relacionamento com clientes?
+    - minimo
+  4. Prefere trabalho mais estratégico ou hands-on?
+    - hands- on
+  5. Tem facilidade com inovação e novos produtos?
+    - Sim    
+  Rodrigo Felippe (30% - CFO):
+
+  1. Qual sua maior força técnica específica?
+    - Operacoes, financeiro
+  2. Como é sua habilidade em gestão de pessoas?
+    - Razoavel
+  3. Tem facilidade com negociação e vendas?
+    Media
+  4. Qual área técnica domina melhor? (Protheus, desenvolvimento, infra)
+    - Protheus e infra
+  5. Como é sua capacidade analítica e de planejamento?
+    - Sim 
+  Diego Rodrigues (5%):
+
+  1. Qual sua especialidade técnica principal?
+    Protheus e produto I9 PDV Protheus
+  2. Por que é bom em treinamentos? (didática, paciência)
+    Didadica e paciência
+  3. Como é seu relacionamento com a equipe?
+    otima
+  4. Tem interesse em liderar pessoas?
+    media
+  5. Qual tipo de desenvolvimento prefere?
+    ADVPL e Tl++
+
+  Informações Complementares:
+
+  6. Débora (Marketing/UX) - É colaboradora ou tem outro vínculo?
+    Vinculo
+
+  7. Clientes principais - Quem são os 3-5 maiores clientes? Quem os atende hoje?
+    Grupo Mirian e Grupo Aldo
+  8. Divisão técnica - Quem domina melhor:
+    - ADVPL/Protheus?
+    Lee Chardes, Rodrigo e Diego 
+    - Desenvolvimento web/mobile?
+    Lee Chardes
+    - Infraestrutura/DevOps?
+    Rodrigo e Lee chardes
+    - Banco de dados?
+    Lee Chardes e Diego
+  9. Tempo disponível - Quantas horas/semana cada sócio pode dedicar?
+    Lee Chardes - 32
+    Rodrigo - 40
+    Diego - 40
+  10. Preferências - Cada sócio tem alguma área que definitivamente NÃO quer atuar?
+    Lee Chardes não quer ser financeiro nem suporte.
+    Rodrigo não quer ser desenvolvedor
+    Diego não quer ser financeiro 
+
+  Com essas informações, posso criar uma estrutura mais realista onde cada sócio atue onde tem mais força e interesse, mantendo-os produtivos e motivados.

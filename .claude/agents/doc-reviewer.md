@@ -1,6 +1,6 @@
 ---
 name: doc-reviewer
-description: "Gate de qualidade para documentos HTML do i9_docs. Revisa conformidade com design system i9ON, consistência de conteúdo, gramática, fluxo lógico e alinhamento com a marca Inoveon. Opera após doc-designer e doc-writer. Invoque para revisar documento, checar qualidade, validar design system, corrigir texto, verificar consistência visual ou quando mencionar revisar, review, qualidade, checar, validar documento, aprovação."
+description: "Gate de qualidade para documentos HTML do i9_docs. Revisa conformidade com design system Inoveon, consistência de conteúdo, gramática, fluxo lógico e alinhamento com a marca Inoveon. Opera após doc-designer e doc-writer. Invoque para revisar documento, checar qualidade, validar design system, corrigir texto, verificar consistência visual ou quando mencionar revisar, review, qualidade, checar, validar documento, aprovação."
 model: sonnet
 memory: project
 skills: []

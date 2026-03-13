@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>i9ON PDV — O Sistema que Transforma Varejo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <style>
+    :root {
+      --i9-dark: #12162B;
+      --i9-navy: #011E4B;
+      --i9-blue: #005BAA;
+      --i9-light: #E7E7E7;
+      --white: #ffffff;
+      --gray-100: #f1f3f5;
+      --gray-200: #E7E7E7;
+      --gray-900: #12162B;
+      --red: #ef4444;
+      --gradient: linear-gradient(135deg, #12162B 0%, #011E4B 50%, #005BAA 100%);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: var(--i9-dark);
+    }
+
+    /* ── SLIDES ── */
+    .slide {
+      min-height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 80px;
+      overflow: hidden;
+    }
+
+    .slide--dark {
+      background: var(--gradient);
+      color: var(--white);
+    }
+
+    .slide--light {
+      background: var(--white);
+      color: var(--i9-dark);
+    }
+
+    .slide--gray {
+      background: var(--gray-100);
+      color: var(--i9-dark);
+    }
+
+    /* ── SLIDE NUMBER ── */
+    .slide-number {
+      position: absolute;
+      top: 28px;
+      right: 100px;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.05em;
+    }
+    .slide-number--dark-text {
+      color: rgba(18,22,43,0.4);
+    }
+
+    /* ── ACCENT BAR ── */
+    .accent-bar {
+      width: 56px;
+      height: 4px;
+      background: var(--i9-blue);
+      margin-bottom: 20px;
+      border-radius: 2px;
+    }
+
+    /* ── PROGRESS NAV ── */
+    .progress-nav {
+      position: fixed;
+      right: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .progress-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+
+    .progress-dot.active {
+      background: var(--i9-blue);
+      border-color: var(--i9-blue);
+      transform: scale(1.3);
+    }
+
+    .progress-dot:hover {
+      background: rgba(255,255,255,0.6);
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 1 — CAPA
+    ══════════════════════════════════ */
+    .slide-1-inner {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .slide-1-icon {
+      font-size: 64px !important;
+      color: rgba(255,255,255,0.2);
+      margin-bottom: 32px;
+    }
+
+    .slide-1-logo {
+      font-size: 80px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+    }
+
+    .slide-1-logo span {
+      color: var(--i9-blue);
+    }
+
+    .slide-1-divider {
+      width: 80px;
+      height: 4px;
+      background: var(--i9-blue);
+      margin: 24px auto;
+      border-radius: 2px;
+    }
+
+    .slide-1-tagline {
+      font-size: 22px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.85);
+      margin-bottom: 48px;
+      line-height: 1.5;
+    }
+
+    .slide-1-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+
+    .slide-1-bullet {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 400;
+    }
+
+    .slide-1-bullet .material-icons {
+      font-size: 20px !important;
+      color: var(--i9-blue);
+    }
+
+    .slide-1-footer {
+      font-size: 14px;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 2 — O VAREJO HOJE
+    ══════════════════════════════════ */
+    .slide-2-inner {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .slide-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 28px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .slide-tag .material-icons { font-size: 16px !important; }
+
+    .slide-2-tagline {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .slide-2-headline {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--white);
+      max-width: 640px;
+      line-height: 1.25;
+      margin-bottom: 40px;
+    }
+
+    .kpi-main-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      padding: 40px 48px;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      margin-bottom: 32px;
+    }
+
+    .kpi-main-number {
+      font-size: 96px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: -4px;
+      white-space: nowrap;
+    }
+
+    .kpi-main-text {
+      flex: 1;
+    }
+
+    .kpi-main-text p {
+      font-size: 18px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+    }
+
+    .kpi-icon-accent {
+      font-size: 56px !important;
+      color: var(--red);
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .kpi-small {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+    }
+
+    .kpi-small-num {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .kpi-small-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 3 — O PROBLEMA
+    ══════════════════════════════════ */
+    .slide-3-inner {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .slide-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--i9-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .slide-title-dark {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--i9-dark);
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+
+    .slide-message-dark {
+      font-size: 17px;
+      color: #5a6272;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+
+    .problem-card {
+      background: var(--white);
+      border-radius: 14px;
+      border-left: 4px solid var(--red);
+      padding: 28px 22px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    }
+
+    .problem-card .material-icons {
+      font-size: 32px !important;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+
+    .problem-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--i9-dark);
+      margin-bottom: 6px;
+    }
+
+    .problem-card-desc {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .cta-rhetorical {
+      text-align: center;
+      padding: 20px;
+      background: var(--gray-100);
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--i9-dark);
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 4 — NOSSA SOLUÇÃO
+    ══════════════════════════════════ */
+    .slide-4-inner {
+      max-width: 1040px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .slide-4-left .slide-tag-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .slide-4-headline {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .slide-4-message {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .feature-icon-wrap {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(0,91,170,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .feature-icon-wrap .material-icons {
+      font-size: 18px !important;
+      color: #60a5fa;
+    }
+
+    .feature-text strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .feature-text span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+
+    .product-badge {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      padding: 48px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .product-badge .material-icons {
+      font-size: 80px !important;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .product-badge-name {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .product-badge-name span {
+      color: var(--i9-blue);
+    }
+
+    .product-badge-sub {
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.05em;
+    }
+
+    .product-badge-pill {
+      background: var(--i9-blue);
+      color: var(--white);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 5 — COMO FUNCIONA
+    ══════════════════════════════════ */
+    .slide-5-inner {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .timeline-wrap {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      margin-top: 56px;
+      position: relative;
+    }
+
+    .timeline-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      position: relative;
+    }
+
+    .timeline-connector {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      margin-top: 36px;
+    }
+
+    .timeline-line {
+      flex: 1;
+      height: 3px;
+      background: var(--i9-blue);
+    }
+
+    .timeline-arrow {
+      width: 0;
+      height: 0;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      border-left: 12px solid var(--i9-blue);
+    }
+
+    .timeline-circle {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--i9-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+      box-shadow: 0 0 0 8px rgba(0,91,170,0.15);
+    }
+
+    .timeline-circle .material-icons {
+      font-size: 32px !important;
+      color: var(--white);
+    }
+
+    .timeline-step-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--i9-blue);
+      margin-bottom: 8px;
+    }
+
+    .timeline-step-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--i9-dark);
+      margin-bottom: 12px;
+    }
+
+    .timeline-step-desc {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.6;
+      max-width: 220px;
+      margin: 0 auto;
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 6 — FUNCIONALIDADES
+    ══════════════════════════════════ */
+    .slide-6-inner {
+      max-width: 1040px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .feat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .feat-grid .feat-card:nth-child(4),
+    .feat-grid .feat-card:nth-child(5) {
+      /* handled by column-start in the grid structure */
+    }
+
+    .feat-row-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+      max-width: calc((100% / 3 * 2) + 10px);
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .feat-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: left;
+      transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+      cursor: default;
+    }
+
+    .feat-card:hover {
+      box-shadow: 0 12px 40px rgba(0,91,170,0.14);
+      border-color: var(--i9-blue);
+      transform: translateY(-4px);
+    }
+
+    .feat-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: #eef3fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .feat-card-icon .material-icons {
+      font-size: 24px !important;
+      color: var(--i9-blue);
+    }
+
+    .feat-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--i9-dark);
+      margin-bottom: 8px;
+    }
+
+    .feat-card-desc {
+      font-size: 13px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 7 — RESULTADOS
+    ══════════════════════════════════ */
+    .slide-7-inner {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .slide-7-headline {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+
+    .slide-7-message {
+      font-size: 16px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 40px;
+    }
+
+    .chart-container {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 36px 40px;
+    }
+
+    .chart-footer {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .slide-7-cta {
+      margin-top: 28px;
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      font-style: italic;
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 8 — PARA QUEM É
+    ══════════════════════════════════ */
+    .slide-8-inner {
+      max-width: 960px;
+      width: 100%;
+    }
+
+    .segment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .segment-card {
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+      cursor: default;
+    }
+
+    .segment-card:hover {
+      border-color: var(--i9-blue);
+      box-shadow: 0 8px 32px rgba(0,91,170,0.12);
+      transform: translateY(-3px);
+    }
+
+    .segment-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: #eef3fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .segment-icon .material-icons {
+      font-size: 28px !important;
+      color: var(--i9-blue);
+    }
+
+    .segment-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--i9-dark);
+      margin-bottom: 6px;
+    }
+
+    .segment-desc {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 9 — PRÓXIMOS PASSOS
+    ══════════════════════════════════ */
+    .slide-9-inner {
+      max-width: 720px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .slide-9-headline {
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .slide-9-message {
+      font-size: 18px;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      margin-bottom: 36px;
+    }
+
+    .highlight-row {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .highlight-pill {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 100px;
+      padding: 12px 28px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .highlight-pill span {
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.55);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+    }
+
+    .slide-9-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 44px;
+      text-align: left;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .slide-9-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    .slide-9-bullets .material-icons {
+      font-size: 18px !important;
+      color: #60a5fa;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--white);
+      color: var(--i9-blue);
+      font-family: 'Inter', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 18px 44px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+
+    .cta-btn:hover {
+      background: var(--gray-100);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    /* ══════════════════════════════════
+       SLIDE 10 — CONTATO
+    ══════════════════════════════════ */
+    .slide-10-inner {
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .slide-10-tagline {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .slide-10-headline {
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .slide-10-message {
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 32px;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .contact-info-item .material-icons {
+      font-size: 20px !important;
+      color: var(--i9-blue);
+    }
+
+    .contact-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .contact-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--i9-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .contact-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .contact-role {
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .contact-email {
+      font-size: 14px;
+      color: #60a5fa;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .contact-email .material-icons {
+      font-size: 16px !important;
+    }
+
+    .slide-10-footer {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    /* ── UTILITY ── */
+    .mt-4 { margin-top: 16px; }
+    .mb-6 { margin-bottom: 24px; }
+
+    /* ── SLIDE 5 subtitle/message for gray bg ── */
+    .slide-title-gray {
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--i9-dark);
+      line-height: 1.25;
+      margin-bottom: 8px;
+    }
+    .slide-message-gray {
+      font-size: 16px;
+      color: #6b7280;
+      font-weight: 400;
+    }
+    .slide-subtitle-gray {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--i9-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    /* ── SLIDE 6 subtitle ── */
+    .slide-6-message {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--i9-dark);
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ PROGRESS NAV ══ -->
+  <nav class="progress-nav" id="progressNav">
+    <div class="progress-dot active" data-slide="0"></div>
+    <div class="progress-dot" data-slide="1"></div>
+    <div class="progress-dot" data-slide="2"></div>
+    <div class="progress-dot" data-slide="3"></div>
+    <div class="progress-dot" data-slide="4"></div>
+    <div class="progress-dot" data-slide="5"></div>
+    <div class="progress-dot" data-slide="6"></div>
+    <div class="progress-dot" data-slide="7"></div>
+    <div class="progress-dot" data-slide="8"></div>
+    <div class="progress-dot" data-slide="9"></div>
+  </nav>
+
+  <!-- ══════════════════════════════════
+       SLIDE 1 — CAPA (dark)
+  ══════════════════════════════════ -->
+  <section class="slide slide--dark" id="slide-0">
+    <div class="slide-1-inner">
+      <span class="material-icons slide-1-icon">point_of_sale</span>
+      <div class="slide-1-logo">i9<span>ON</span> PDV</div>
+      <div class="slide-1-divider"></div>
+      <p class="slide-1-tagline">O sistema que transforma varejo — do caixa ao crescimento</p>
+      <div class="slide-1-bullets">
+        <div class="slide-1-bullet">
+          <span class="material-icons">store</span>
+          Mais de 500 lojas confiam na i9ON para vender mais todos os dias
+        </div>
+        <div class="slide-1-bullet">
+          <span class="material-icons">bolt</span>
+          Rápido na operação, simples para o operador, poderoso para o gestor
+        </div>
+        <div class="slide-1-bullet">
+          <span class="material-icons">dashboard</span>
+          Do caixa ao relatório, tudo em um único sistema
+        </div>
+      </div>
+      <div class="slide-1-footer">inoveon.com.br</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 2 — O VAREJO HOJE (dark)
+  ══════════════════════════════════ -->
+  <section class="slide slide--dark" id="slide-1">
+    <div class="slide-number">02 / 10</div>
+    <div class="slide-2-inner">
+      <div class="slide-tag">
+        <span class="material-icons">trending_down</span>
+        O Varejo Hoje
+      </div>
+      <p class="slide-2-tagline">O problema está no caixa — e custa mais do que você imagina</p>
+      <h2 class="slide-2-headline">73% das perdas operacionais no varejo<br/>começam no ponto de venda.</h2>
+      <div class="kpi-main-card">
+        <div class="kpi-main-number">73%</div>
+        <div class="kpi-main-text">
+          <p>Das perdas operacionais no varejo começam no ponto de venda — e são <strong style="color:white;">completamente evitáveis.</strong></p>
+        </div>
+        <span class="material-icons kpi-icon-accent">trending_down</span>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi-small">
+          <div class="kpi-small-num">4 min</div>
+          <div class="kpi-small-label">Tempo médio desperdiçado por atendimento</div>
+        </div>
+        <div class="kpi-small">
+          <div class="kpi-small-num">R$ 18k</div>
+          <div class="kpi-small-label">Perda média mensal por erros operacionais</div>
+        </div>
+        <div class="kpi-small">
+          <div class="kpi-small-num">3x</div>
+          <div class="kpi-small-label">Mais rápido com o sistema correto</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 3 — O PROBLEMA (light/white)
+  ══════════════════════════════════ -->
+  <section class="slide slide--light" id="slide-2">
+    <div class="slide-number slide-number--dark-text">03 / 10</div>
+    <div class="slide-3-inner">
+      <div class="accent-bar"></div>
+      <p class="slide-subtitle">
+        <span class="material-icons" style="font-size:16px;vertical-align:middle;color:#ef4444;">warning_amber</span>
+        O Problema
+      </p>
+      <h2 class="slide-title-dark">Você reconhece esses problemas —<br/>eles aparecem toda semana</h2>
+      <p class="slide-message-dark">Filas, erros e sistemas travados estão custando clientes todos os dias.</p>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <span class="material-icons">queue</span>
+          <div class="problem-card-title">Filas e lentidão</div>
+          <div class="problem-card-desc">O caixa lento cria fila, a fila cria abandono, o abandono cria prejuízo.</div>
+        </div>
+        <div class="problem-card">
+          <span class="material-icons">edit_off</span>
+          <div class="problem-card-title">Erros manuais</div>
+          <div class="problem-card-desc">Digitação errada, troco incorreto e produto trocado comprometem o fechamento.</div>
+        </div>
+        <div class="problem-card">
+          <span class="material-icons">device_hub</span>
+          <div class="problem-card-title">Sistemas desintegrados</div>
+          <div class="problem-card-desc">Estoque em planilha, fiscal em outro sistema — dados que nunca batem.</div>
+        </div>
+        <div class="problem-card">
+          <span class="material-icons">visibility_off</span>
+          <div class="problem-card-title">Zero visibilidade</div>
+          <div class="problem-card-desc">Decisões de compra e gestão tomadas sem dados confiáveis em tempo real.</div>
+        </div>
+      </div>
+      <div class="cta-rhetorical">Quanto isso está custando para o seu negócio?</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 4 — NOSSA SOLUÇÃO (dark)
+  ══════════════════════════════════ -->
+  <section class="slide slide--dark" id="slide-3">
+    <div class="slide-number">04 / 10</div>
+    <div class="slide-4-inner">
+      <div class="slide-4-left">
+        <div class="slide-tag-white">
+          <span class="material-icons" style="font-size:14px;vertical-align:middle;">rocket_launch</span>
+          Nossa Solução
+        </div>
+        <h2 class="slide-4-headline">Apresentamos o<br/>i9ON PDV</h2>
+        <p class="slide-4-message">Rápido, integrado e desenvolvido especificamente para o varejo brasileiro — sem complicação, sem surpresa.</p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <div class="feature-icon-wrap"><span class="material-icons">touch_app</span></div>
+            <div class="feature-text">
+              <strong>Interface intuitiva</strong>
+              <span>Qualquer operador aprende em menos de 1 hora, sem treinamento intensivo.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrap"><span class="material-icons">link</span></div>
+            <div class="feature-text">
+              <strong>Integração nativa</strong>
+              <span>Estoque, fiscal (NFC-e/NF-e) e relatórios conectados desde o primeiro dia.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrap"><span class="material-icons">wifi_off</span></div>
+            <div class="feature-text">
+              <strong>Funciona offline</strong>
+              <span>A venda não para, mesmo quando a internet cai.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrap"><span class="material-icons">headset_mic</span></div>
+            <div class="feature-text">
+              <strong>Suporte nacional</strong>
+              <span>Resposta inferior a 2 horas, por quem conhece o varejo brasileiro.</span>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon-wrap"><span class="material-icons">update</span></div>
+            <div class="feature-text">
+              <strong>Atualização contínua</strong>
+              <span>Sempre em dia com a legislação fiscal brasileira.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-badge">
+        <span class="material-icons">point_of_sale</span>
+        <div class="product-badge-name">i9<span>ON</span><br/>PDV</div>
+        <div class="product-badge-sub">by Inoveon Tecnologia</div>
+        <div class="product-badge-pill">500+ lojas ativas</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 5 — COMO FUNCIONA (gray)
+  ══════════════════════════════════ -->
+  <section class="slide slide--gray" id="slide-4">
+    <div class="slide-number slide-number--dark-text">05 / 10</div>
+    <div class="slide-5-inner">
+      <div class="accent-bar" style="margin: 0 auto 20px auto;"></div>
+      <p class="slide-subtitle-gray">
+        <span class="material-icons" style="font-size:16px;vertical-align:middle;color:#005BAA;">linear_scale</span>
+        Como Funciona
+      </p>
+      <h2 class="slide-title-gray">Simples assim: três passos,<br/>menos de uma semana</h2>
+      <p class="slide-message-gray">Do contrato assinado à primeira venda em menos de uma semana.</p>
+      <div class="timeline-wrap">
+        <!-- Nó 1 -->
+        <div class="timeline-node">
+          <div class="timeline-circle">
+            <span class="material-icons">download_done</span>
+          </div>
+          <div class="timeline-step-label">Passo 1</div>
+          <div class="timeline-step-title">Instalar</div>
+          <div class="timeline-step-desc">Implantação remota ou presencial, hardware homologado, zero configuração manual.</div>
+        </div>
+        <!-- Connector -->
+        <div class="timeline-connector">
+          <div class="timeline-line"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <!-- Nó 2 -->
+        <div class="timeline-node">
+          <div class="timeline-circle">
+            <span class="material-icons">tune</span>
+          </div>
+          <div class="timeline-step-label">Passo 2</div>
+          <div class="timeline-step-title">Configurar</div>
+          <div class="timeline-step-desc">Produtos, tributações e usuários cadastrados pelo nosso time especializado.</div>
+        </div>
+        <!-- Connector -->
+        <div class="timeline-connector">
+          <div class="timeline-line"></div>
+          <div class="timeline-arrow"></div>
+        </div>
+        <!-- Nó 3 -->
+        <div class="timeline-node">
+          <div class="timeline-circle">
+            <span class="material-icons">storefront</span>
+          </div>
+          <div class="timeline-step-label">Passo 3</div>
+          <div class="timeline-step-title">Vender</div>
+          <div class="timeline-step-desc">Operadores treinados, sistema rodando, suporte ativo desde o primeiro dia.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 6 — FUNCIONALIDADES (light/white)
+  ══════════════════════════════════ -->
+  <section class="slide slide--light" id="slide-5">
+    <div class="slide-number slide-number--dark-text">06 / 10</div>
+    <div class="slide-6-inner">
+      <div class="accent-bar" style="margin: 0 auto 20px auto;"></div>
+      <p class="slide-subtitle">
+        <span class="material-icons" style="font-size:16px;vertical-align:middle;">apps</span>
+        Funcionalidades
+      </p>
+      <h2 class="slide-title-dark">Tudo que o seu varejo precisa,<br/>em um único lugar</h2>
+      <p class="slide-6-message">Não é um PDV. É o centro de controle do seu negócio.</p>
+
+      <!-- 3 cards linha 1 -->
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-card-icon"><span class="material-icons">point_of_sale</span></div>
+          <div class="feat-card-title">PDV</div>
+          <div class="feat-card-desc">Interface de venda rápida com atalhos de teclado, leitor de código de barras e balança. Zero clique desnecessário.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon"><span class="material-icons">inventory_2</span></div>
+          <div class="feat-card-title">Gestão de Estoque</div>
+          <div class="feat-card-desc">Entradas, saídas, inventário, alertas de ruptura e rastreabilidade de lote. Sempre sabendo o que tem.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon"><span class="material-icons">receipt_long</span></div>
+          <div class="feat-card-title">Módulo Fiscal</div>
+          <div class="feat-card-desc">NFC-e, NF-e, SAT/MFE integrados ao SEFAZ em tempo real. Sem multa, sem retrabalho.</div>
+        </div>
+      </div>
+      <!-- 2 cards linha 2 centralizados -->
+      <div class="feat-row-2">
+        <div class="feat-card">
+          <div class="feat-card-icon"><span class="material-icons">bar_chart</span></div>
+          <div class="feat-card-title">Relatórios Gerenciais</div>
+          <div class="feat-card-desc">Vendas por período, operador e produto. Exportação em PDF e Excel com dois cliques.</div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-card-icon"><span class="material-icons">store</span></div>
+          <div class="feat-card-title">Multi-loja</div>
+          <div class="feat-card-desc">Painel centralizado, transferência entre filiais e comparativo de desempenho. Sua rede inteira na mesma tela.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 7 — RESULTADOS (dark)
+  ══════════════════════════════════ -->
+  <section class="slide slide--dark" id="slide-6">
+    <div class="slide-number">07 / 10</div>
+    <div class="slide-7-inner">
+      <div class="slide-tag" style="margin-bottom:20px;">
+        <span class="material-icons">insights</span>
+        Resultados
+      </div>
+      <h2 class="slide-7-headline">Números reais, de lojas reais</h2>
+      <p class="slide-7-message">Nossos clientes vendem mais, erram menos e crescem com consistência.</p>
+
+      <div class="chart-container">
+        <!-- SVG BAR CHART -->
+        <svg viewBox="0 0 820 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+          <defs>
+            <linearGradient id="barRed" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#005BAA;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="barBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#005BAA;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="barGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#005BAA;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#22c55e;stop-opacity:1" />
+            </linearGradient>
+          </defs>
+
+          <!-- Row 1: −40% Tempo de atendimento -->
+          <!-- Label % -->
+          <text x="80" y="46" text-anchor="end" font-family="Inter,sans-serif" font-size="26" font-weight="800" fill="white">−40%</text>
+          <!-- Bar track -->
+          <rect x="90" y="22" width="580" height="32" rx="6" fill="rgba(255,255,255,0.06)" />
+          <!-- Bar fill: 40% of 580 = 232 -->
+          <rect x="90" y="22" width="232" height="32" rx="6" fill="url(#barRed)" />
+          <!-- Label -->
+          <text x="686" y="44" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">Tempo de atendimento no caixa</text>
+
+          <!-- Row 2: −62% Erros de fechamento -->
+          <text x="80" y="112" text-anchor="end" font-family="Inter,sans-serif" font-size="26" font-weight="800" fill="white">−62%</text>
+          <rect x="90" y="88" width="580" height="32" rx="6" fill="rgba(255,255,255,0.06)" />
+          <!-- 62% of 580 = 360 -->
+          <rect x="90" y="88" width="360" height="32" rx="6" fill="url(#barRed)" />
+          <text x="686" y="110" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">Erros de fechamento de caixa</text>
+
+          <!-- Row 3: +28% Ticket médio -->
+          <text x="80" y="178" text-anchor="end" font-family="Inter,sans-serif" font-size="26" font-weight="800" fill="#4ade80">+28%</text>
+          <rect x="90" y="154" width="580" height="32" rx="6" fill="rgba(255,255,255,0.06)" />
+          <!-- 28% of 580 = 162 -->
+          <rect x="90" y="154" width="162" height="32" rx="6" fill="url(#barGreen)" />
+          <text x="686" y="176" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">Ticket médio diário</text>
+
+          <!-- Row 4: +35% Produtividade -->
+          <text x="80" y="244" text-anchor="end" font-family="Inter,sans-serif" font-size="26" font-weight="800" fill="#4ade80">+35%</text>
+          <rect x="90" y="220" width="580" height="32" rx="6" fill="rgba(255,255,255,0.06)" />
+          <!-- 35% of 580 = 203 -->
+          <rect x="90" y="220" width="203" height="32" rx="6" fill="url(#barGreen)" />
+          <text x="686" y="242" font-family="Inter,sans-serif" font-size="13" fill="rgba(255,255,255,0.6)">Produtividade dos operadores</text>
+        </svg>
+
+        <div class="chart-footer">Baseado em dados de clientes ativos — Jan/2024 a Dez/2024</div>
+      </div>
+
+      <p class="slide-7-cta">Quer ver como esses números se traduzem para o seu volume de vendas?</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 8 — PARA QUEM É (gray)
+  ══════════════════════════════════ -->
+  <section class="slide slide--gray" id="slide-7">
+    <div class="slide-number slide-number--dark-text">08 / 10</div>
+    <div class="slide-8-inner">
+      <div class="accent-bar"></div>
+      <p class="slide-subtitle-gray">
+        <span class="material-icons" style="font-size:16px;vertical-align:middle;color:#005BAA;">category</span>
+        Para Quem É
+      </p>
+      <h2 class="slide-title-gray">Feito para quem vende no balcão,<br/>no salão e na gôndola</h2>
+      <p class="slide-message-gray">Do minimercado de bairro à rede de franquias — o i9ON PDV foi desenhado para o seu formato de operação.</p>
+      <div class="segment-grid">
+        <div class="segment-card">
+          <div class="segment-icon"><span class="material-icons">local_grocery_store</span></div>
+          <div>
+            <div class="segment-title">Redes de Varejo</div>
+            <div class="segment-desc">Supermercados, minimercados e lojas de conveniência com alto volume e giro rápido.</div>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-icon"><span class="material-icons">restaurant</span></div>
+          <div>
+            <div class="segment-title">Food Service</div>
+            <div class="segment-desc">Restaurantes, lanchonetes e cafeterias com gestão de comandas, mesa e delivery.</div>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-icon"><span class="material-icons">local_pharmacy</span></div>
+          <div>
+            <div class="segment-title">Farmácias e Drogarias</div>
+            <div class="segment-desc">PBMTISS, SNGPC e rastreabilidade de lote. Conformidade total com a ANVISA.</div>
+          </div>
+        </div>
+        <div class="segment-card">
+          <div class="segment-icon"><span class="material-icons">store</span></div>
+          <div>
+            <div class="segment-title">Redes Multi-loja</div>
+            <div class="segment-desc">Franquias e redes com visibilidade centralizada e comparativo de desempenho em tempo real.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 9 — PRÓXIMOS PASSOS (dark)
+  ══════════════════════════════════ -->
+  <section class="slide slide--dark" id="slide-8">
+    <div class="slide-number">09 / 10</div>
+    <div class="slide-9-inner">
+      <div class="slide-tag" style="margin:0 auto 24px auto;">
+        <span class="material-icons">calendar_month</span>
+        Próximos Passos
+      </div>
+      <h2 class="slide-9-headline">A próxima ação é simples —<br/>e não custa nada</h2>
+      <p class="slide-9-message">Agende agora uma demonstração gratuita de 30 minutos.</p>
+      <div class="highlight-row">
+        <div class="highlight-pill">
+          30 minutos
+          <span>de demonstração</span>
+        </div>
+        <div class="highlight-pill">
+          sem compromisso
+          <span>totalmente gratuito</span>
+        </div>
+      </div>
+      <ul class="slide-9-bullets">
+        <li>
+          <span class="material-icons">check_circle</span>
+          Demo ao vivo com o seu cenário real de vendas — não uma apresentação genérica
+        </li>
+        <li>
+          <span class="material-icons">check_circle</span>
+          Diagnóstico gratuito do seu processo atual feito pelo nosso time
+        </li>
+        <li>
+          <span class="material-icons">check_circle</span>
+          Proposta personalizada entregue em até 24 horas após a demo
+        </li>
+        <li>
+          <span class="material-icons">check_circle</span>
+          A decisão de contratar é sempre sua
+        </li>
+      </ul>
+      <a href="mailto:lee@inoveon.com.br?subject=Quero%20agendar%20minha%20demo%20gratuita" class="cta-btn">
+        Agendar minha demo gratuita
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       SLIDE 10 — CONTATO (dark)
+  ══════════════════════════════════ -->
+  <section class="slide slide--dark" id="slide-9">
+    <div class="slide-number">10 / 10</div>
+    <div class="slide-10-inner">
+      <!-- Coluna esquerda -->
+      <div>
+        <p class="slide-10-tagline">
+          <span class="material-icons" style="font-size:14px;vertical-align:middle;">contact_phone</span>
+          Fale com a gente
+        </p>
+        <h2 class="slide-10-headline">Nosso time está<br/>disponível agora</h2>
+        <p class="slide-10-message">Fale com a gente hoje.<br/>A resposta chega em até 2 horas.</p>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <span class="material-icons">language</span>
+            inoveon.com.br
+          </div>
+          <div class="contact-info-item">
+            <span class="material-icons">schedule</span>
+            Seg–Sex · 8h às 18h
+          </div>
+          <div class="contact-info-item">
+            <span class="material-icons">timer</span>
+            Resposta em até 2 horas úteis
+          </div>
+        </div>
+      </div>
+      <!-- Coluna direita: cards de contato -->
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="contact-avatar">L</div>
+          <div>
+            <div class="contact-name">Lee Chardes</div>
+            <div class="contact-role">Comercial</div>
+            <div class="contact-email">
+              <span class="material-icons">email</span>
+              lee@inoveon.com.br
+            </div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div class="contact-avatar">D</div>
+          <div>
+            <div class="contact-name">Diego</div>
+            <div class="contact-role">Suporte Técnico</div>
+            <div class="contact-email">
+              <span class="material-icons">support_agent</span>
+              diego@inoveon.com.br
+            </div>
+          </div>
+        </div>
+        <!-- Rodapé dentro da coluna direita -->
+        <div style="text-align:center;padding-top:12px;border-top:1px solid rgba(255,255,255,0.1);">
+          <div style="font-size:11px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">
+            Inoveon Tecnologia — inoveon.com.br
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════
+       JAVASCRIPT INLINE
+  ══════════════════════════════════ -->
+  <script>
+    (function () {
+      'use strict';
+
+      const slides = document.querySelectorAll('.slide');
+      const dots = document.querySelectorAll('.progress-dot');
+      const totalSlides = slides.length;
+
+      // ── Scroll to slide ──
+      function scrollToSlide(index) {
+        if (index < 0 || index >= totalSlides) return;
+        slides[index].scrollIntoView({ behavior: 'smooth' });
+      }
+
+      // ── Update active dot ──
+      function setActiveDot(index) {
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === index);
+        });
+      }
+
+      // ── Dot click ──
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const idx = parseInt(dot.dataset.slide, 10);
+          scrollToSlide(idx);
+        });
+      });
+
+      // ── Keyboard navigation ──
+      let currentSlide = 0;
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+          e.preventDefault();
+          if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            scrollToSlide(currentSlide);
+          }
+        } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+          e.preventDefault();
+          if (currentSlide > 0) {
+            currentSlide--;
+            scrollToSlide(currentSlide);
+          }
+        }
+      });
+
+      // ── IntersectionObserver to track current slide ──
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+              const idx = Array.from(slides).indexOf(entry.target);
+              if (idx !== -1) {
+                currentSlide = idx;
+                setActiveDot(idx);
+              }
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      slides.forEach((slide) => observer.observe(slide));
+    })();
+  </script>
+</body>
+</html>

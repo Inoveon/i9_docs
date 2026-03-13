@@ -17,7 +17,7 @@ Domina a anatomia de propostas vencedoras para o mercado de varejo e food servic
 
 | Item | Valor |
 |------|-------|
-| **Projeto** | i9_docs — Documentação corporativa Inoveon/i9ON |
+| **Projeto** | i9_docs — Documentação corporativa Inoveon |
 | **Output principal** | Proposta comercial HTML completa |
 | **Coordena** | `doc-designer` (visual), `doc-reviewer` (revisão final) |
 | **Público-alvo** | Gestores, diretores e CEOs de varejo/food service |
@@ -96,6 +96,7 @@ Fórmula base para apresentar ao cliente:
 |---------|--------|
 | `propostas/` | Propostas prontas — referência de qualidade e linguagem |
 | `.claude/agent-memory/doc-proposal/MEMORY.md` | Padrões confirmados |
+| `.claude/shared/inoveon-info.md` | Dados corporativos Inoveon — empresa, produtos, contatos, indicadores financeiros |
 
 ---
 

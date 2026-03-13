@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inoveon — Proposta de Parceria Estratégica</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --i9-dark: #12162B;
+            --i9-navy: #011E4B;
+            --i9-blue: #005BAA;
+            --white: #ffffff;
+            --gray-100: #f1f3f5;
+            --gray-200: #e9ecef;
+            --gray-400: #ced4da;
+            --gray-600: #6c757d;
+            --gray-800: #343a40;
+            --success: #28a745;
+            --warning: #ffc107;
+            --error: #dc3545;
+            --gradient: linear-gradient(135deg, #12162B 0%, #011E4B 50%, #005BAA 100%);
+            --gradient-light: linear-gradient(135deg, #005BAA 0%, #011E4B 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+        }
+
+        /* ============ SLIDE BASE ============ */
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            height: 100vh;
+            padding: 56px 72px;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            page-break-inside: avoid;
+            background: var(--white);
+            border-bottom: 2px solid var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* ============ SLIDE DE CAPA ============ */
+        .slide-capa {
+            background: var(--gradient);
+            color: var(--white);
+            justify-content: center;
+            align-items: flex-start;
+            padding: 72px 80px;
+        }
+
+        .slide-capa .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 64px;
+        }
+
+        .slide-capa .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--white);
+        }
+
+        .slide-capa .logo-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--warning);
+            display: inline-block;
+            margin-left: 2px;
+        }
+
+        .capa-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 20px;
+        }
+
+        .capa-titulo {
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: var(--white);
+            margin-bottom: 24px;
+            max-width: 700px;
+        }
+
+        .capa-subtitulo {
+            font-size: 20px;
+            font-weight: 400;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 56px;
+            max-width: 600px;
+        }
+
+        .capa-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-outline {
+            border: 1.5px solid rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.8);
+        }
+
+        .tag-filled {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+
+        .capa-detalhe {
+            position: absolute;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 340px;
+            background: rgba(255,255,255,0.04);
+            border-left: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 48px 40px;
+            gap: 32px;
+        }
+
+        .capa-stat {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .capa-stat-valor {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -1px;
+        }
+
+        .capa-stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .capa-stat-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* ============ HEADER DE SLIDE ============ */
+        .slide-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 40px;
+        }
+
+        .slide-numero {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--i9-blue);
+            margin-bottom: 8px;
+        }
+
+        .slide-titulo {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--i9-dark);
+            letter-spacing: -0.8px;
+            line-height: 1.2;
+        }
+
+        .slide-subtitulo {
+            font-size: 15px;
+            color: var(--gray-600);
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        .slide-acento {
+            width: 40px;
+            height: 4px;
+            background: var(--gradient-light);
+            border-radius: 2px;
+            margin-top: 12px;
+        }
+
+        /* ============ SLIDE ESCURO ============ */
+        .slide-dark {
+            background: var(--gradient);
+            color: var(--white);
+        }
+
+        .slide-dark .slide-numero {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .slide-dark .slide-titulo {
+            color: var(--white);
+        }
+
+        .slide-dark .slide-subtitulo {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ============ CARDS ============ */
+        .cards-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .cards-2 { grid-template-columns: repeat(2, 1fr); }
+        .cards-3 { grid-template-columns: repeat(3, 1fr); }
+        .cards-4 { grid-template-columns: repeat(4, 1fr); }
+        .cards-6 { grid-template-columns: repeat(6, 1fr); }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .card-dark {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: var(--white);
+        }
+
+        .card-dark:hover {
+            background: rgba(255,255,255,0.12);
+        }
+
+        .card-highlight {
+            background: var(--gradient-light);
+            border: none;
+            color: var(--white);
+        }
+
+        .card-valor {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--i9-blue);
+            letter-spacing: -1px;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .card-dark .card-valor,
+        .card-highlight .card-valor {
+            color: var(--white);
+        }
+
+        .card-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-600);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card-dark .card-label,
+        .card-highlight .card-label {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .card-dark .card-desc {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .card-icon {
+            font-size: 28px;
+            color: var(--i9-blue);
+            margin-bottom: 12px;
+        }
+
+        .card-dark .card-icon,
+        .card-highlight .card-icon {
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* ============ KPI GRANDE ============ */
+        .kpi-destaque {
+            background: var(--gray-100);
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+        }
+
+        .kpi-destaque .valor {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--i9-dark);
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .kpi-destaque .unidade {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--i9-blue);
+        }
+
+        .kpi-destaque .label {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        .badge-destaque {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            background: #d4edda;
+            color: #155724;
+            margin-top: 8px;
+        }
+
+        /* ============ TABELA ============ */
+        .tabela {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .tabela th {
+            background: var(--i9-dark);
+            color: var(--white);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .tabela th:first-child { border-radius: 8px 0 0 0; }
+        .tabela th:last-child { border-radius: 0 8px 0 0; }
+
+        .tabela td {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--gray-200);
+            color: var(--gray-800);
+        }
+
+        .tabela tr:last-child td { border-bottom: none; }
+
+        .tabela tr:nth-child(even) td {
+            background: var(--gray-100);
+        }
+
+        .tabela .destaque-row td {
+            background: #e8f4fd;
+            font-weight: 700;
+            color: var(--i9-dark);
+        }
+
+        .tabela .total-row td {
+            background: var(--i9-dark);
+            color: var(--white);
+            font-weight: 700;
+            border-radius: 0;
+        }
+
+        .tabela .total-row:last-child td:first-child { border-radius: 0 0 0 8px; }
+        .tabela .total-row:last-child td:last-child { border-radius: 0 0 8px 0; }
+
+        .tabela-dark {
+            color: var(--white);
+        }
+
+        .tabela-dark th {
+            background: rgba(255,255,255,0.15);
+            color: var(--white);
+        }
+
+        .tabela-dark td {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.85);
+        }
+
+        .tabela-dark tr:nth-child(even) td {
+            background: rgba(255,255,255,0.05);
+        }
+
+        /* ============ PROGRESS BAR ============ */
+        .progress-item {
+            margin-bottom: 20px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--i9-dark);
+        }
+
+        .progress-dark .progress-label {
+            color: var(--white);
+        }
+
+        .progress-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--i9-blue);
+        }
+
+        .progress-dark .progress-value {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .progress-sub {
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+
+        .progress-dark .progress-sub {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: var(--gray-200);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-dark .progress-bar {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: var(--gradient-light);
+        }
+
+        /* ============ LISTA ============ */
+        .lista {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 15px;
+            color: var(--gray-800);
+            line-height: 1.5;
+        }
+
+        .lista .material-icons {
+            font-size: 20px;
+            color: var(--i9-blue);
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .lista-dark li {
+            color: rgba(255,255,255,0.85);
+        }
+
+        .lista-dark .material-icons {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ============ TIMELINE ============ */
+        .timeline {
+            display: flex;
+            gap: 0;
+            flex: 1;
+        }
+
+        .timeline-item {
+            flex: 1;
+            position: relative;
+            padding: 0 16px 24px 16px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gray-200);
+        }
+
+        .timeline-item:first-child::before { left: 50%; }
+        .timeline-item:last-child::before { right: 50%; }
+
+        .timeline-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px auto;
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .timeline-periodo {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--i9-blue);
+            text-align: center;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .timeline-titulo {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--i9-dark);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .timeline-items {
+            list-style: none;
+            font-size: 12px;
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        .timeline-items li::before {
+            content: '· ';
+            color: var(--i9-blue);
+        }
+
+        /* ============ COMPOSIÇÃO SOCIETÁRIA (donut SVG) ============ */
+        .donut-container {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .donut-legenda {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .legenda-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legenda-cor {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .legenda-nome {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--i9-dark);
+        }
+
+        .legenda-pct {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        /* ============ DESTAQUE QUOTE ============ */
+        .quote-box {
+            background: var(--i9-dark);
+            border-radius: 12px;
+            padding: 24px 28px;
+            color: var(--white);
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 80px;
+            color: rgba(255,255,255,0.08);
+            position: absolute;
+            top: -8px;
+            left: 16px;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .quote-texto {
+            font-size: 16px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quote-destaque {
+            color: var(--warning);
+            font-weight: 700;
+        }
+
+        /* ============ NÚMERO DESTAQUE ============ */
+        .numero-grande {
+            font-size: 72px;
+            font-weight: 800;
+            color: var(--i9-dark);
+            letter-spacing: -3px;
+            line-height: 1;
+        }
+
+        .slide-dark .numero-grande {
+            color: var(--white);
+        }
+
+        /* ============ DOIS PAINÉIS ============ */
+        .dois-paineis {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            flex: 1;
+        }
+
+        .painel {
+            background: var(--gray-100);
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .painel-dark {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .painel-titulo {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--i9-dark);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .painel-dark .painel-titulo {
+            color: var(--white);
+        }
+
+        .painel-titulo .material-icons {
+            font-size: 18px;
+            color: var(--i9-blue);
+        }
+
+        .painel-dark .painel-titulo .material-icons {
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* ============ MODELO RECOMENDADO ============ */
+        .modelo-card {
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid var(--gray-200);
+            transition: all 0.2s;
+        }
+
+        .modelo-card.recomendado {
+            border-color: var(--i9-blue);
+            background: #e8f4fd;
+        }
+
+        .modelo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+            background: var(--i9-blue);
+            color: var(--white);
+            margin-bottom: 8px;
+        }
+
+        /* ============ FOOTER DO SLIDE ============ */
+        .slide-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .slide-dark .slide-footer {
+            border-top-color: rgba(255,255,255,0.1);
+        }
+
+        .footer-logo {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--i9-blue);
+            letter-spacing: 0.5px;
+        }
+
+        .slide-dark .footer-logo {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-confidencial {
+            font-size: 11px;
+            color: var(--gray-400);
+            font-weight: 500;
+        }
+
+        .footer-slide-num {
+            font-size: 12px;
+            color: var(--gray-400);
+            font-weight: 600;
+        }
+
+        /* ============ PILARES ============ */
+        .pilar {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--i9-blue);
+            background: var(--gray-100);
+        }
+
+        .pilar-nome {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--i9-dark);
+        }
+
+        .pilar-desc {
+            font-size: 13px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        /* ============ CENÁRIO TABLE ============ */
+        .cenario-highlight {
+            background: var(--gradient-light) !important;
+            color: var(--white) !important;
+        }
+
+        .cenario-highlight td {
+            color: var(--white) !important;
+            border-bottom: none !important;
+        }
+
+        /* ============ SLIDE CTA ============ */
+        .slide-cta {
+            background: var(--gradient);
+            color: var(--white);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cta-titulo {
+            font-size: 40px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .cta-subtitulo {
+            font-size: 18px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 48px;
+            max-width: 540px;
+        }
+
+        .cta-steps {
+            display: flex;
+            gap: 0;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .cta-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--white);
+            flex-shrink: 0;
+        }
+
+        .cta-step-texto {
+            font-size: 14px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+        }
+
+        .cta-seta {
+            color: rgba(255,255,255,0.3);
+            font-size: 20px;
+            margin: 0 8px;
+        }
+
+        .cta-contatos {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+        }
+
+        .cta-contato {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .cta-contato-nome {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .cta-contato-cargo {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* ============ GOVERNA ============ */
+        .governanca-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            flex: 1;
+        }
+
+        .gov-painel {
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .gov-painel-verde {
+            background: #d4edda;
+            border-left: 4px solid var(--success);
+        }
+
+        .gov-painel-azul {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .gov-painel-titulo {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--i9-dark);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .gov-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: var(--gray-800);
+        }
+
+        .gov-item .material-icons {
+            font-size: 16px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .gov-painel-verde .material-icons { color: var(--success); }
+        .gov-painel-azul .material-icons { color: #17a2b8; }
+
+        /* ============ PRINT ============ */
+        @media print {
+            .slide {
+                page-break-after: always;
+                page-break-inside: avoid;
+                height: 100vh;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 32px 24px;
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .cards-2, .cards-3, .cards-4, .cards-6 {
+                grid-template-columns: 1fr;
+            }
+
+            .dois-paineis, .governanca-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .capa-detalhe {
+                display: none;
+            }
+
+            .capa-titulo { font-size: 34px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========================================
+     SLIDE 1 — CAPA
+     ======================================== -->
+<div class="slide slide-capa">
+    <div class="logo-area">
+        <span class="logo-text">Inoveon<span class="logo-dot"></span></span>
+    </div>
+
+    <div class="capa-label">Oportunidade de Investimento · Março 2026 · Confidencial</div>
+    <div class="capa-titulo">Proposta de<br>Parceria Estratégica</div>
+    <div class="capa-subtitulo">Uma empresa de tecnologia lucrativa, com 10 anos de mercado, margem líquida de 55% e zero dívidas — pronta para escalar.</div>
+
+    <div class="capa-tags">
+        <span class="tag tag-filled">ERP TOTVS Protheus</span>
+        <span class="tag tag-outline">SaaS / Serviço Recorrente</span>
+        <span class="tag tag-outline">R$ 2,5M Receita Anual</span>
+        <span class="tag tag-outline">Documento Confidencial</span>
+    </div>
+
+    <div class="capa-detalhe">
+        <div class="capa-stat">
+            <div class="capa-stat-valor">54,9%</div>
+            <div class="capa-stat-label">Margem Líquida 2025</div>
+        </div>
+        <div class="capa-stat-divider"></div>
+        <div class="capa-stat">
+            <div class="capa-stat-valor">R$ 202k</div>
+            <div class="capa-stat-label">MRR Atual</div>
+        </div>
+        <div class="capa-stat-divider"></div>
+        <div class="capa-stat">
+            <div class="capa-stat-valor">+37%</div>
+            <div class="capa-stat-label">Crescimento Lucro 24→25</div>
+        </div>
+        <div class="capa-stat-divider"></div>
+        <div class="capa-stat">
+            <div class="capa-stat-valor">Zero</div>
+            <div class="capa-stat-label">Dívidas Bancárias</div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 2 — QUEM SOMOS
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">01 / Quem Somos</div>
+            <div class="slide-titulo">10 anos transformando<br>a gestão empresarial</div>
+            <div class="slide-subtitulo">Especialistas em ERP TOTVS Protheus com produtos próprios e receita 100% recorrente</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-3" style="margin-bottom: 20px;">
+        <div class="card">
+            <span class="material-icons card-icon">code</span>
+            <div class="card-label">Tecnologia</div>
+            <div class="card-valor" style="font-size:22px;margin-bottom:8px;">Fullstack</div>
+            <div class="card-desc">ADVPL/TL++, Node.js, Angular, Flutter, React, Java e mais</div>
+        </div>
+        <div class="card">
+            <span class="material-icons card-icon">support_agent</span>
+            <div class="card-label">Suporte</div>
+            <div class="card-valor" style="font-size:22px;margin-bottom:8px;">24/7</div>
+            <div class="card-desc">Atendimento diferenciado com SLA de até 2 horas</div>
+        </div>
+        <div class="card">
+            <span class="material-icons card-icon">speed</span>
+            <div class="card-label">Metodologia</div>
+            <div class="card-valor" style="font-size:22px;margin-bottom:8px;">Ágil</div>
+            <div class="card-desc">Gestão de projetos com metodologias ágeis e entregas contínuas</div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-2">
+        <div>
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Produtos Próprios</div>
+            <div class="cards-grid" style="grid-template-columns:1fr 1fr;gap:10px;">
+                <div class="pilar">
+                    <div class="pilar-nome">i9 PDV Posto</div>
+                    <div class="pilar-desc">Sistema para postos de combustível integrado ao Protheus</div>
+                </div>
+                <div class="pilar">
+                    <div class="pilar-nome">i9 SmartPDV</div>
+                    <div class="pilar-desc">Vendas mobile e totens</div>
+                </div>
+                <div class="pilar">
+                    <div class="pilar-nome">i9 SmartFeed</div>
+                    <div class="pilar-desc">Gestão e integração de dados</div>
+                </div>
+                <div class="pilar">
+                    <div class="pilar-nome">i9 SmartCount</div>
+                    <div class="pilar-desc">Controle de inventário inteligente</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Diferenciais</div>
+            <ul class="lista" style="gap:10px;">
+                <li><span class="material-icons">check_circle</span><span>Especialistas certificados em ERP TOTVS Protheus</span></li>
+                <li><span class="material-icons">check_circle</span><span>10 anos de mercado consolidado</span></li>
+                <li><span class="material-icons">check_circle</span><span>Soluções customizadas para cada cliente</span></li>
+                <li><span class="material-icons">check_circle</span><span>Profundidade técnica + agilidade de empresa enxuta</span></li>
+                <li><span class="material-icons">check_circle</span><span>Propriedade intelectual — IP totalmente própria</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">02 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 3 — NÚMEROS
+     ======================================== -->
+<div class="slide slide-dark">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">02 / Números</div>
+            <div class="slide-titulo">Uma empresa financeiramente<br>saudável e em crescimento</div>
+            <div class="slide-subtitulo">Margem líquida top 5% do setor de tecnologia no Brasil</div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-3" style="margin-bottom:20px;">
+        <div class="card card-dark">
+            <div class="card-label">Faturamento Anual</div>
+            <div class="card-valor">R$ 2,5M</div>
+            <div class="card-desc">Receita 2025 com crescimento consistente</div>
+        </div>
+        <div class="card card-highlight">
+            <div class="card-label">Margem Líquida</div>
+            <div class="card-valor">54,9%</div>
+            <div class="card-desc">Benchmark do mercado: 15–25%</div>
+        </div>
+        <div class="card card-dark">
+            <div class="card-label">Lucro Líquido 2025</div>
+            <div class="card-valor">R$ 1,37M</div>
+            <div class="card-desc">+37% vs. 2024</div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-3">
+        <div class="card card-dark">
+            <div class="card-label">Anos no Mercado</div>
+            <div class="card-valor">10</div>
+            <div class="card-desc">Solidez e experiência consolidadas</div>
+        </div>
+        <div class="card card-dark">
+            <div class="card-label">Crescimento Lucro</div>
+            <div class="card-valor">+37%</div>
+            <div class="card-desc">2024 → 2025, aceleração consistente</div>
+        </div>
+        <div class="card card-dark">
+            <div class="card-label">Dívidas Bancárias</div>
+            <div class="card-valor">Zero</div>
+            <div class="card-desc">Crescimento orgânico, sem alavancagem</div>
+        </div>
+    </div>
+
+    <div class="quote-box" style="margin-top:20px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);">
+        <div class="quote-texto">Nossa margem líquida de <span class="quote-destaque">54,9%</span> está entre as <span class="quote-destaque">top 5% do setor de tecnologia no Brasil</span>. O benchmark do mercado é 15–25%.</div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">03 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 4 — EVOLUÇÃO FINANCEIRA
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">03 / Evolução Financeira</div>
+            <div class="slide-titulo">Crescimento consistente<br>com aceleração projetada</div>
+            <div class="slide-subtitulo">Com aporte, projetamos R$ 3,7M de receita e R$ 1,87M de lucro em 24 meses</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div style="overflow-x:auto;margin-bottom:24px;">
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Indicador</th>
+                    <th>2024</th>
+                    <th>2025</th>
+                    <th>2026 (Projeção)</th>
+                    <th>Crescimento 24→26</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Receita Bruta</strong></td>
+                    <td>R$ 2.156.375</td>
+                    <td>R$ 2.493.128</td>
+                    <td>R$ 2.513.157</td>
+                    <td><span style="color:var(--success);font-weight:700;">+16,5%</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Lucro Bruto</strong></td>
+                    <td>R$ 1.631.317</td>
+                    <td>R$ 1.830.093</td>
+                    <td>R$ 1.902.793</td>
+                    <td><span style="color:var(--success);font-weight:700;">+16,6%</span></td>
+                </tr>
+                <tr class="destaque-row">
+                    <td><strong>Lucro Líquido</strong></td>
+                    <td>R$ 1.127.436</td>
+                    <td>R$ 1.369.228</td>
+                    <td>R$ 1.547.447</td>
+                    <td><span style="color:var(--i9-blue);font-weight:700;">+37,3%</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Margem Líquida</strong></td>
+                    <td>52,3%</td>
+                    <td>54,9%</td>
+                    <td>61,6%</td>
+                    <td><span style="color:var(--success);font-weight:700;">Crescente</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Gráfico SVG de barras -->
+    <svg viewBox="0 0 720 160" style="width:100%;border-radius:12px;background:var(--gray-100);padding:0" preserveAspectRatio="xMidYMid meet">
+        <!-- Eixo base -->
+        <line x1="60" y1="140" x2="680" y2="140" stroke="#ced4da" stroke-width="1"/>
+        <!-- Labels eixo Y -->
+        <text x="52" y="144" text-anchor="end" font-size="10" fill="#6c757d" font-family="Inter, sans-serif">0</text>
+        <text x="52" y="100" text-anchor="end" font-size="10" fill="#6c757d" font-family="Inter, sans-serif">1M</text>
+        <text x="52" y="56" text-anchor="end" font-size="10" fill="#6c757d" font-family="Inter, sans-serif">2M</text>
+        <line x1="58" y1="100" x2="680" y2="100" stroke="#e9ecef" stroke-width="1" stroke-dasharray="4,4"/>
+        <line x1="58" y1="56" x2="680" y2="56" stroke="#e9ecef" stroke-width="1" stroke-dasharray="4,4"/>
+
+        <!-- 2024 -->
+        <g>
+            <text x="175" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#12162B" font-family="Inter, sans-serif">2024</text>
+            <!-- Receita -->
+            <rect x="100" y="33" width="40" height="107" rx="4" fill="#011E4B" opacity="0.7"/>
+            <text x="120" y="28" text-anchor="middle" font-size="9" fill="#6c757d" font-family="Inter, sans-serif">R$2,15M</text>
+            <!-- Lucro -->
+            <rect x="150" y="84" width="40" height="56" rx="4" fill="#005BAA"/>
+            <text x="170" y="79" text-anchor="middle" font-size="9" fill="#005BAA" font-weight="700" font-family="Inter, sans-serif">R$1,12M</text>
+        </g>
+
+        <!-- 2025 -->
+        <g>
+            <text x="345" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#12162B" font-family="Inter, sans-serif">2025</text>
+            <rect x="270" y="17" width="40" height="123" rx="4" fill="#011E4B" opacity="0.7"/>
+            <text x="290" y="12" text-anchor="middle" font-size="9" fill="#6c757d" font-family="Inter, sans-serif">R$2,49M</text>
+            <rect x="320" y="72" width="40" height="68" rx="4" fill="#005BAA"/>
+            <text x="340" y="67" text-anchor="middle" font-size="9" fill="#005BAA" font-weight="700" font-family="Inter, sans-serif">R$1,37M</text>
+        </g>
+
+        <!-- 2026 (proj) -->
+        <g>
+            <text x="515" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#12162B" font-family="Inter, sans-serif">2026 (Proj.)</text>
+            <rect x="440" y="15" width="40" height="125" rx="4" fill="#011E4B" opacity="0.5" stroke="#011E4B" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="460" y="10" text-anchor="middle" font-size="9" fill="#6c757d" font-family="Inter, sans-serif">R$2,51M</text>
+            <rect x="490" y="63" width="40" height="77" rx="4" fill="#005BAA" opacity="0.6" stroke="#005BAA" stroke-width="1.5" stroke-dasharray="4,3"/>
+            <text x="510" y="58" text-anchor="middle" font-size="9" fill="#005BAA" font-weight="700" font-family="Inter, sans-serif">R$1,54M</text>
+        </g>
+
+        <!-- Legenda -->
+        <rect x="590" y="120" width="12" height="12" rx="2" fill="#011E4B" opacity="0.7"/>
+        <text x="606" y="131" font-size="10" fill="#6c757d" font-family="Inter, sans-serif">Receita</text>
+        <rect x="640" y="120" width="12" height="12" rx="2" fill="#005BAA"/>
+        <text x="656" y="131" font-size="10" fill="#6c757d" font-family="Inter, sans-serif">Lucro</text>
+    </svg>
+
+    <div class="quote-box" style="margin-top:16px;">
+        <div class="quote-texto">Com aporte e profissionalização, projetamos <span class="quote-destaque">R$ 3,7M de receita</span> e <span class="quote-destaque">R$ 1,87M de lucro</span> em 24 meses — crescimento de <span class="quote-destaque">+50%</span>.</div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">04 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 5 — ESTRUTURA DE RECEITA
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">04 / Estrutura de Receita</div>
+            <div class="slide-titulo">Receita 100% recorrente,<br>baseada em contratos mensais</div>
+            <div class="slide-subtitulo">80 contratos ativos · MRR R$ 202k · Sem dependência de vendas novas para manter resultado</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-3" style="margin-bottom:20px;">
+        <div class="kpi-destaque">
+            <div class="valor">R$ <span>202</span><span style="font-size:32px;">k</span></div>
+            <div class="label">MRR Atual</div>
+            <div class="badge-destaque"><span class="material-icons" style="font-size:14px;">trending_up</span>Recorrente</div>
+        </div>
+        <div class="kpi-destaque">
+            <div class="valor">80</div>
+            <div class="label">Contratos Ativos</div>
+        </div>
+        <div class="kpi-destaque">
+            <div class="valor">100<span class="unidade">%</span></div>
+            <div class="label">Receita Recorrente</div>
+        </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;">Distribuição de Receita por Cliente</div>
+
+    <div class="progress-item">
+        <div class="progress-header">
+            <div>
+                <div class="progress-label">Grupo ALDO</div>
+                <div class="progress-sub">18 postos · 53 contratos</div>
+            </div>
+            <div class="progress-value">R$ 95.483 · 47,3%</div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:47.3%;"></div></div>
+    </div>
+
+    <div class="progress-item">
+        <div class="progress-header">
+            <div>
+                <div class="progress-label">GA SERVICE</div>
+                <div class="progress-sub">Consultoria / Gestão</div>
+            </div>
+            <div class="progress-value">R$ 46.064 · 22,8%</div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:22.8%;background:linear-gradient(135deg,#005BAA,#0078d4);"></div></div>
+    </div>
+
+    <div class="progress-item">
+        <div class="progress-header">
+            <div>
+                <div class="progress-label">Grupo MIRIAN</div>
+                <div class="progress-sub">9 postos · 18 contratos</div>
+            </div>
+            <div class="progress-value">R$ 33.359 · 16,5%</div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:16.5%;background:linear-gradient(135deg,#28a745,#20c997);"></div></div>
+    </div>
+
+    <div class="progress-item">
+        <div class="progress-header">
+            <div>
+                <div class="progress-label">Outros Clientes</div>
+                <div class="progress-sub">IB3 TI, ASFRETE, outros</div>
+            </div>
+            <div class="progress-value">R$ 26.740 · 13,4%</div>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:13.4%;background:linear-gradient(135deg,#6c757d,#adb5bd);"></div></div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">05 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 6 — POTENCIAL DE MERCADO
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">05 / Potencial de Mercado</div>
+            <div class="slide-titulo">Pipeline de 14 redes —<br>potencial de +79% no faturamento</div>
+            <div class="slide-subtitulo">Apenas 3 novas redes de porte médio representariam +R$ 160k/mês de MRR adicional</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="dois-paineis" style="flex:0 0 auto;margin-bottom:20px;">
+        <div>
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Pipeline — 14 Redes Identificadas</div>
+            <div class="cards-grid" style="grid-template-columns:1fr 1fr;gap:8px;">
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>Grupo Décio</strong><br><span style="font-size:11px;color:var(--gray-600);">Centro-Oeste e Norte</span>
+                </div>
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>Rede Marajó</strong><br><span style="font-size:11px;color:var(--gray-600);">GO, MT, TO, PA, MG</span>
+                </div>
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>Grupo Trapézio</strong><br><span style="font-size:11px;color:var(--gray-600);">SP, PR, SC, RS</span>
+                </div>
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>Idaza</strong><br><span style="font-size:11px;color:var(--gray-600);">Nacional</span>
+                </div>
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>Rede Graal</strong><br><span style="font-size:11px;color:var(--gray-600);">São Paulo</span>
+                </div>
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>SIM Rede</strong><br><span style="font-size:11px;color:var(--gray-600);">Sul e Nacional</span>
+                </div>
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>Rede Presidente</strong><br><span style="font-size:11px;color:var(--gray-600);">Centro-Oeste/Sudeste</span>
+                </div>
+                <div style="padding:10px 14px;background:var(--gray-100);border-radius:8px;font-size:13px;">
+                    <strong>+ 7 outras redes</strong><br><span style="font-size:11px;color:var(--gray-600);">MT, RS, SP, GO</span>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Potencial de Crescimento</div>
+            <div class="kpi-destaque" style="margin-bottom:12px;">
+                <div class="valor">+<span>R$160k</span></div>
+                <div class="label" style="font-size:12px;">MRR adicional (3 redes médias)</div>
+                <div class="badge-destaque">+79% no faturamento atual</div>
+            </div>
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px;">Estratégia de Expansão</div>
+            <ul class="lista">
+                <li><span class="material-icons">arrow_forward</span><span>Aproveitar referências dos clientes atuais</span></li>
+                <li><span class="material-icons">arrow_forward</span><span>Cases de sucesso Grupo ALDO e Mirian</span></li>
+                <li><span class="material-icons">arrow_forward</span><span>Foco em redes com 5+ postos</span></li>
+                <li><span class="material-icons">arrow_forward</span><span>Prioridade: Centro-Oeste e Sul</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">06 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 7 — POR QUE INVESTIR
+     ======================================== -->
+<div class="slide slide-dark">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">06 / Tese de Investimento</div>
+            <div class="slide-titulo">Por que investir na Inoveon?</div>
+            <div class="slide-subtitulo">Quatro pilares que tornam esta oportunidade excepcional</div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-2" style="flex:1;">
+        <div class="card card-dark" style="padding:28px;">
+            <span class="material-icons card-icon" style="font-size:36px;">account_balance</span>
+            <div class="card-label">Empresa Lucrativa</div>
+            <div class="card-valor" style="font-size:24px;margin-bottom:12px;">Margem 55%</div>
+            <ul class="lista lista-dark" style="gap:8px;">
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Zero dívidas bancárias</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Fluxo de caixa positivo</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>10 anos de resultado consistente</span></li>
+            </ul>
+        </div>
+        <div class="card card-dark" style="padding:28px;">
+            <span class="material-icons card-icon" style="font-size:36px;">trending_up</span>
+            <div class="card-label">Mercado em Crescimento</div>
+            <div class="card-valor" style="font-size:24px;margin-bottom:12px;">ERP em expansão</div>
+            <ul class="lista lista-dark" style="gap:8px;">
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>TOTVS Protheus em forte expansão</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Poucos concorrentes qualificados</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Barreira técnica de entrada alta</span></li>
+            </ul>
+        </div>
+        <div class="card card-dark" style="padding:28px;">
+            <span class="material-icons card-icon" style="font-size:36px;">inventory_2</span>
+            <div class="card-label">Produtos Próprios</div>
+            <div class="card-valor" style="font-size:24px;margin-bottom:12px;">IP escalável</div>
+            <ul class="lista lista-dark" style="gap:8px;">
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Receita recorrente (SaaS)</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Propriedade intelectual total</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Modelo escalável sem custo linear</span></li>
+            </ul>
+        </div>
+        <div class="card card-highlight" style="padding:28px;">
+            <span class="material-icons card-icon" style="font-size:36px;">rocket_launch</span>
+            <div class="card-label">Potencial de Crescimento</div>
+            <div class="card-valor" style="font-size:24px;margin-bottom:12px;">2x em 24 meses</div>
+            <ul class="lista lista-dark" style="gap:8px;">
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Estrutura pronta para escalar</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Pipeline de 14 redes identificado</span></li>
+                <li><span class="material-icons" style="font-size:16px;">check</span><span>Profissionalização acelera resultado</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">07 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 8 — VALUATION
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">07 / Valuation</div>
+            <div class="slide-titulo">Valuation justo e fundamentado<br>em múltiplos de lucro</div>
+            <div class="slide-subtitulo">Base: lucro líquido de R$ 1,37M (2025) — empresa saudável, sem dívidas, com crescimento</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-3" style="margin-bottom:24px;">
+        <div class="card">
+            <div class="card-label">4x Lucro — Conservador</div>
+            <div class="card-valor">R$ 5,48M</div>
+            <div class="card-desc">Múltiplo conservador para empresa estabelecida</div>
+        </div>
+        <div class="card" style="border-color:var(--i9-blue);background:#e8f4fd;">
+            <div class="card-label">5,5x Lucro — Recomendado</div>
+            <div class="card-valor">R$ 6,5M</div>
+            <div class="card-desc">Reflete crescimento, IP própria e recorrência</div>
+            <div class="modelo-badge" style="margin-top:8px;"><span class="material-icons" style="font-size:14px;">star</span>Recomendado</div>
+        </div>
+        <div class="card">
+            <div class="card-label">5x Lucro — Moderado</div>
+            <div class="card-valor">R$ 6,85M</div>
+            <div class="card-desc">Múltiplo intermediário com upside potencial</div>
+        </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Ajuste por Perfil do Investidor</div>
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>Cenário</th>
+                <th>Valuation</th>
+                <th>Justificativa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Investidor externo</td>
+                <td>R$ 4,5M – R$ 5,5M</td>
+                <td>Sem relacionamento com clientes atuais</td>
+            </tr>
+            <tr class="destaque-row">
+                <td><strong>Investidor é cliente</strong></td>
+                <td><strong>R$ 6M – R$ 7M</strong></td>
+                <td>Alinhamento estratégico + receita garantida</td>
+            </tr>
+            <tr>
+                <td>Cliente + contrato 5 anos</td>
+                <td>R$ 6,3M – R$ 7,7M</td>
+                <td>Máximo alinhamento, menor risco para ambos</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">08 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 9 — MODELOS DE ENTRADA
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">08 / Modelos de Entrada</div>
+            <div class="slide-titulo">Seis modelos adaptados<br>ao perfil de cada investidor</div>
+            <div class="slide-subtitulo">Flexibilidade para encontrar a estrutura ideal para ambos os lados</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="cards-grid" style="grid-template-columns:repeat(3,1fr);gap:12px;flex:1;">
+        <div class="modelo-card">
+            <div style="font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Modelo A</div>
+            <div style="font-size:16px;font-weight:700;color:var(--i9-dark);margin-bottom:6px;">Investidor Passivo</div>
+            <div style="font-size:13px;color:var(--gray-600);">Apenas capital e dividendos. Sem participação na gestão.</div>
+        </div>
+        <div class="modelo-card recomendado">
+            <div class="modelo-badge"><span class="material-icons" style="font-size:14px;">star</span>Recomendado</div>
+            <div style="font-size:16px;font-weight:700;color:var(--i9-dark);margin-bottom:6px;">B. Parceiro Estratégico</div>
+            <div style="font-size:13px;color:var(--gray-600);">Capital + expertise + assento no conselho. Participação ativa.</div>
+        </div>
+        <div class="modelo-card">
+            <div style="font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Modelo C</div>
+            <div style="font-size:16px;font-weight:700;color:var(--i9-dark);margin-bottom:6px;">Cliente-Investidor</div>
+            <div style="font-size:13px;color:var(--gray-600);">Estrutura especial para clientes atuais. Alinhamento total de interesses.</div>
+        </div>
+        <div class="modelo-card">
+            <div style="font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Modelo D</div>
+            <div style="font-size:16px;font-weight:700;color:var(--i9-dark);margin-bottom:6px;">Contrato</div>
+            <div style="font-size:13px;color:var(--gray-600);">Sem diluição societária. Adiantamento de serviços com desconto.</div>
+        </div>
+        <div class="modelo-card">
+            <div style="font-size:11px;font-weight:700;color:var(--gray-600);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Modelo E</div>
+            <div style="font-size:16px;font-weight:700;color:var(--i9-dark);margin-bottom:6px;">Vesting</div>
+            <div style="font-size:13px;color:var(--gray-600);">Menor risco. Participação gradual vinculada ao cumprimento de metas.</div>
+        </div>
+        <div class="modelo-card" style="border-color:var(--i9-dark);background:var(--i9-dark);">
+            <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Modelo F</div>
+            <div style="font-size:16px;font-weight:700;color:var(--white);margin-bottom:6px;">Smart Money</div>
+            <div style="font-size:13px;color:rgba(255,255,255,0.7);">Capital + equipe especializada. Profissionalização completa em 12 meses.</div>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">09 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 10 — SMART MONEY (DETALHE)
+     ======================================== -->
+<div class="slide slide-dark">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">09 / Modelo Recomendado</div>
+            <div class="slide-titulo">Smart Money — Capital + Equipe</div>
+            <div class="slide-subtitulo">O investidor entra com capital e equipe para profissionalizar e estruturar a empresa em 12 meses</div>
+        </div>
+    </div>
+
+    <div class="dois-paineis" style="margin-bottom:20px;">
+        <div class="painel painel-dark">
+            <div class="painel-titulo"><span class="material-icons">person_add</span>O que o Investidor Traz</div>
+            <ul class="lista lista-dark">
+                <li><span class="material-icons">payments</span><span>Aporte de capital (R$ 500k – R$ 800k)</span></li>
+                <li><span class="material-icons">manage_accounts</span><span>Diretor de Operações (mentoria)</span></li>
+                <li><span class="material-icons">calculate</span><span>Equipe financeira (controles)</span></li>
+                <li><span class="material-icons">people</span><span>RH compartilhado</span></li>
+                <li><span class="material-icons">settings</span><span>Consultor de processos</span></li>
+            </ul>
+        </div>
+        <div class="painel painel-dark">
+            <div class="painel-titulo"><span class="material-icons">emoji_events</span>O que a Inoveon Ganha</div>
+            <ul class="lista lista-dark">
+                <li><span class="material-icons">verified</span><span>Profissionalização em 12 meses</span></li>
+                <li><span class="material-icons">account_tree</span><span>Processos estruturados</span></li>
+                <li><span class="material-icons">corporate_fare</span><span>Governança corporativa</span></li>
+                <li><span class="material-icons">center_focus_strong</span><span>Sócios focados no core business</span></li>
+                <li><span class="material-icons">rocket_launch</span><span>Base para escalar 2x</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Proposta de Investimento Total</div>
+    <table class="tabela tabela-dark">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Valor</th>
+                <th>Participação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Aporte em capital</td>
+                <td>R$ 600.000</td>
+                <td>10%</td>
+            </tr>
+            <tr>
+                <td>Equipe / consultoria (12 meses)</td>
+                <td>R$ 350.000</td>
+                <td>5%</td>
+            </tr>
+            <tr>
+                <td>Garantia de contrato (5 anos)</td>
+                <td>Receita garantida</td>
+                <td>3%</td>
+            </tr>
+            <tr style="background:rgba(255,255,255,0.15);">
+                <td><strong>TOTAL</strong></td>
+                <td><strong>~R$ 950.000 + contrato</strong></td>
+                <td><strong style="color:var(--warning);">18%</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">10 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 11 — PLANO DE TRANSFORMAÇÃO
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">10 / Plano de Transformação</div>
+            <div class="slide-titulo">12 meses para uma empresa<br>estruturada e escalável</div>
+            <div class="slide-subtitulo">Quatro fases com entregas claras e métricas de sucesso mensuráveis</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="timeline" style="margin-bottom:24px;">
+        <div class="timeline-item">
+            <div class="timeline-dot">1</div>
+            <div class="timeline-periodo">Meses 1–3</div>
+            <div class="timeline-titulo">Diagnóstico e Quick Wins</div>
+            <ul class="timeline-items">
+                <li>Mapear processos</li>
+                <li>Definir cargos</li>
+                <li>Estruturar financeiro</li>
+                <li>Criar governança</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot">2</div>
+            <div class="timeline-periodo">Meses 4–6</div>
+            <div class="timeline-titulo">Implementação</div>
+            <ul class="timeline-items">
+                <li>Ferramentas de gestão</li>
+                <li>Dashboard financeiro</li>
+                <li>SLAs de suporte</li>
+                <li>Pipeline comercial</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot">3</div>
+            <div class="timeline-periodo">Meses 7–9</div>
+            <div class="timeline-titulo">Consolidação</div>
+            <ul class="timeline-items">
+                <li>Ajustes finos</li>
+                <li>Treinamento da equipe</li>
+                <li>Métricas rodando</li>
+                <li>Processos maduros</li>
+            </ul>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-dot">4</div>
+            <div class="timeline-periodo">Meses 10–12</div>
+            <div class="timeline-titulo">Transição</div>
+            <ul class="timeline-items">
+                <li>Autonomia total</li>
+                <li>Conselho ativo</li>
+                <li>Plano de expansão</li>
+                <li>Metas definidas</li>
+            </ul>
+        </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Métricas de Sucesso</div>
+    <div class="cards-grid cards-4">
+        <div class="card" style="text-align:center;padding:16px;">
+            <span class="material-icons" style="color:var(--i9-blue);font-size:24px;">timer</span>
+            <div style="font-size:12px;font-weight:600;color:var(--gray-600);margin-top:6px;">Tempo resolução suporte</div>
+        </div>
+        <div class="card" style="text-align:center;padding:16px;">
+            <span class="material-icons" style="color:var(--i9-blue);font-size:24px;">checklist</span>
+            <div style="font-size:12px;font-weight:600;color:var(--gray-600);margin-top:6px;">100% processos documentados</div>
+        </div>
+        <div class="card" style="text-align:center;padding:16px;">
+            <span class="material-icons" style="color:var(--i9-blue);font-size:24px;">group</span>
+            <div style="font-size:12px;font-weight:600;color:var(--gray-600);margin-top:6px;">Turnover da equipe</div>
+        </div>
+        <div class="card" style="text-align:center;padding:16px;">
+            <span class="material-icons" style="color:var(--i9-blue);font-size:24px;">sentiment_very_satisfied</span>
+            <div style="font-size:12px;font-weight:600;color:var(--gray-600);margin-top:6px;">NPS interno &gt; 50</div>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">11 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 12 — CENÁRIOS DE PARTICIPAÇÃO
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">11 / Cenários de Participação</div>
+            <div class="slide-titulo">Retorno atrativo em<br>todos os cenários</div>
+            <div class="slide-subtitulo">Dividendos anuais estimados baseados na margem líquida atual de 55%</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div style="overflow-x:auto;margin-bottom:24px;">
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Cenário</th>
+                    <th>Aporte</th>
+                    <th>Participação</th>
+                    <th>Dividendos Anuais Est.</th>
+                    <th>Perfil</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Conservador</td>
+                    <td>R$ 600k – R$ 700k</td>
+                    <td>10%</td>
+                    <td>~R$ 137.000</td>
+                    <td>Passivo</td>
+                </tr>
+                <tr>
+                    <td>Moderado</td>
+                    <td>R$ 900k – R$ 1.050k</td>
+                    <td>15%</td>
+                    <td>~R$ 205.000</td>
+                    <td>Ativo</td>
+                </tr>
+                <tr class="cenario-highlight">
+                    <td>Smart Money (Recomendado)</td>
+                    <td>R$ 950k + equipe</td>
+                    <td>18%</td>
+                    <td>~R$ 246.000</td>
+                    <td>Estratégico</td>
+                </tr>
+                <tr>
+                    <td>Agressivo</td>
+                    <td>R$ 1,2M – R$ 1,5M</td>
+                    <td>20%</td>
+                    <td>~R$ 274.000</td>
+                    <td>Parceiro</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;">Nova Composição Societária — Cenário Recomendado (18%)</div>
+
+    <!-- Donut chart SVG -->
+    <div class="donut-container">
+        <svg viewBox="0 0 200 200" style="width:180px;height:180px;flex-shrink:0;">
+            <!-- Lee Chardes: 53.3% = 191.9° -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#12162B" stroke-width="30"
+                stroke-dasharray="233 367"
+                stroke-dashoffset="0"
+                transform="rotate(-90 100 100)"/>
+            <!-- Rodrigo: 24.6% = 88.6° -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#005BAA" stroke-width="30"
+                stroke-dasharray="107.6 292.4"
+                stroke-dashoffset="-233"
+                transform="rotate(-90 100 100)"/>
+            <!-- Diego: 4.1% = 14.8° -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#0078d4" stroke-width="30"
+                stroke-dasharray="17.9 322.1"
+                stroke-dashoffset="-340.6"
+                transform="rotate(-90 100 100)"/>
+            <!-- Investidor: 18% = 64.8° -->
+            <circle cx="100" cy="100" r="70" fill="none" stroke="#ffc107" stroke-width="30"
+                stroke-dasharray="78.6 261.4"
+                stroke-dashoffset="-358.5"
+                transform="rotate(-90 100 100)"/>
+            <!-- Centro -->
+            <circle cx="100" cy="100" r="55" fill="white"/>
+            <text x="100" y="95" text-anchor="middle" font-size="11" font-weight="700" fill="#12162B" font-family="Inter, sans-serif">Composição</text>
+            <text x="100" y="112" text-anchor="middle" font-size="10" fill="#6c757d" font-family="Inter, sans-serif">Societária</text>
+        </svg>
+        <div class="donut-legenda">
+            <div class="legenda-item">
+                <div class="legenda-cor" style="background:#12162B;"></div>
+                <div>
+                    <div class="legenda-nome">Lee Chardes (CEO)</div>
+                    <div class="legenda-pct">65% → 53,3%</div>
+                </div>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-cor" style="background:#005BAA;"></div>
+                <div>
+                    <div class="legenda-nome">Rodrigo Felippe (CFO)</div>
+                    <div class="legenda-pct">30% → 24,6%</div>
+                </div>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-cor" style="background:#0078d4;"></div>
+                <div>
+                    <div class="legenda-nome">Diego Rodrigues (CTO)</div>
+                    <div class="legenda-pct">5% → 4,1%</div>
+                </div>
+            </div>
+            <div class="legenda-item">
+                <div class="legenda-cor" style="background:#ffc107;"></div>
+                <div>
+                    <div class="legenda-nome">Investidor (Novo)</div>
+                    <div class="legenda-pct">— → 18%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">12 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 13 — BENEFÍCIOS PARA O INVESTIDOR
+     ======================================== -->
+<div class="slide slide-dark">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">12 / Benefícios para o Investidor</div>
+            <div class="slide-titulo">Retorno financeiro sólido<br>e benefícios estratégicos</div>
+            <div class="slide-subtitulo">Payback estimado de 4–5 anos com crescimento projetado de +50% em 24 meses</div>
+        </div>
+    </div>
+
+    <div class="dois-paineis">
+        <div class="painel painel-dark">
+            <div class="painel-titulo"><span class="material-icons">attach_money</span>Retorno Financeiro</div>
+            <div class="cards-grid" style="grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+                <div style="text-align:center;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px;">
+                    <div style="font-size:24px;font-weight:800;color:var(--warning);">~R$250k</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Dividendos anuais (18%)</div>
+                </div>
+                <div style="text-align:center;padding:16px;background:rgba(255,255,255,0.05);border-radius:8px;">
+                    <div style="font-size:24px;font-weight:800;color:var(--warning);">4–5 anos</div>
+                    <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;">Payback estimado</div>
+                </div>
+            </div>
+            <ul class="lista lista-dark">
+                <li><span class="material-icons">trending_up</span><span>Margem líquida de 55%</span></li>
+                <li><span class="material-icons">trending_up</span><span>Crescimento projetado de +50% em 24 meses</span></li>
+                <li><span class="material-icons">trending_up</span><span>Valorização do equity ao longo do tempo</span></li>
+            </ul>
+        </div>
+        <div class="painel painel-dark">
+            <div class="painel-titulo"><span class="material-icons">hub</span>Benefícios Estratégicos</div>
+            <ul class="lista lista-dark">
+                <li><span class="material-icons">business</span><span>Participação em empresa de tecnologia lucrativa</span></li>
+                <li><span class="material-icons">security</span><span>Garantia de fornecedor crítico (se for cliente)</span></li>
+                <li><span class="material-icons">expand</span><span>Expansão para outras empresas do grupo</span></li>
+                <li><span class="material-icons">map</span><span>Influência no roadmap de produtos</span></li>
+                <li><span class="material-icons">gavel</span><span>Assento no conselho consultivo</span></li>
+                <li><span class="material-icons">workspace_premium</span><span>Acesso a equipe técnica especializada</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">13 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 14 — GOVERNANÇA E PROTEÇÕES
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">13 / Governança e Proteções</div>
+            <div class="slide-titulo">Transparência total e<br>proteções ao investidor</div>
+            <div class="slide-subtitulo">Estrutura de governança profissional com reuniões regulares e acesso irrestrito à informação</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="governanca-grid" style="margin-bottom:20px;">
+        <div class="gov-painel gov-painel-verde">
+            <div class="gov-painel-titulo">O que oferecemos ao Investidor</div>
+            <div class="gov-item"><span class="material-icons">gavel</span><span><strong>Assento no Conselho</strong> — Participação em decisões estratégicas</span></div>
+            <div class="gov-item"><span class="material-icons">assessment</span><span><strong>Relatórios Mensais</strong> — Transparência total</span></div>
+            <div class="gov-item"><span class="material-icons">shield</span><span><strong>Tag-Along</strong> — Proteção em caso de venda</span></div>
+            <div class="gov-item"><span class="material-icons">priority_high</span><span><strong>Direito de Preferência</strong> — Prioridade em novas rodadas</span></div>
+            <div class="gov-item"><span class="material-icons">find_in_page</span><span><strong>Acesso à Informação</strong> — Auditoria e dados financeiros</span></div>
+        </div>
+        <div class="gov-painel gov-painel-azul">
+            <div class="gov-painel-titulo">O que esperamos do Investidor</div>
+            <div class="gov-item"><span class="material-icons">lock_clock</span><span><strong>Lock-up de 5 anos</strong> — Compromisso de longo prazo</span></div>
+            <div class="gov-item"><span class="material-icons">block</span><span><strong>Non-compete</strong> — Não investir em concorrentes</span></div>
+            <div class="gov-item"><span class="material-icons">visibility_off</span><span><strong>Confidencialidade</strong> — Proteção de informações</span></div>
+            <div class="gov-item"><span class="material-icons">person_off</span><span><strong>Não-solicitação</strong> — Não contratar funcionários</span></div>
+            <div class="gov-item"><span class="material-icons">handshake</span><span><strong>Contribuição ativa</strong> — Mentoria e networking</span></div>
+        </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Estrutura de Reuniões</div>
+    <table class="tabela">
+        <thead>
+            <tr>
+                <th>Frequência</th>
+                <th>Tipo</th>
+                <th>Pauta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Mensal</strong></td>
+                <td>Reunião de Acompanhamento</td>
+                <td>Indicadores, revisão de metas, alinhamento estratégico</td>
+            </tr>
+            <tr>
+                <td><strong>Trimestral</strong></td>
+                <td>Conselho</td>
+                <td>Decisões estratégicas, aprovação de investimentos, novos produtos</td>
+            </tr>
+            <tr>
+                <td><strong>Anual</strong></td>
+                <td>Assembleia</td>
+                <td>Prestação de contas, distribuição de lucros, planejamento</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">14 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 15 — EQUIPE
+     ======================================== -->
+<div class="slide">
+    <div class="slide-header">
+        <div>
+            <div class="slide-numero">14 / A Equipe</div>
+            <div class="slide-titulo">Time fundador com<br>profundidade técnica e visão de negócio</div>
+            <div class="slide-subtitulo">Complementaridade entre tecnologia, operações e especialidade Protheus</div>
+            <div class="slide-acento"></div>
+        </div>
+    </div>
+
+    <div class="cards-grid cards-3" style="margin-bottom:20px;">
+        <div class="card" style="text-align:center;padding:32px 24px;">
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;">
+                <span class="material-icons" style="color:white;font-size:28px;">person</span>
+            </div>
+            <div style="font-size:18px;font-weight:800;color:var(--i9-dark);margin-bottom:4px;">Lee Chardes</div>
+            <div style="font-size:12px;font-weight:600;color:var(--i9-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">CEO · 65%</div>
+            <div style="font-size:13px;color:var(--gray-600);">Full Stack Developer · Arquitetura de Sistemas · Inovação · Web/Mobile · Banco de Dados</div>
+            <div style="margin-top:12px;font-size:12px;color:var(--gray-600);">32h/semana</div>
+        </div>
+        <div class="card" style="text-align:center;padding:32px 24px;">
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;">
+                <span class="material-icons" style="color:white;font-size:28px;">person</span>
+            </div>
+            <div style="font-size:18px;font-weight:800;color:var(--i9-dark);margin-bottom:4px;">Rodrigo Felippe</div>
+            <div style="font-size:12px;font-weight:600;color:var(--i9-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">CFO/COO · 30%</div>
+            <div style="font-size:13px;color:var(--gray-600);">Operações · Finanças · Infraestrutura · DevOps · Protheus</div>
+            <div style="margin-top:12px;font-size:12px;color:var(--gray-600);">40h/semana</div>
+        </div>
+        <div class="card" style="text-align:center;padding:32px 24px;">
+            <div style="width:64px;height:64px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;margin:0 auto 16px auto;">
+                <span class="material-icons" style="color:white;font-size:28px;">person</span>
+            </div>
+            <div style="font-size:18px;font-weight:800;color:var(--i9-dark);margin-bottom:4px;">Diego Rodrigues</div>
+            <div style="font-size:12px;font-weight:600;color:var(--i9-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">CTO Protheus · 5%</div>
+            <div style="font-size:13px;color:var(--gray-600);">ADVPL · TL++ · i9 PDV Posto · Treinamentos · Escalações técnicas</div>
+            <div style="margin-top:12px;font-size:12px;color:var(--gray-600);">40h/semana</div>
+        </div>
+    </div>
+
+    <div style="font-size:13px;font-weight:700;color:var(--i9-dark);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Equipe de Suporte e Desenvolvimento</div>
+    <div class="cards-grid" style="grid-template-columns:repeat(5,1fr);gap:10px;">
+        <div style="padding:12px;background:var(--gray-100);border-radius:8px;text-align:center;">
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);">Welinton Silva</div>
+            <div style="font-size:11px;color:var(--gray-600);">Full Stack Dev</div>
+            <div style="font-size:10px;color:var(--gray-400);">Java · Microservices</div>
+        </div>
+        <div style="padding:12px;background:var(--gray-100);border-radius:8px;text-align:center;">
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);">Glaucia Justino</div>
+            <div style="font-size:11px;color:var(--gray-600);">Dev Jr / Lider Suporte</div>
+            <div style="font-size:10px;color:var(--gray-400);">Suporte · Treinamento</div>
+        </div>
+        <div style="padding:12px;background:var(--gray-100);border-radius:8px;text-align:center;">
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);">Mariana Theotônio</div>
+            <div style="font-size:11px;color:var(--gray-600);">Support</div>
+            <div style="font-size:10px;color:var(--gray-400);">Atendimento</div>
+        </div>
+        <div style="padding:12px;background:var(--gray-100);border-radius:8px;text-align:center;">
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);">Gislaine Justino</div>
+            <div style="font-size:11px;color:var(--gray-600);">Support</div>
+            <div style="font-size:10px;color:var(--gray-400);">Atendimento</div>
+        </div>
+        <div style="padding:12px;background:var(--gray-100);border-radius:8px;text-align:center;">
+            <div style="font-size:13px;font-weight:700;color:var(--i9-dark);">Débora Theotônio</div>
+            <div style="font-size:11px;color:var(--gray-600);">UX/UI · Marketing</div>
+            <div style="font-size:10px;color:var(--gray-400);">Design · Marketing</div>
+        </div>
+    </div>
+
+    <div class="slide-footer">
+        <span class="footer-logo">Inoveon</span>
+        <span class="footer-confidencial">Documento Confidencial · Março 2026</span>
+        <span class="footer-slide-num">15 / 16</span>
+    </div>
+</div>
+
+<!-- ========================================
+     SLIDE 16 — PRÓXIMOS PASSOS / CTA
+     ======================================== -->
+<div class="slide slide-cta">
+    <div class="slide-numero" style="color:rgba(255,255,255,0.5);margin-bottom:16px;">15 / Próximos Passos</div>
+    <div class="cta-titulo">Vamos construir<br>isso juntos?</div>
+    <div class="cta-subtitulo">Quatro passos para transformar esta oportunidade em realidade</div>
+
+    <div class="cta-steps">
+        <div class="cta-step">
+            <div class="cta-step-num">1</div>
+            <div class="cta-step-texto">Alinhamento de expectativas</div>
+        </div>
+        <span class="material-icons cta-seta">arrow_forward</span>
+        <div class="cta-step">
+            <div class="cta-step-num">2</div>
+            <div class="cta-step-texto">Due Diligence financeira</div>
+        </div>
+        <span class="material-icons cta-seta">arrow_forward</span>
+        <div class="cta-step">
+            <div class="cta-step-num">3</div>
+            <div class="cta-step-texto">Term Sheet e carta de intenções</div>
+        </div>
+        <span class="material-icons cta-seta">arrow_forward</span>
+        <div class="cta-step">
+            <div class="cta-step-num">4</div>
+            <div class="cta-step-texto">Formalização e início</div>
+        </div>
+    </div>
+
+    <div style="width:100%;max-width:500px;margin:0 auto 40px auto;background:rgba(255,255,255,0.08);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.12);">
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:16px;">Perguntas para discussão</div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:13px;color:rgba(255,255,255,0.75);padding-left:16px;position:relative;">
+                <span style="position:absolute;left:0;color:var(--warning);">·</span>Qual seu objetivo principal com este investimento?
+            </li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.75);padding-left:16px;position:relative;">
+                <span style="position:absolute;left:0;color:var(--warning);">·</span>Qual seu horizonte de investimento? (3, 5, 10 anos?)
+            </li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.75);padding-left:16px;position:relative;">
+                <span style="position:absolute;left:0;color:var(--warning);">·</span>Prefere participação passiva ou ativa?
+            </li>
+            <li style="font-size:13px;color:rgba(255,255,255,0.75);padding-left:16px;position:relative;">
+                <span style="position:absolute;left:0;color:var(--warning);">·</span>Tem interesse em disponibilizar equipe?
+            </li>
+        </ul>
+    </div>
+
+    <div class="cta-contatos">
+        <div class="cta-contato">
+            <div class="cta-contato-nome">Lee Chardes</div>
+            <div class="cta-contato-cargo">CEO</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);">lee@inoveon.com.br</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.15);height:48px;"></div>
+        <div class="cta-contato">
+            <div class="cta-contato-nome">Rodrigo Felippe</div>
+            <div class="cta-contato-cargo">CFO</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,0.15);height:48px;"></div>
+        <div class="cta-contato">
+            <div class="cta-contato-nome">Diego Rodrigues</div>
+            <div class="cta-contato-cargo">CTO</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.4);">inoveon.com.br</div>
+        </div>
+    </div>
+
+    <div style="margin-top:auto;font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;">CONFIDENCIAL · MARÇO 2026 · INOVEON · 16 / 16</div>
+</div>
+
+</body>
+</html>

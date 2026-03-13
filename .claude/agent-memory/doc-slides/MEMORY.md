@@ -25,3 +25,4 @@
 | Data | Nome | Tipo | Slides | Localização |
 |------|------|------|--------|-------------|
 | 2026-03-13 | — | — | — | Agente criado |
+| 2026-03-13 | Diagnóstico Organizacional Inoveon | Deck Executivo Expandido | 13 | A definir pelo doc-designer |

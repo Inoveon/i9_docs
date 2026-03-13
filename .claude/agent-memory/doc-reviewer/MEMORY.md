@@ -22,8 +22,14 @@ Resumo dos critérios críticos:
 
 (preencher conforme padrões forem identificados nas revisões)
 
+## Issues Recorrentes
+
+- Cores roxas/violetas (`#7c3aed`, `#4c1d95`) reaparecem em documentos novos mesmo após remoção no commit `290916f`. Verificar sempre com pattern `7c3aed|4c1d95`.
+- Grids fixas (`repeat(N, 1fr)`) em formato de apresentação de slides são intencionais — não reportar como issue de responsividade.
+
 ## Histórico de Revisões
 
 | Data | Documento | Veredicto | Issues Críticos |
 |------|-----------|-----------|-----------------|
 | 2026-03-13 | — | — | Agente criado |
+| 2026-03-13 | presentations/internal/diagnostico-organizacional-2026.html | APROVADO COM RESSALVAS | Cores roxas/violetas removidas (menores); KPIs sem fonte quantitativa precisa (sugestão) |

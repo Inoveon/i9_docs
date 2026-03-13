@@ -13,7 +13,8 @@
       "mcp__chrome-devtools__list_console_messages",
       "mcp__chrome-devtools__resize_page",
       "mcp__chrome-devtools__select_page",
-      "mcp__chrome-devtools__new_page"
+      "mcp__chrome-devtools__new_page",
+      "mcp__playwright__browser_navigate"
     ],
     "ask": [
       "Bash(git push --force *)",
@@ -33,7 +34,6 @@
       "Bash(ansible-playbook *main*)"
     ],
     "defaultMode": "acceptEdits",
-    "additionalDirectories": [
-    ]
+    "additionalDirectories": []
   }
 }

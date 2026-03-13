@@ -17,7 +17,7 @@ Responsável por criar, renomear e organizar agentes. **Só atua em `.claude/age
 
 | Item                          | Valor                                              |
 | ----------------------------- | -------------------------------------------------- |
-| **Projeto**             | i9_docs — Documentação corporativa Inoveon/i9ON |
+| **Projeto**             | i9_docs — Documentação corporativa Inoveon |
 | **Escopo de atuação** | `.claude/agents/`, `.claude/agent-memory/`     |
 | **Skill de criação**  | `criar-agente`                                   |
 | **Mapa de agentes**     | `.claude/agents/README.md`                       |
@@ -34,6 +34,7 @@ Responsável por criar, renomear e organizar agentes. **Só atua em `.claude/age
 | **Organização** | Manter hierarquia, evitar duplicação de escopo                |
 | **Mapa**          | Manter README.md atualizado com todos os agentes                |
 | **Memória**      | Mesclar memória pessoal com compartilhada                      |
+| **Melhoria Contínua** | Receber relatórios de issues do `doc-reviewer`, analisar padrões e aplicar melhorias nos agentes afetados |
 
 ---
 
@@ -67,6 +68,7 @@ agent-manager                    ← gerencia estrutura de agentes
 4. **Manter README.md** — atualizar hierarquia sempre que criar/renomear agente
 5. **Evitar duplicação** — antes de criar, verificar se já existe agente com escopo similar
 6. **Merge de memória** — promover notas pessoais de `agent-memory-user/` para memória compartilhada
+7. **Melhoria contínua** — receber relatórios do `doc-reviewer`, registrar issues e aplicar melhorias nos agentes afetados
 
 ---
 
@@ -92,12 +94,40 @@ agent-manager                    ← gerencia estrutura de agentes
 
 ---
 
+## FLUXO DE MELHORIA CONTÍNUA
+
+### Quando recebe relatório do doc-reviewer
+
+1. Ler o relatório de issues (agente alvo | issue | melhoria sugerida)
+2. Verificar se o issue é recorrente: buscar no `agent-memory/{agente}/MEMORY.md` se já foi registrado antes
+3. Se recorrente (2+ ocorrências): aplicar a melhoria diretamente no `.md` do agente afetado
+4. Se novo: registrar em `.claude/agent-memory/{agente}/MEMORY.md` como "issue observado — aguardando confirmação de recorrência"
+5. Atualizar `.claude/agent-memory/agent-manager/MEMORY.md` com o log da melhoria aplicada
+
+### Critérios para aplicar melhoria diretamente
+
+- Issue de design system (cor errada, token faltando): aplicar imediatamente
+- Issue de conteúdo/tom: registrar, não aplicar sem confirmação do usuário
+- Issue crítico repetido 2+ vezes: aplicar e notificar usuário
+
+### Formato do log de melhorias
+
+```
+| Data | Agente | Issue | Ação |
+|------|--------|-------|------|
+| 2026-03-13 | doc-designer | cor roxa fora do design system | Adicionado aviso em NUNCA FAZER |
+```
+
+---
+
 ## ARQUIVOS-CHAVE
 
 | Arquivo                              | Função                                           |
 | ------------------------------------ | -------------------------------------------------- |
 | `.claude/agents/*.md`              | Definições de agentes                            |
 | `.claude/agent-memory/*/MEMORY.md` | Memória compartilhada por agente                  |
+| `.claude/agent-memory/*/MEMORY.md` (todos os agentes) | Destino dos registros de issues e melhorias aplicadas |
+| `.claude/shared/inoveon-info.md`   | Dados corporativos Inoveon — fonte de verdade da empresa |
 | `agents/README.md`                 | Catálogo de agents documentados (raiz do projeto) |
 | `agents/standards/`                | Padrões de agents                                 |
 | `agents/templates/`                | Templates para novos agents                        |

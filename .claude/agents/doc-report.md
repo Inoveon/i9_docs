@@ -17,7 +17,7 @@ Define quais dados apresentar, como organizá-los e qual gráfico usar para cada
 
 | Item | Valor |
 |------|-------|
-| **Projeto** | i9_docs — Documentação corporativa Inoveon/i9ON |
+| **Projeto** | i9_docs — Documentação corporativa Inoveon |
 | **Output principal** | Especificação de relatório → `doc-designer` implementa HTML + SVG |
 | **Coordena** | `doc-designer` (SVG e HTML), `doc-reviewer` (revisão final) |
 | **Implementa SVG/HTML?** | NÃO — define estrutura e dados; `doc-designer` implementa |
@@ -96,6 +96,7 @@ Define quais dados apresentar, como organizá-los e qual gráfico usar para cada
 | `relatorios/` | Relatórios prontos — referência de estrutura |
 | `.claude/agent-memory/doc-designer/ui-patterns.md` | Referência de gráficos SVG disponíveis |
 | `.claude/agent-memory/doc-report/MEMORY.md` | Estruturas aprovadas, guias de KPI |
+| `.claude/shared/inoveon-info.md` | Dados corporativos Inoveon — indicadores financeiros, produtos, clientes |
 
 ---
 

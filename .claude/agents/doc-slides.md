@@ -17,7 +17,7 @@ Especialista em estrutura narrativa, storytelling e sequência lógica de slides
 
 | Item | Valor |
 |------|-------|
-| **Projeto** | i9_docs — Documentação corporativa Inoveon/i9ON |
+| **Projeto** | i9_docs — Documentação corporativa Inoveon |
 | **Output principal** | Estrutura narrativa de slides (roteiro por slide) |
 | **Coordena** | `doc-writer` (texto), `doc-designer` (implementação HTML) |
 | **Implementa HTML?** | NUNCA — define estrutura e narrativa |
@@ -102,6 +102,7 @@ Especialista em estrutura narrativa, storytelling e sequência lógica de slides
 |---------|--------|
 | `apresentacoes/` | Apresentações prontas — referência de qualidade |
 | `.claude/agent-memory/doc-slides/MEMORY.md` | Estruturas aprovadas e padrões |
+| `.claude/shared/inoveon-info.md` | Dados corporativos Inoveon — empresa, equipe, produtos, posicionamento |
 
 ---
 

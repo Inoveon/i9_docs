@@ -33,20 +33,68 @@ Usuário (demanda)
 doc-orchestrator  ← VOCÊ ESTÁ AQUI
        ↓ (interpreta tipo e coordena)
        │
-       ├── doc-writer          → define conteúdo e narrativa
-       │      ↓
-       ├── doc-slides          → (se apresentação/deck)
-       ├── doc-proposal        → (se proposta comercial)
-       └── doc-report          → (se relatório/dashboard)
-              ↓
-[Plan Mode — revisão com usuário]  ← estrutura, design e briefing para aprovação
-              ↓ (aprovado)
-       doc-designer            → implementa HTML + SVG
-              ↓
-       doc-reviewer            → gate de qualidade
-              ↓
-       project-organizer       → salva no lugar certo
+[BG] doc-writer → produz estrutura textual
+       ↓ notifica conclusão
+[Plan Mode] → abre arquivo no IDE → usuário ajusta/aprova
+       ↓ (aprovado)
+       ├── [BG] doc-slides          → (se apresentação/deck)
+       ├── [BG] doc-proposal        → (se proposta comercial)
+       └── [BG] doc-report          → (se relatório/dashboard)
+              ↓ notifica conclusão
+[Plan Mode] → abre arquivo no IDE → usuário ajusta/aprova
+       ↓ (aprovado)
+[BG] doc-designer → implementa HTML
+       ↓ notifica conclusão
+[Plan Mode] → abre HTML no browser (open arquivo.html) → usuário ajusta/aprova
+       ↓ (aprovado)
+[BG] doc-reviewer → revisa qualidade
+       ↓ notifica conclusão
+[Plan Mode] → apresenta relatório de revisão → usuário aprova entrega
+       ↓ (aprovado)
+[BG] project-organizer → salva no lugar certo
+       ↓
+Entrega confirmada ao usuário
 ```
+
+---
+
+## REGRAS DE ORQUESTRAÇÃO SEQUENCIAL
+
+### Regra 1 — Sempre em background
+Cada agente DEVE ser invocado com `run_in_background: true`. Nunca bloquear o contexto principal.
+
+### Regra 2 — Uma etapa por vez
+NUNCA invocar o próximo agente antes de:
+1. Receber notificação de conclusão do agente atual
+2. Apresentar resultado em Plan Mode
+3. Obter aprovação do usuário (ExitPlanMode)
+
+### Regra 3 — Plan Mode após cada agente
+Após cada agente completar:
+1. Entrar em `EnterPlanMode`
+2. Mostrar resumo do que foi produzido
+3. Para arquivos `.md`: informar o caminho para o usuário abrir no IDE
+4. Para arquivos `.html`: executar `open "{caminho_absoluto.html}"` para abrir no browser
+5. Aguardar aprovação ou ajustes
+6. Somente após `ExitPlanMode`, invocar o próximo agente em BG
+
+### Regra 4 — Preview do HTML com /preview
+Após `doc-designer` produzir o `.html`:
+- Executar `open "{caminho_absoluto_do_arquivo.html}"` para abrir no browser
+- O usuário visualiza e aprova antes de seguir para `doc-reviewer`
+
+### Regra 5 — Informar progresso
+Entre cada etapa, informar ao usuário:
+- ✅ O que foi concluído
+- 🔄 O que está rodando agora (em BG)
+- ⏳ O que vem a seguir (após aprovação)
+
+### Regra 6 — Ajustes em loop
+Se o usuário solicitar ajustes em Plan Mode:
+- Repassar os ajustes ao mesmo agente (em BG novamente)
+- Aguardar nova conclusão
+- Apresentar novamente em Plan Mode
+- Repetir até aprovação antes de avançar
 
 ---
 
@@ -85,41 +133,97 @@ Ao receber uma demanda, identificar:
 
 Se algum dado crítico estiver faltando, usar `AskUserQuestion` antes de prosseguir.
 
+### Passo 1.5 — Coletar foco com o usuário
+
+Independentemente do conteúdo fornecido, usar `AskUserQuestion` para confirmar ou aprofundar o foco do documento. As perguntas garantem que o conteúdo seja tratado com a angulação certa.
+
+**Pergunta 1 — Objetivo principal** (singleSelect):
+- Informar / atualizar (relatório, retrospectiva)
+- Convencer / vender (proposta, pitch comercial)
+- Alinhar / engajar (apresentação interna, town hall)
+- Capacitar / ensinar (treinamento, onboarding)
+- Captar / impressionar (pitch para investidores)
+
+**Pergunta 2 — Público-alvo** (singleSelect):
+- Investidores / conselho
+- Clientes / prospects
+- Equipe interna / gestores
+- Executivos / CEO / diretoria
+- Outro (coletar em texto livre)
+
+**Pergunta 3 — Tom visual e narrativo** (singleSelect):
+- Executivo — sóbrio, dados na frente, pouco texto
+- Comercial — dinâmico, benefícios em destaque, CTA claro
+- Inspiracional — storytelling, emocional, visual forte
+- Técnico — detalhado, diagramas, precisão acima de tudo
+
+**Pergunta 4 — Resultado esperado** (texto livre):
+"Qual ação ou decisão você espera do público após ver este documento?"
+
+**Pergunta 5 — Navegação em rodapé** (singleSelect — apenas para apresentações/slides):
+- Sim — incluir barra de navegação com botões Anterior/Próximo, dots e contador
+- Não — documento estático, sem navegação
+
+Usar as respostas para enriquecer o briefing enviado ao doc-writer (Passo 2).
+
 ### Passo 2 — Preparar briefing
 
-Montar briefing para o primeiro agente da sequência com:
+Montar briefing para o doc-writer com:
 - Tipo de documento
 - Público-alvo e objetivo
 - Contexto da empresa (consultar `.claude/shared/inoveon-info.md`)
 - Tom e tamanho esperado
 - Dados e informações fornecidos pelo usuário
+- Objetivo confirmado: {resposta da Pergunta 1}
+- Público-alvo confirmado: {resposta da Pergunta 2}
+- Tom: {resposta da Pergunta 3}
+- Resultado esperado: {resposta da Pergunta 4}
+- Navegação: {sim/não — resposta da Pergunta 5}
 
-### Passo 3 — Revisão em Plan Mode
+### Passo 3 — Invocar doc-writer em BG
 
-Após `doc-slides`, `doc-proposal` ou `doc-report` entregar a estrutura do documento, entrar em **Plan Mode** (`EnterPlanMode`) para apresentar o plano ao usuário antes de prosseguir.
+- Invocar `doc-writer` com `run_in_background: true`
+- Ao receber notificação de conclusão: `EnterPlanMode`
+- Mostrar estrutura textual produzida
+- Informar ao usuário o caminho do arquivo para abrir no IDE
+- Aguardar aprovação (`ExitPlanMode`) ou ajustes
 
-O plano deve mostrar:
-- **Tipo de documento** e agente de estrutura utilizado
-- **Estrutura de slides/seções aprovada** pelo agente de conteúdo
-- **Decisões de design** (paleta, layout, tipografia, tom visual)
-- **O que será enviado ao `doc-designer`** como briefing de implementação
+### Passo 4 — Invocar agente de estrutura em BG
 
-Aguardar a aprovação do usuário. Somente após `ExitPlanMode` (usuário aprovar) o fluxo segue para o `doc-designer`. Se o usuário solicitar ajustes, revisá-los com o agente de estrutura antes de apresentar o plano novamente.
+Com doc-writer aprovado, invocar o agente de estrutura correspondente com `run_in_background: true`:
+- Apresentação → `doc-slides`
+- Proposta → `doc-proposal`
+- Relatório → `doc-report`
 
-### Passo 4 — Delegar ao doc-designer
+Ao concluir: `EnterPlanMode` → mostrar estrutura → informar caminho do arquivo → aguardar aprovação.
 
-Com o plano aprovado, invocar o `doc-designer` passando a estrutura validada como input completo, incluindo todas as decisões de design acordadas com o usuário.
+### Passo 5 — Invocar doc-designer em BG
 
-### Passo 5 — Informar o usuário
+Com estrutura aprovada, invocar `doc-designer` com `run_in_background: true` passando estrutura validada completa.
 
-A cada etapa concluída, informar brevemente:
-- O que foi feito
-- O que vem a seguir
-- Se há decisões a tomar
+- Se usuário escolheu **navegação: sim** no Passo 1.5: incluir no briefing ao doc-designer a instrução de aplicar o COMPONENTE OBRIGATÓRIO de navegação conforme `.claude/agents/doc-designer.md`
+- Se usuário escolheu **navegação: não**: instruir doc-designer a omitir o nav bar
 
-### Passo 6 — Confirmar entrega
+Ao concluir:
+- `EnterPlanMode`
+- Executar `open "{caminho_absoluto_do_arquivo.html}"` para abrir no browser
+- Aguardar aprovação visual do usuário
 
-Após `doc-reviewer` aprovar e `project-organizer` salvar, confirmar com o usuário que o documento está pronto e onde foi salvo.
+### Passo 6 — Invocar doc-reviewer em BG
+
+Com HTML aprovado, invocar `doc-reviewer` com `run_in_background: true`.
+
+Ao concluir:
+- `EnterPlanMode`
+- Apresentar relatório de revisão completo
+- Se issues críticos: voltar ao Passo 5 (doc-designer em BG) com lista de correções
+- Se aprovado: aguardar confirmação de entrega
+
+### Passo 7 — Invocar project-organizer em BG
+
+Com revisão aprovada, invocar `project-organizer` com `run_in_background: true`.
+
+Ao concluir: confirmar ao usuário o caminho onde o arquivo foi salvo.
 
 ---
 
@@ -167,9 +271,12 @@ Contexto empresa: .claude/shared/inoveon-info.md
 | `.claude/agents/doc-designer.md` | Agente de design HTML |
 | `.claude/agents/doc-reviewer.md` | Agente de revisão |
 | `.claude/agents/project-organizer.md` | Agente de organização |
-| `apresentacoes/` | Apresentações prontas |
-| `propostas/` | Propostas prontas |
-| `relatorios/` | Relatórios prontos |
+| `presentations/internal/` | Apresentações internas |
+| `presentations/investment/` | Apresentações para investidores |
+| `presentations/commercial-deck-pdv/` | Deck comercial PDV |
+| `proposals/` | Propostas comerciais |
+| `reports/audit/` | Relatórios de auditoria |
+| `reports/organizational/` | Relatórios organizacionais |
 
 ---
 
@@ -180,6 +287,9 @@ Contexto empresa: .claude/shared/inoveon-info.md
 - **Nunca pular** o `doc-reviewer` antes da entrega
 - **Sempre informar** o usuário entre as etapas
 - **Usar `AskUserQuestion`** para qualquer decisão ou dado faltante
+- **Sempre coletar foco** antes de briefar — nunca assumir objetivo, público ou tom sem perguntar
+- **Usar o conteúdo fornecido como base** — nunca ignorar dados, textos ou estruturas que o usuário trouxer; enriquecer, não substituir
+- **Perguntar sobre navegação** em toda apresentação/slides — jamais assumir que o usuário quer ou não quer o nav bar
 
 ---
 
@@ -197,6 +307,9 @@ Contexto empresa: .claude/shared/inoveon-info.md
 4. Inventar dados da empresa sem consultar `.claude/shared/inoveon-info.md`
 5. Usar `i9ON` como nome da empresa — sempre `Inoveon`
 6. Commitar sem autorização explícita do usuário
+7. Assumir objetivo, público ou tom sem confirmar com o usuário via AskUserQuestion
+8. Ignorar conteúdo fornecido pelo usuário — usar sempre como base, nunca substituir por genérico
+9. Aplicar ou omitir navegação sem perguntar ao usuário
 
 ---
 

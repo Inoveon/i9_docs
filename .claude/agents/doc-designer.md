@@ -48,6 +48,110 @@ Responsável por criar documentos HTML standalone de alta qualidade seguindo o d
 
 ---
 
+## COMPONENTE OBRIGATÓRIO — NAVEGAÇÃO EM APRESENTAÇÕES
+
+Todo documento do tipo **apresentação/slides** DEVE incluir o nav bar de rodapé descrito abaixo. Sem exceção.
+
+Notas de integração:
+- Adicionar `padding-bottom: 80px` no `body` para o último slide não ficar sobreposto pela barra
+- Teclado suportado: `ArrowRight` / `ArrowDown` = próximo; `ArrowLeft` / `ArrowUp` = anterior
+- Os dots são gerados dinamicamente via JS com base nos elementos `.slide`
+
+### CSS
+
+```css
+.nav-bar {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+  display: flex; align-items: center; justify-content: center; gap: 20px;
+  padding: 14px 30px;
+  background: rgba(1, 30, 75, 0.92);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+.nav-btn {
+  background: rgba(255,255,255,0.12); color: #fff;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 24px; border-radius: 50px;
+  font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 600;
+  cursor: pointer; transition: all 0.3s;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-btn:hover { background: var(--i9-blue); border-color: var(--i9-blue); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,91,170,0.4); }
+.nav-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+.nav-counter { font-size: 0.9rem; font-weight: 700; color: rgba(255,255,255,0.85); min-width: 60px; text-align: center; letter-spacing: 0.05em; }
+.slide-dots { display: flex; gap: 6px; align-items: center; }
+.slide-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.3); cursor: pointer; transition: all 0.3s; }
+.slide-dot.active { background: #fff; transform: scale(1.3); }
+```
+
+### HTML
+
+```html
+<!-- NAV BAR -->
+<nav class="nav-bar">
+  <button class="nav-btn" id="btn-prev" onclick="navigate(-1)">
+    <span class="material-icons" style="font-size: 18px;">arrow_back</span> Anterior
+  </button>
+  <div class="slide-dots" id="dots"></div>
+  <span class="nav-counter" id="counter">1 / N</span>
+  <button class="nav-btn" id="btn-next" onclick="navigate(1)">
+    Próximo <span class="material-icons" style="font-size: 18px;">arrow_forward</span>
+  </button>
+</nav>
+```
+
+### JavaScript
+
+```javascript
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function buildDots() {
+  const dotsEl = document.getElementById('dots');
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsEl.appendChild(d);
+  });
+}
+
+function updateNav() {
+  document.getElementById('counter').textContent = (current + 1) + ' / ' + slides.length;
+  document.getElementById('btn-prev').disabled = current === 0;
+  document.getElementById('btn-next').disabled = current === slides.length - 1;
+  document.querySelectorAll('.slide-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+}
+
+function goTo(n) {
+  current = Math.max(0, Math.min(n, slides.length - 1));
+  slides[current].scrollIntoView({ behavior: 'smooth' });
+  updateNav();
+}
+
+function navigate(dir) { goTo(current + dir); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') navigate(1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   navigate(-1);
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      current = Array.from(slides).indexOf(e.target);
+      updateNav();
+    }
+  });
+}, { threshold: 0.6 });
+
+slides.forEach(s => observer.observe(s));
+buildDots();
+updateNav();
+```
+
+---
+
 ## ARQUIVOS-CHAVE
 
 | Arquivo                                 | Função                               |
@@ -69,6 +173,7 @@ Responsável por criar documentos HTML standalone de alta qualidade seguindo o d
 - `lang="pt-BR"` em todo HTML
 - CSS em bloco `<style>` no `<head>` — nunca inline nos elementos (exceto valores dinâmicos)
 - `box-sizing: border-box` em `*`
+- Para apresentações: sempre incluir nav bar de rodapé com dots, counter e suporte a teclado (ver seção COMPONENTE OBRIGATÓRIO)
 
 ---
 
@@ -79,6 +184,7 @@ Responsável por criar documentos HTML standalone de alta qualidade seguindo o d
 3. Criar CSS em arquivos separados — tudo self-contained
 4. Usar cores fora do design system sem justificativa explícita
 5. Ignorar responsividade — sempre testar layout em mobile
+6. Criar apresentação/slides sem o componente de navegação em rodapé
 
 ---
 

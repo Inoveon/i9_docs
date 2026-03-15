@@ -539,6 +539,173 @@
                 print-color-adjust: exact;
             }
         }
+
+        /* === TIMELINE LAYOUT (SLIDE 19) === */
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .timeline-row {
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 0;
+        }
+
+        .timeline-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .timeline-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .timeline-number {
+            width: 36px;
+            height: 36px;
+            background: var(--white);
+            color: var(--i9-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 16px;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-connector {
+            width: 2px;
+            height: 16px;
+            background: rgba(255, 255, 255, 0.3);
+            margin-bottom: 0;
+        }
+
+        .timeline-card {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            text-align: center;
+            width: 100%;
+            min-height: 185px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .timeline-item:hover .timeline-card {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-item:hover .timeline-number {
+            background: var(--i9-dark);
+            color: var(--white);
+            transform: scale(1.1);
+            box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.3);
+        }
+
+        .timeline-card .card-icon {
+            font-size: 34px;
+            color: var(--white);
+            margin-bottom: 0.6rem;
+        }
+
+        .timeline-card .card-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+            line-height: 1.25;
+            min-height: 3.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-card .card-description {
+            font-size: 0.75rem;
+            line-height: 1.35;
+            opacity: 0.85;
+            color: var(--white);
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .timeline-arrow {
+            position: absolute;
+            top: 10px;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.4);
+            z-index: 0;
+        }
+
+        .arrow-1 { left: 23%; }
+        .arrow-2 { left: 48%; }
+        .arrow-3 { left: 73%; }
+
+        @media (max-width: 768px) {
+            .timeline-container {
+                gap: 2rem;
+            }
+
+            .timeline-line {
+                display: none;
+            }
+
+            .timeline-cards {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .timeline-item {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .timeline-number {
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+
+            .timeline-connector {
+                display: none;
+            }
+
+            .timeline-card {
+                text-align: left;
+                max-width: 100%;
+            }
+
+            .timeline-arrow {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -824,13 +991,12 @@
     <section id="slide6" class="slide slide-dark">
         <span class="slide-tag">Soluções</span>
         <div class="slide-content">
-            <h2 class="slide-title">
-                <span class="material-icons">rocket_launch</span>
+            <h2 class="slide-title" style="text-align: center;">
                 Primeiras Soluções Fora da Caixa
             </h2>
-            <div class="two-columns" style="margin-top: 40px;">
-                <div style="background: rgba(255,255,255,0.15); border-radius: 20px; padding: 35px;">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+            <div class="cards-grid" style="grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 40px;">
+                <div style="background: rgba(255,255,255,0.15); border-radius: 20px; padding: 30px;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
                         <span class="material-icons">feed</span> Smart Feed
                     </h3>
                     <ul class="slide-list" style="margin: 0;">
@@ -840,14 +1006,25 @@
                         <li><span class="material-icons">check_circle</span> Campanhas publicitárias</li>
                     </ul>
                 </div>
-                <div style="background: rgba(255,255,255,0.15); border-radius: 20px; padding: 35px;">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+                <div style="background: rgba(255,255,255,0.15); border-radius: 20px; padding: 30px;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
                         <span class="material-icons">inventory_2</span> Smart Count
                     </h3>
                     <ul class="slide-list" style="margin: 0;">
                         <li><span class="material-icons">check_circle</span> Conferência de estoque</li>
                         <li><span class="material-icons">check_circle</span> Atualização de preços</li>
                         <li><span class="material-icons">check_circle</span> Maior controle operacional</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(255,255,255,0.15); border-radius: 20px; padding: 30px;">
+                    <h3 style="font-size: 1.4rem; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+                        <span class="material-icons">rocket_launch</span> i9 Smart PDV
+                    </h3>
+                    <ul class="slide-list" style="margin: 0;">
+                        <li><span class="material-icons">receipt_long</span> Emissão na Pista</li>
+                        <li><span class="material-icons">error_outline</span> Redução de Erros</li>
+                        <li><span class="material-icons">visibility</span> Controle de Vendas</li>
+                        <li><span class="material-icons">verified</span> Estabilidade</li>
                     </ul>
                 </div>
             </div>
@@ -1633,47 +1810,106 @@
     <!-- Slide 19: Alocação Estratégica do Aporte -->
     <section id="slide19" class="slide slide-blue">
         <span class="slide-tag">Investimento</span>
-        <div class="slide-content" style="text-align: center;">
-            <h2 class="slide-title" style="margin-bottom: 5px;">Alocação Estratégica do Aporte</h2>
-            <p class="slide-subtitle" style="margin-bottom: 25px;">Investimento direcionado para acelerar crescimento e escala operacional</p>
+        <div class="slide-content">
+            <h2 class="slide-title" style="text-align: center; margin-bottom: 8px;">Alocação Estratégica do Aporte</h2>
+            <p class="slide-subtitle" style="text-align: center; margin-bottom: 30px; opacity: 0.9;">Estrutura orientada para escala previsível e crescimento sustentável</p>
 
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 1000px; margin: 0 auto;">
+            <div class="timeline-container">
+                <div class="timeline-row">
+                    <div class="timeline-line"></div>
+                    <span class="material-icons timeline-arrow arrow-1">chevron_right</span>
+                    <span class="material-icons timeline-arrow arrow-2">chevron_right</span>
+                    <span class="material-icons timeline-arrow arrow-3">chevron_right</span>
+                    <div class="timeline-cards">
+                        <div class="timeline-item">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">trending_up</span>
+                                <h3 class="card-title">Expansão Comercial Estruturada</h3>
+                                <p class="card-description">Estruturação de SDR, vendas enterprise, canais regionais e parcerias estratégicas para crescimento previsível de pipeline.</p>
+                            </div>
+                        </div>
 
-                <!-- Card 1: Expansão Comercial -->
-                <div style="background: rgba(255,255,255,0.15); border-radius: 16px; padding: 25px 22px; text-align: center;">
-                    <span class="material-icons" style="font-size: 2.5rem; margin-bottom: 10px;">trending_up</span>
-                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Expansão Comercial</h3>
-                    <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4;">Contratação de equipe de vendas, fortalecimento de canais e geração de demanda.</p>
+                        <div class="timeline-item">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">engineering</span>
+                                <h3 class="card-title">Implantação Escalável</h3>
+                                <p class="card-description">Squads dedicados e playbook padronizado para reduzir lead time de ativação e acelerar geração de receita.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">verified_user</span>
+                                <h3 class="card-title">Customer Success e Expansão de Receita</h3>
+                                <p class="card-description">Acompanhamento pós go-live, expansão de ticket médio e aumento do LTV através de retenção ativa.</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-number">4</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">devices</span>
+                                <h3 class="card-title">Infraestrutura de Implantação</h3>
+                                <p class="card-description">Kits operacionais e equipamentos para acelerar rollout comercial e reduzir barreiras de entrada.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Card 2: Implantação e Sucesso do Cliente -->
-                <div style="background: rgba(255,255,255,0.15); border-radius: 16px; padding: 25px 22px; text-align: center;">
-                    <span class="material-icons" style="font-size: 2.5rem; margin-bottom: 10px;">engineering</span>
-                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Implantação e Sucesso do Cliente</h3>
-                    <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4;">Ampliação da equipe de onboarding e suporte para acelerar novas ativações.</p>
-                </div>
+                <div class="timeline-row">
+                    <div class="timeline-line"></div>
+                    <span class="material-icons timeline-arrow arrow-1">chevron_right</span>
+                    <span class="material-icons timeline-arrow arrow-2">chevron_right</span>
+                    <span class="material-icons timeline-arrow arrow-3">chevron_right</span>
+                    <div class="timeline-cards">
+                        <div class="timeline-item">
+                            <div class="timeline-number">5</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">code</span>
+                                <h3 class="card-title">Evolução Tecnológica Direcionada</h3>
+                                <p class="card-description">Desenvolvimento de módulos premium, integrações financeiras e funcionalidades orientadas a aumento de receita.</p>
+                            </div>
+                        </div>
 
-                <!-- Card 3: Evolução da Plataforma -->
-                <div style="background: rgba(255,255,255,0.15); border-radius: 16px; padding: 25px 22px; text-align: center;">
-                    <span class="material-icons" style="font-size: 2.5rem; margin-bottom: 10px;">code</span>
-                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Evolução da Plataforma</h3>
-                    <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4;">Desenvolvimento de novos módulos, integrações e melhorias de performance.</p>
-                </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">6</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">analytics</span>
+                                <h3 class="card-title">Marketing de Performance</h3>
+                                <p class="card-description">Geração previsível de pipeline qualificado, posicionamento nacional e presença em eventos setoriais.</p>
+                            </div>
+                        </div>
 
-                <!-- Card 4: Marketing e Geração de Pipeline -->
-                <div style="background: rgba(255,255,255,0.15); border-radius: 16px; padding: 25px 22px; text-align: center;">
-                    <span class="material-icons" style="font-size: 2.5rem; margin-bottom: 10px;">analytics</span>
-                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Marketing e Geração de Pipeline</h3>
-                    <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4;">Investimentos em posicionamento de marca e aquisição previsível de clientes.</p>
-                </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">7</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">account_balance</span>
+                                <h3 class="card-title">Governança e Inteligência Operacional</h3>
+                                <p class="card-description">BI de crescimento, controle de CAC/LTV e construção de previsibilidade de expansão.</p>
+                            </div>
+                        </div>
 
-                <!-- Card 5: Infraestrutura de Implantação -->
-                <div style="background: rgba(255,255,255,0.15); border-radius: 16px; padding: 25px 22px; text-align: center; grid-column: span 2;">
-                    <span class="material-icons" style="font-size: 2.5rem; margin-bottom: 10px;">devices</span>
-                    <h3 style="font-size: 1.05rem; font-weight: 700; margin-bottom: 8px;">Infraestrutura de Implantação</h3>
-                    <p style="font-size: 0.85rem; opacity: 0.9; line-height: 1.4;">Aquisição de kits e equipamentos necessários para ativação rápida de novos clientes.</p>
+                        <div class="timeline-item">
+                            <div class="timeline-number">8</div>
+                            <div class="timeline-connector"></div>
+                            <div class="timeline-card">
+                                <span class="material-icons card-icon">groups</span>
+                                <h3 class="card-title">Formação e Retenção de Talentos</h3>
+                                <p class="card-description">Desenvolvimento técnico interno, estruturação de suporte escalável e consolidação de cultura de execução.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
         <img src="../../assets/logos/logo-inoveon.svg" alt="i9ON" class="slide-logo">

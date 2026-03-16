@@ -728,13 +728,6 @@
         <a href="#slide14" class="nav-dot"></a>
         <a href="#slide15" class="nav-dot"></a>
         <a href="#slide16" class="nav-dot"></a>
-        <a href="#slide17" class="nav-dot"></a>
-        <a href="#slide18" class="nav-dot"></a>
-        <a href="#slide19" class="nav-dot"></a>
-        <a href="#slide20" class="nav-dot"></a>
-        <a href="#slide21" class="nav-dot"></a>
-        <a href="#slide22" class="nav-dot"></a>
-        <a href="#slide23" class="nav-dot"></a>
     </nav>
 
     <!-- Slide 1: Capa -->
@@ -1918,6 +1911,7 @@
         // Update active nav dot on scroll
         const slides = document.querySelectorAll('.slide');
         const navDots = document.querySelectorAll('.nav-dot');
+        let currentSlideIndex = 0;
 
         const observerOptions = {
             root: null,
@@ -1929,6 +1923,9 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const slideId = entry.target.id;
+                    // Update current slide index
+                    currentSlideIndex = Array.from(slides).indexOf(entry.target);
+
                     navDots.forEach(dot => {
                         dot.classList.remove('active');
                         if (dot.getAttribute('href') === '#' + slideId) {
@@ -1943,18 +1940,20 @@
 
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
-            const currentSlide = document.querySelector('.slide:target') || slides[0];
-            const currentIndex = Array.from(slides).indexOf(currentSlide);
-
-            if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+            // Next slide: ArrowDown, ArrowRight, PageDown, Space
+            if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
                 e.preventDefault();
-                if (currentIndex < slides.length - 1) {
-                    slides[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex < slides.length - 1) {
+                    currentSlideIndex++;
+                    slides[currentSlideIndex].scrollIntoView({ behavior: 'smooth' });
                 }
-            } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
+            }
+            // Previous slide: ArrowUp, ArrowLeft, PageUp
+            else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
                 e.preventDefault();
-                if (currentIndex > 0) {
-                    slides[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
+                if (currentSlideIndex > 0) {
+                    currentSlideIndex--;
+                    slides[currentSlideIndex].scrollIntoView({ behavior: 'smooth' });
                 }
             }
         });

@@ -1504,8 +1504,40 @@
                 Estruturamos diferentes modelos para evolução conjunta entre I9on e Grupo Mirian
             </p>
 
-            <!-- Grid com 3 modelos -->
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; max-width: 1100px; margin: 0 auto;">
+            <!-- Container com linha e cards alinhados -->
+            <div style="max-width: 1100px; margin: 0 auto;">
+                <!-- Linha de Progresso dos Modelos -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin: 0 0 40px; position: relative;">
+                    <!-- Linha conectora -->
+                    <div style="position: absolute; left: calc(50% - 380px); top: 23.5px; width: 760px; height: 3px; background: linear-gradient(90deg, var(--i9-blue) 0%, var(--i9-navy) 50%, #0075d4 100%); z-index: 0;"></div>
+
+                    <!-- Step 1: Transformacional -->
+                    <div style="display: flex; flex-direction: column; align-items: center; z-index: 10;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,91,170,0.3);">
+                            <span class="material-icons" style="color: var(--white); font-size: 1.4rem;">handshake</span>
+                        </div>
+                        <span style="margin-top: 10px; font-weight: 700; font-size: 0.85rem; color: var(--i9-blue); text-transform: uppercase; letter-spacing: 0.5px;">Crescimento conjunto</span>
+                    </div>
+
+                    <!-- Step 2: Premium -->
+                    <div style="display: flex; flex-direction: column; align-items: center; z-index: 10;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--i9-navy) 0%, var(--i9-dark) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(1,30,75,0.3);">
+                            <span class="material-icons" style="color: var(--white); font-size: 1.4rem;">workspace_premium</span>
+                        </div>
+                        <span style="margin-top: 10px; font-weight: 700; font-size: 0.85rem; color: var(--i9-navy); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; line-height: 1.2;">Governança +<br>Eficiência Operacional</span>
+                    </div>
+
+                    <!-- Step 3: Assistida -->
+                    <div style="display: flex; flex-direction: column; align-items: center; z-index: 10;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #0075d4 0%, #4dd0e1 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,117,212,0.3);">
+                            <span class="material-icons" style="color: var(--white); font-size: 1.4rem;">school</span>
+                        </div>
+                        <span style="margin-top: 10px; font-weight: 700; font-size: 0.85rem; color: #0075d4; text-transform: uppercase; letter-spacing: 0.5px;">Mentoria</span>
+                    </div>
+                </div>
+
+                <!-- Grid com 3 modelos -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
 
                 <!-- Modelo 1: Parceria Transformacional -->
                 <div style="background: linear-gradient(135deg, var(--i9-blue) 0%, var(--i9-navy) 100%); border-radius: 16px; padding: 30px 25px; color: white; display: flex; flex-direction: column; height: 100%;">
@@ -1600,6 +1632,7 @@
                     </div>
                 </div>
 
+                </div>
             </div>
         </div>
         <img src="../../assets/logos/logo-inoveon.svg" alt="i9ON" class="slide-logo">

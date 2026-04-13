@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Implantação — Inoveon</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root[data-theme="light"] {
+      --bg: #F5F7FA;
+      --card: #FFFFFF;
+      --text: #212121;
+      --text-secondary: #616161;
+      --border: #E0E0E0;
+      --primary: #1976D2;
+      --accent: #42A5F5;
+      --primary-light: #E3F2FD;
+      --header-bg: #1565C0;
+      --footer-bg: #FFFFFF;
+      --tab-bg: #ECEFF1;
+      --tab-active-bg: #FFFFFF;
+      --input-bg: #FFFFFF;
+      --row-hover: #F5F7FA;
+      --shadow: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-hover: 0 4px 16px rgba(25,118,210,0.15);
+      --success: #2E7D32;
+      --success-bg: #E8F5E9;
+      --warning: #E65100;
+      --warning-bg: #FFF3E0;
+      --pilot-color: #7B1FA2;
+      --pilot-bg: #F3E5F5;
+      --breakeven-color: #F57F17;
+      --breakeven-bg: #FFFDE7;
+    }
+    :root[data-theme="dark"] {
+      --bg: #121212;
+      --card: #1E1E1E;
+      --text: #E0E0E0;
+      --text-secondary: #9E9E9E;
+      --border: #333333;
+      --primary: #42A5F5;
+      --accent: #90CAF9;
+      --primary-light: #1A237E;
+      --header-bg: #0D47A1;
+      --footer-bg: #1E1E1E;
+      --tab-bg: #2A2A2A;
+      --tab-active-bg: #1E1E1E;
+      --input-bg: #2A2A2A;
+      --row-hover: #2A2A2A;
+      --shadow: 0 2px 8px rgba(0,0,0,0.4);
+      --shadow-hover: 0 4px 16px rgba(66,165,245,0.2);
+      --success: #66BB6A;
+      --success-bg: #1B5E20;
+      --warning: #FFA726;
+      --warning-bg: #3E2723;
+      --pilot-color: #CE93D8;
+      --pilot-bg: #311B36;
+      --breakeven-color: #FFD54F;
+      --breakeven-bg: #3E2B00;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .app-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: var(--header-bg);
+      color: #fff;
+      padding: 0 24px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-left .material-icons {
+      font-size: 28px;
+      opacity: 0.9;
+    }
+    .header-title {
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+    }
+    .header-subtitle {
+      font-size: 0.75rem;
+      opacity: 0.75;
+      font-weight: 300;
+    }
+    .theme-toggle {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .theme-toggle:hover { background: rgba(255,255,255,0.25); }
+
+    /* TABS */
+    .tabs-bar {
+      position: fixed;
+      top: 56px; left: 0; right: 0;
+      z-index: 99;
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+      transition: background 0.3s;
+    }
+    .tab-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 8px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tab-btn .material-icons { font-size: 20px; }
+    .tab-btn:hover { color: var(--primary); background: var(--primary-light); }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    @media (max-width: 480px) {
+      .tab-btn span:not(.material-icons) { display: none; }
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      margin-top: 112px;
+      padding: 24px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (max-width: 600px) {
+      .main-content { padding: 16px; }
+    }
+
+    /* TAB PANELS */
+    .tab-panel { display: none; animation: fadeIn 0.25s ease; }
+    .tab-panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* CARDS */
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    .card-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title .material-icons { font-size: 20px; }
+
+    /* FORM FIELDS */
+    .fields-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .field-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .field-label .material-icons { font-size: 16px; color: var(--primary); }
+    .field-input {
+      background: var(--input-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 0.95rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+    .field-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(25,118,210,0.12);
+    }
+
+    /* FOOTER PREVIEW */
+    .footer-preview {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 98;
+      background: var(--footer-bg);
+      border-top: 2px solid var(--primary);
+      padding: 12px 24px;
+      box-shadow: 0 -2px 12px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+    .footer-preview-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      overflow-x: auto;
+    }
+    .preview-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .preview-label .material-icons { font-size: 14px; color: var(--primary); }
+    .preview-cards {
+      display: flex;
+      gap: 12px;
+      flex-wrap: nowrap;
+    }
+    .preview-card {
+      background: var(--primary-light);
+      border-radius: 8px;
+      padding: 8px 12px;
+      min-width: 110px;
+      white-space: nowrap;
+    }
+    .preview-card-label {
+      font-size: 0.65rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    .preview-card-value {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 2px;
+    }
+    .preview-card-value.positive { color: var(--success); }
+    .preview-card-value.negative { color: #C62828; }
+
+    /* KPI CARDS GRID */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--primary);
+      transition: box-shadow 0.2s;
+    }
+    .kpi-card:hover { box-shadow: var(--shadow-hover); }
+    .kpi-card-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .kpi-card-label .material-icons { font-size: 16px; color: var(--primary); }
+    .kpi-card-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .kpi-card-sub {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    /* CHARTS */
+    .chart-container {
+      position: relative;
+      height: 300px;
+      margin-bottom: 8px;
+    }
+
+    /* TABLES */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    thead th {
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: var(--row-hover); }
+    tbody td {
+      padding: 9px 14px;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    tfoot td {
+      padding: 10px 14px;
+      font-weight: 700;
+      background: var(--primary-light);
+      color: var(--primary);
+      border-top: 2px solid var(--primary);
+    }
+
+    /* BADGES */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-pilot {
+      background: var(--pilot-bg);
+      color: var(--pilot-color);
+    }
+    .badge-rollout {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .badge-breakeven {
+      background: var(--breakeven-bg);
+      color: var(--breakeven-color);
+    }
+    .row-breakeven td { background: var(--breakeven-bg) !important; }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* BOTTOM PADDING FOR FOOTER */
+    #tab-config .tab-content-inner { padding-bottom: 90px; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="header-left">
+    <span class="material-icons">calculate</span>
+    <div>
+      <div class="header-title" id="header-title-text">Calculadora de Implantação — Empresa</div>
+      <div class="header-subtitle">Postos de Combustível — Inoveon</div>
+    </div>
+  </div>
+  <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+    <span class="material-icons" id="theme-icon">dark_mode</span>
+  </button>
+</header>
+
+<!-- TABS BAR -->
+<nav class="tabs-bar">
+  <button class="tab-btn active" data-tab="config" onclick="switchTab('config')">
+    <span class="material-icons">settings</span>
+    <span>Configuração</span>
+  </button>
+  <button class="tab-btn" data-tab="cronograma" onclick="switchTab('cronograma')">
+    <span class="material-icons">timeline</span>
+    <span>Cronograma</span>
+  </button>
+  <button class="tab-btn" data-tab="financeiro" onclick="switchTab('financeiro')">
+    <span class="material-icons">bar_chart</span>
+    <span>Receita × Despesa</span>
+  </button>
+</nav>
+
+<!-- MAIN -->
+<main class="main-content" style="margin-top: 112px;">
+
+  <!-- ABA 1: CONFIGURAÇÃO -->
+  <div class="tab-panel active" id="tab-config">
+    <div class="tab-content-inner">
+
+      <div class="card">
+        <div class="card-title"><span class="material-icons">business</span>Identificação</div>
+        <div class="fields-grid" style="grid-template-columns: 1fr;">
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">business</span>Nome da empresa</label>
+            <input type="text" class="field-input" id="nome_empresa" value="Empresa" placeholder="Nome da empresa">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="material-icons">attach_money</span>Dados Financeiros</div>
+        <div class="fields-grid">
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">paid</span>Valor de implementação por posto (R$)</label>
+            <input type="text" class="field-input currency-mask" id="valor_por_posto" value="R$ 6.250,00" autocomplete="off">
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">hotel</span>Diária por analista (com hospedagem)</label>
+            <input type="text" class="field-input currency-mask" id="diaria" value="R$ 350,00" autocomplete="off">
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">restaurant</span>Alimentação por analista/dia</label>
+            <input type="text" class="field-input currency-mask" id="alimentacao" value="R$ 80,00" autocomplete="off">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="material-icons">group</span>Equipe</div>
+        <div class="fields-grid">
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">group</span>Quantidade de analistas</label>
+            <input type="number" class="field-input" id="analistas" value="3" min="1" step="1">
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">calendar_today</span>Dias de trabalho por semana</label>
+            <input type="number" class="field-input" id="dias_semana" value="5" min="1" max="7" step="1">
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span class="material-icons">local_gas_station</span>Postos</div>
+        <div class="fields-grid">
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">local_gas_station</span>Quantidade total de postos</label>
+            <input type="number" class="field-input" id="total_postos" value="80" min="1" step="1">
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">science</span>Quantidade de postos piloto</label>
+            <input type="number" class="field-input" id="postos_piloto" value="5" min="0" step="1">
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">speed</span>Postos por semana (rollout)</label>
+            <input type="number" class="field-input" id="postos_semana" value="8" min="1" step="1">
+          </div>
+          <div class="field-group">
+            <label class="field-label"><span class="material-icons">event</span>Data inicial do rollout (após pilotos)</label>
+            <input type="date" class="field-input" id="data_inicio" value="2026-05-01">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ABA 2: CRONOGRAMA -->
+  <div class="tab-panel" id="tab-cronograma">
+
+    <div class="kpi-grid" id="kpi-cronograma">
+      <!-- gerado via JS -->
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="material-icons">bar_chart</span>Postos implantados por semana</div>
+      <div class="chart-container">
+        <canvas id="chart-semanas"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="material-icons">show_chart</span>Progresso acumulado (Curva S)</div>
+      <div class="chart-container">
+        <canvas id="chart-acumulado"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="material-icons">table_chart</span>Cronograma semana a semana</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Semana</th>
+              <th>Período</th>
+              <th>Postos impl.</th>
+              <th>Acumulado</th>
+              <th>% Conclusão</th>
+              <th>Fase</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-cronograma"></tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ABA 3: RECEITA × DESPESA -->
+  <div class="tab-panel" id="tab-financeiro">
+
+    <div class="kpi-grid" id="kpi-financeiro">
+      <!-- gerado via JS -->
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="material-icons">account_balance_wallet</span>Receita vs Despesa por mês</div>
+      <div class="chart-container">
+        <canvas id="chart-receita-despesa"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="material-icons">trending_up</span>Margem acumulada</div>
+      <div class="chart-container">
+        <canvas id="chart-margem"></canvas>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="material-icons">table_chart</span>Detalhamento mês a mês</div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Mês</th>
+              <th>Postos impl.</th>
+              <th>Receita</th>
+              <th>Despesa</th>
+              <th>Deslocamento</th>
+              <th>Margem</th>
+              <th>Acumulado</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-financeiro"></tbody>
+          <tfoot id="tfoot-financeiro"></tfoot>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<!-- FOOTER PREVIEW (só aparece na aba 1) -->
+<div class="footer-preview" id="footer-preview">
+  <div class="footer-preview-inner">
+    <div class="preview-label"><span class="material-icons">flash_on</span>Resumo</div>
+    <div class="preview-cards" id="preview-cards">
+      <!-- gerado via JS -->
+    </div>
+  </div>
+</div>
+
+<script>
+// =====================================================================
+// UTILITÁRIOS
+// =====================================================================
+const BRL = v => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const PCT = v => v.toFixed(1) + '%';
+
+function addDays(date, days) {
+  const d = new Date(date);
+  d.setDate(d.getDate() + days);
+  return d;
+}
+
+function addWeeks(date, weeks) {
+  return addDays(date, weeks * 7);
+}
+
+function fmtDate(date) {
+  return date.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+}
+
+function fmtMonthYear(date) {
+  return date.toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' });
+}
+
+function monthKey(date) {
+  return `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}`;
+}
+
+// =====================================================================
+// TEMA
+// =====================================================================
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('theme-icon').textContent = isDark ? 'dark_mode' : 'light_mode';
+  localStorage.setItem('calc-theme', isDark ? 'light' : 'dark');
+  updateAllCharts();
+}
+
+(function initTheme() {
+  const saved = localStorage.getItem('calc-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  document.getElementById('theme-icon').textContent = saved === 'dark' ? 'light_mode' : 'dark_mode';
+})();
+
+// =====================================================================
+// ABAS
+// =====================================================================
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.getElementById('footer-preview').style.display = name === 'config' ? 'block' : 'none';
+}
+
+// =====================================================================
+// MÁSCARA DE MOEDA
+// =====================================================================
+function parseCurrency(val) {
+  // Remove tudo exceto dígitos e vírgula/ponto
+  const clean = val.replace(/[^\d]/g, '');
+  if (!clean) return 0;
+  // Últimos 2 dígitos são centavos
+  const cents = parseInt(clean, 10);
+  return cents / 100;
+}
+
+function formatCurrency(val) {
+  const cents = Math.round(val * 100);
+  const str = String(cents).padStart(3, '0');
+  const intPart = str.slice(0, -2).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  const decPart = str.slice(-2);
+  return 'R$ ' + intPart + ',' + decPart;
+}
+
+function applyCurrencyMask(input) {
+  input.addEventListener('input', function() {
+    const raw = this.value.replace(/[^\d]/g, '');
+    if (!raw) { this.value = 'R$ 0,00'; updateAll(); return; }
+    const num = parseInt(raw, 10) / 100;
+    this.value = formatCurrency(num);
+    updateAll();
+  });
+  input.addEventListener('focus', function() {
+    // Posicionar cursor no fim
+    const len = this.value.length;
+    setTimeout(() => { this.setSelectionRange(len, len); }, 0);
+  });
+}
+
+// =====================================================================
+// LER INPUTS
+// =====================================================================
+function getInputs() {
+  const total_postos  = parseInt(document.getElementById('total_postos').value) || 1;
+  const postos_piloto = parseInt(document.getElementById('postos_piloto').value) || 0;
+  const valor_por_posto = parseCurrency(document.getElementById('valor_por_posto').value);
+  const postos_rollout = Math.max(0, total_postos - postos_piloto);
+  return {
+    nome_empresa:   document.getElementById('nome_empresa').value.trim() || 'Empresa',
+    valor_por_posto,
+    receita_total:  valor_por_posto * total_postos,
+    analistas:      parseInt(document.getElementById('analistas').value) || 1,
+    diaria:         parseCurrency(document.getElementById('diaria').value),
+    alimentacao:    parseCurrency(document.getElementById('alimentacao').value),
+    total_postos,
+    postos_piloto,
+    postos_semana:  parseInt(document.getElementById('postos_semana').value) || 1,
+    data_inicio:    document.getElementById('data_inicio').value || '2026-05-01',
+    dias_semana:    parseInt(document.getElementById('dias_semana').value) || 5,
+  };
+}
+
+// =====================================================================
+// CALCULAR CRONOGRAMA
+// =====================================================================
+function calcCronograma(inp) {
+  const semanas = [];
+  const dataInicio = new Date(inp.data_inicio + 'T00:00:00');
+  let acumulado = 0;
+
+  // Fase piloto (1 semana para os postos piloto, se houver)
+  if (inp.postos_piloto > 0) {
+    const fim = addDays(dataInicio, inp.dias_semana - 1);
+    acumulado += inp.postos_piloto;
+    semanas.push({
+      idx: 1,
+      inicio: new Date(dataInicio),
+      fim,
+      postos: inp.postos_piloto,
+      acumulado,
+      pct: (acumulado / inp.total_postos) * 100,
+      fase: 'Piloto',
+    });
+  }
+
+  // Rollout
+  const postos_rollout = inp.total_postos - inp.postos_piloto;
+  let sem = inp.postos_piloto > 0 ? 2 : 1;
+  let diasOffset = inp.postos_piloto > 0 ? 7 : 0;
+  let restante = postos_rollout;
+
+  while (restante > 0) {
+    const lote = Math.min(restante, inp.postos_semana);
+    const inicio = addDays(dataInicio, diasOffset);
+    const fim = addDays(inicio, inp.dias_semana - 1);
+    acumulado += lote;
+    semanas.push({
+      idx: sem,
+      inicio,
+      fim,
+      postos: lote,
+      acumulado,
+      pct: (acumulado / inp.total_postos) * 100,
+      fase: 'Rollout',
+    });
+    restante -= lote;
+    diasOffset += 7;
+    sem++;
+  }
+
+  return semanas;
+}
+
+// =====================================================================
+// CALCULAR FINANCEIRO (mês a mês)
+// =====================================================================
+function calcFinanceiro(inp, semanas) {
+  // Agrupa postos por mês, separando piloto de rollout
+  const postosRolloutMap = {};
+  const postosPilotoMap  = {};
+  const diasMap = {};
+
+  semanas.forEach(s => {
+    const key = monthKey(s.inicio);
+    diasMap[key] = (diasMap[key] || 0) + inp.dias_semana;
+    if (s.fase === 'Piloto') {
+      postosPilotoMap[key] = (postosPilotoMap[key] || 0) + s.postos;
+    } else {
+      postosRolloutMap[key] = (postosRolloutMap[key] || 0) + s.postos;
+    }
+  });
+
+  // Todos os meses em que há atividade
+  const allKeys = Array.from(new Set([
+    ...Object.keys(postosRolloutMap),
+    ...Object.keys(postosPilotoMap)
+  ])).sort();
+
+  const custo_dia_analista = inp.diaria + inp.alimentacao;
+
+  // Mapear semanas de rollout por mês (para calcular deslocamento semanal)
+  const semanasRolloutMap = {};
+  semanas.forEach(s => {
+    if (s.fase === 'Rollout') {
+      const key = monthKey(s.inicio);
+      semanasRolloutMap[key] = (semanasRolloutMap[key] || 0) + 1;
+    }
+  });
+
+  let acumulado = 0;
+  const meses = [];
+  let breakeven = null;
+
+  allKeys.forEach((key, i) => {
+    const postos_rollout = postosRolloutMap[key] || 0;
+    const postos_piloto  = postosPilotoMap[key]  || 0;
+    const postos         = postos_rollout + postos_piloto;
+    const dias           = diasMap[key] || 0;
+    const isPilotoOnly = postos_piloto > 0 && postos_rollout === 0;
+
+    // Receita: piloto gera receita (valor_por_posto × postos_piloto), rollout também
+    // Mas no período exclusivamente piloto: receita = 0 (cobrado junto ao rollout ou sem receita)
+    // Conforme Ajuste 3: no piloto, receita = 0 e despesa = 0
+    const receita = isPilotoOnly ? 0 : (postos_rollout * inp.valor_por_posto);
+    // Despesa: analistas só durante rollout (piloto = R$ 0)
+    const despesa = isPilotoOnly ? 0 : (inp.analistas * custo_dia_analista * dias);
+    // Deslocamento: a cada semana de rollout, 2 dias extras (sábado + domingo)
+    const semsRollout = semanasRolloutMap[key] || 0;
+    const deslocamento = isPilotoOnly ? 0 : (inp.analistas * custo_dia_analista * 2 * semsRollout);
+    const margem  = receita - despesa - deslocamento;
+    const prevAcum = acumulado;
+    acumulado += margem;
+
+    // break-even: primeiro mês após período de piloto em que acumulado cruza 0
+    if (breakeven === null && acumulado >= 0 && prevAcum < 0) {
+      breakeven = key;
+    }
+    if (breakeven === null && i === 0 && acumulado >= 0 && postos_piloto === 0) {
+      breakeven = key;
+    }
+
+    const [ano, mes] = key.split('-');
+    const date = new Date(parseInt(ano), parseInt(mes)-1, 1);
+    meses.push({ key, label: fmtMonthYear(date), postos, postos_rollout, postos_piloto, receita, despesa, deslocamento, margem, acumulado, breakeven: key === breakeven, isPilotoOnly });
+  });
+
+  return { meses, breakeven };
+}
+
+// =====================================================================
+// CHARTS
+// =====================================================================
+const chartInstances = {};
+
+function getChartColors() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  return {
+    primary: isDark ? '#42A5F5' : '#1976D2',
+    accent: isDark ? '#90CAF9' : '#42A5F5',
+    pilot: isDark ? '#CE93D8' : '#9C27B0',
+    text: isDark ? '#E0E0E0' : '#212121',
+    grid: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)',
+    success: isDark ? '#66BB6A' : '#2E7D32',
+    warning: isDark ? '#FFD54F' : '#F57F17',
+    negative: isDark ? '#EF9A9A' : '#C62828',
+  };
+}
+
+function destroyChart(id) {
+  if (chartInstances[id]) {
+    chartInstances[id].destroy();
+    delete chartInstances[id];
+  }
+}
+
+function buildChartSemanas(semanas) {
+  destroyChart('semanas');
+  const c = getChartColors();
+  const ctx = document.getElementById('chart-semanas').getContext('2d');
+  chartInstances['semanas'] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: semanas.map(s => 'S' + s.idx),
+      datasets: [{
+        label: 'Postos implantados',
+        data: semanas.map(s => s.postos),
+        backgroundColor: semanas.map(s => s.fase === 'Piloto' ? c.pilot : c.primary),
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ctx.parsed.y + ' postos' } }
+      },
+      scales: {
+        x: { grid: { color: c.grid }, ticks: { color: c.text, font: { size: 11 } } },
+        y: { grid: { color: c.grid }, ticks: { color: c.text, precision: 0 } }
+      }
+    }
+  });
+}
+
+function buildChartAcumulado(semanas, total) {
+  destroyChart('acumulado');
+  const c = getChartColors();
+  const ctx = document.getElementById('chart-acumulado').getContext('2d');
+  chartInstances['acumulado'] = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: semanas.map(s => 'S' + s.idx),
+      datasets: [{
+        label: 'Postos acumulados',
+        data: semanas.map(s => s.acumulado),
+        borderColor: c.primary,
+        backgroundColor: c.primary + '22',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: c.primary,
+      }, {
+        label: 'Meta total',
+        data: semanas.map(() => total),
+        borderColor: c.accent,
+        borderDash: [6, 4],
+        borderWidth: 1.5,
+        pointRadius: 0,
+        fill: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: c.text, font: { size: 11 } } } },
+      scales: {
+        x: { grid: { color: c.grid }, ticks: { color: c.text, font: { size: 11 } } },
+        y: { grid: { color: c.grid }, ticks: { color: c.text, precision: 0 }, max: total * 1.05 }
+      }
+    }
+  });
+}
+
+function buildChartReceitaDespesa(meses) {
+  destroyChart('receita-despesa');
+  const c = getChartColors();
+  const ctx = document.getElementById('chart-receita-despesa').getContext('2d');
+  chartInstances['receita-despesa'] = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: meses.map(m => m.label),
+      datasets: [
+        {
+          label: 'Receita',
+          data: meses.map(m => m.receita),
+          backgroundColor: c.primary + 'CC',
+          borderRadius: 4,
+        },
+        {
+          label: 'Custo (analistas)',
+          data: meses.map(m => m.despesa),
+          backgroundColor: c.negative + 'CC',
+          borderRadius: 4,
+        },
+        {
+          label: 'Deslocamento',
+          data: meses.map(m => m.deslocamento),
+          backgroundColor: c.warning + 'CC',
+          borderRadius: 4,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: c.text } } },
+      scales: {
+        x: { grid: { color: c.grid }, ticks: { color: c.text } },
+        y: {
+          grid: { color: c.grid },
+          ticks: { color: c.text, callback: v => 'R$ ' + (v/1000).toFixed(0) + 'k' }
+        }
+      }
+    }
+  });
+}
+
+function buildChartMargem(meses) {
+  destroyChart('margem');
+  const c = getChartColors();
+  const ctx = document.getElementById('chart-margem').getContext('2d');
+  chartInstances['margem'] = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: meses.map(m => m.label),
+      datasets: [{
+        label: 'Margem acumulada',
+        data: meses.map(m => m.acumulado),
+        borderColor: c.success,
+        backgroundColor: c.success + '22',
+        fill: true,
+        tension: 0.35,
+        pointRadius: 4,
+        pointBackgroundColor: meses.map(m => m.acumulado >= 0 ? c.success : c.negative),
+      }, {
+        label: 'Break-even',
+        data: meses.map(() => 0),
+        borderColor: c.warning,
+        borderDash: [6, 4],
+        borderWidth: 2,
+        pointRadius: 0,
+        fill: false,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: c.text } } },
+      scales: {
+        x: { grid: { color: c.grid }, ticks: { color: c.text } },
+        y: {
+          grid: { color: c.grid },
+          ticks: { color: c.text, callback: v => 'R$ ' + (v/1000).toFixed(0) + 'k' }
+        }
+      }
+    }
+  });
+}
+
+// =====================================================================
+// RENDERIZAR ABAS
+// =====================================================================
+function renderKpiCronograma(inp, semanas) {
+  const totalSemanas = semanas.length;
+  const ultima = semanas[semanas.length - 1];
+  const cards = [
+    { icon: 'calendar_today', label: 'Total de semanas', value: totalSemanas + ' sem.' },
+    { icon: 'speed', label: 'Postos/semana (rollout)', value: inp.postos_semana },
+    { icon: 'event', label: 'Data início rollout', value: fmtDate(new Date(inp.data_inicio + 'T00:00:00')) },
+    { icon: 'event_available', label: 'Data prevista de fim', value: ultima ? fmtDate(ultima.fim) : '—' },
+  ];
+  document.getElementById('kpi-cronograma').innerHTML = cards.map(c => `
+    <div class="kpi-card">
+      <div class="kpi-card-label"><span class="material-icons">${c.icon}</span>${c.label}</div>
+      <div class="kpi-card-value">${c.value}</div>
+    </div>
+  `).join('');
+}
+
+function renderTabelaCronograma(semanas, total) {
+  document.getElementById('tbody-cronograma').innerHTML = semanas.map(s => `
+    <tr>
+      <td><strong>Semana ${s.idx}</strong></td>
+      <td>${fmtDate(s.inicio)} – ${fmtDate(s.fim)}</td>
+      <td>${s.postos}</td>
+      <td>${s.acumulado} / ${total}</td>
+      <td>${PCT(s.pct)}</td>
+      <td><span class="badge ${s.fase === 'Piloto' ? 'badge-pilot' : 'badge-rollout'}">${s.fase}</span></td>
+    </tr>
+  `).join('');
+}
+
+function renderKpiFinanceiro(inp, fin) {
+  const receitaTotal = fin.meses.reduce((a,m) => a + m.receita, 0);
+  const despesaTotal = fin.meses.reduce((a,m) => a + m.despesa + m.deslocamento, 0);
+  const margemTotal = receitaTotal - despesaTotal;
+  const beLabel = fin.breakeven ? (() => {
+    const [ano, mes] = fin.breakeven.split('-');
+    return new Date(parseInt(ano), parseInt(mes)-1, 1).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' });
+  })() : 'N/A';
+
+  const cards = [
+    { icon: 'payments', label: 'Receita total', value: BRL(receitaTotal), color: '' },
+    { icon: 'money_off', label: 'Despesa total', value: BRL(despesaTotal), color: 'color:#C62828' },
+    { icon: 'trending_up', label: 'Margem total', value: BRL(margemTotal), color: margemTotal >= 0 ? 'color:var(--success)' : 'color:#C62828' },
+    { icon: 'flag', label: 'Mês de break-even', value: beLabel, color: 'color:var(--breakeven-color)' },
+  ];
+  document.getElementById('kpi-financeiro').innerHTML = cards.map(c => `
+    <div class="kpi-card">
+      <div class="kpi-card-label"><span class="material-icons">${c.icon}</span>${c.label}</div>
+      <div class="kpi-card-value" style="${c.color}">${c.value}</div>
+    </div>
+  `).join('');
+}
+
+function renderTabelaFinanceiro(fin) {
+  document.getElementById('tbody-financeiro').innerHTML = fin.meses.map(m => `
+    <tr class="${m.breakeven ? 'row-breakeven' : ''}">
+      <td>
+        ${m.label}
+        ${m.isPilotoOnly ? '<span class="badge badge-pilot" style="margin-left:6px">Piloto</span>' : ''}
+        ${m.breakeven ? '<span class="badge badge-breakeven" style="margin-left:6px">Break-even</span>' : ''}
+      </td>
+      <td>
+        ${m.postos}
+        ${m.isPilotoOnly ? '<br><span style="font-size:0.7rem;color:var(--pilot-color)">(sem custo/receita)</span>' : ''}
+      </td>
+      <td style="${m.isPilotoOnly ? 'color:var(--text-secondary);font-style:italic' : ''}">${m.isPilotoOnly ? 'R$ 0,00' : BRL(m.receita)}</td>
+      <td style="color:${m.isPilotoOnly ? 'var(--text-secondary)' : '#C62828'}">${m.isPilotoOnly ? 'R$ 0,00' : BRL(m.despesa)}</td>
+      <td style="color:${m.isPilotoOnly ? 'var(--text-secondary)' : '#C62828'}">${m.isPilotoOnly ? 'R$ 0,00' : BRL(m.deslocamento)}</td>
+      <td style="color:${m.isPilotoOnly ? 'var(--text-secondary)' : (m.margem >= 0 ? 'var(--success)' : '#C62828')};font-weight:600">${m.isPilotoOnly ? 'R$ 0,00' : BRL(m.margem)}</td>
+      <td style="color:${m.acumulado >= 0 ? 'var(--success)' : '#C62828'};font-weight:700">${BRL(m.acumulado)}</td>
+    </tr>
+  `).join('');
+
+  const receitaTotal = fin.meses.reduce((a,m) => a + m.receita, 0);
+  const despesaTotal = fin.meses.reduce((a,m) => a + m.despesa, 0);
+  const deslocamentoTotal = fin.meses.reduce((a,m) => a + m.deslocamento, 0);
+  const margemTotal = receitaTotal - despesaTotal - deslocamentoTotal;
+  const acumFinal = fin.meses.length ? fin.meses[fin.meses.length-1].acumulado : 0;
+
+  document.getElementById('tfoot-financeiro').innerHTML = `
+    <tr>
+      <td>TOTAL</td>
+      <td>${fin.meses.reduce((a,m) => a + m.postos, 0)}</td>
+      <td>${BRL(receitaTotal)}</td>
+      <td>${BRL(despesaTotal)}</td>
+      <td>${BRL(deslocamentoTotal)}</td>
+      <td>${BRL(margemTotal)}</td>
+      <td>${BRL(acumFinal)}</td>
+    </tr>
+  `;
+}
+
+function renderPreview(inp, semanas, fin) {
+  const totalSemanas = semanas.length;
+  const ultima = semanas[semanas.length - 1];
+  const despesaTotal = fin.meses.reduce((a,m) => a + m.despesa + m.deslocamento, 0);
+  const receitaTotal = inp.receita_total; // valor_por_posto × total_postos
+  const margemTotal = receitaTotal - despesaTotal;
+  const margem_pct = receitaTotal > 0 ? (margemTotal / receitaTotal) * 100 : 0;
+  const postos_rollout = Math.max(0, inp.total_postos - inp.postos_piloto);
+
+  const items = [
+    { label: 'Valor por posto', value: BRL(inp.valor_por_posto) },
+    { label: 'Total de postos', value: inp.total_postos + ' postos' },
+    { label: 'Postos rollout', value: postos_rollout + ' postos' },
+    { label: 'Receita total', value: BRL(receitaTotal) },
+    { label: 'Custo total analistas', value: BRL(despesaTotal), neg: true },
+    { label: 'Margem bruta', value: BRL(margemTotal) + ' (' + PCT(margem_pct) + ')', pos: margemTotal >= 0, neg: margemTotal < 0 },
+    { label: 'Previsão de conclusão', value: ultima ? fmtDate(ultima.fim) : '—' },
+  ];
+
+  document.getElementById('preview-cards').innerHTML = items.map(i => `
+    <div class="preview-card">
+      <div class="preview-card-label">${i.label}</div>
+      <div class="preview-card-value ${i.pos ? 'positive' : ''} ${i.neg ? 'negative' : ''}">${i.value}</div>
+    </div>
+  `).join('');
+}
+
+// =====================================================================
+// ATUALIZAÇÃO PRINCIPAL
+// =====================================================================
+function updateAll() {
+  const inp = getInputs();
+
+  // Atualizar título do header com nome da empresa
+  const titleEl = document.getElementById('header-title-text');
+  if (titleEl) titleEl.textContent = 'Calculadora de Implantação — ' + inp.nome_empresa;
+
+  const semanas = calcCronograma(inp);
+  const fin = calcFinanceiro(inp, semanas);
+
+  // Aba 1 — footer preview
+  renderPreview(inp, semanas, fin);
+
+  // Aba 2 — cronograma
+  renderKpiCronograma(inp, semanas);
+  renderTabelaCronograma(semanas, inp.total_postos);
+  buildChartSemanas(semanas);
+  buildChartAcumulado(semanas, inp.total_postos);
+
+  // Aba 3 — financeiro
+  renderKpiFinanceiro(inp, fin);
+  renderTabelaFinanceiro(fin);
+  buildChartReceitaDespesa(fin.meses);
+  buildChartMargem(fin.meses);
+}
+
+function updateAllCharts() {
+  const inp = getInputs();
+  const semanas = calcCronograma(inp);
+  const fin = calcFinanceiro(inp, semanas);
+  buildChartSemanas(semanas);
+  buildChartAcumulado(semanas, inp.total_postos);
+  buildChartReceitaDespesa(fin.meses);
+  buildChartMargem(fin.meses);
+}
+
+// =====================================================================
+// BIND INPUTS
+// =====================================================================
+// Aplicar máscara de moeda nos inputs com class currency-mask
+document.querySelectorAll('.currency-mask').forEach(el => applyCurrencyMask(el));
+
+// Bind geral para inputs não-moeda
+document.querySelectorAll('.field-input:not(.currency-mask)').forEach(el => {
+  el.addEventListener('input', updateAll);
+  el.addEventListener('change', updateAll);
+});
+
+// Bind campo nome empresa
+document.getElementById('nome_empresa').addEventListener('input', updateAll);
+
+// =====================================================================
+// INIT
+// =====================================================================
+updateAll();
+</script>
+</body>
+</html>

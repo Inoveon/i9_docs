@@ -14,7 +14,12 @@
       "mcp__chrome-devtools__resize_page",
       "mcp__chrome-devtools__select_page",
       "mcp__chrome-devtools__new_page",
-      "mcp__playwright__browser_navigate"
+      "mcp__playwright__browser_navigate",
+      "mcp__i9-team__*",
+      "mcp__i9-agent-memory__*",
+      "mcp__evolution-api__*",
+      "Glob",
+      "Grep"
     ],
     "ask": [
       "Bash(git push --force *)",
@@ -34,6 +39,9 @@
       "Bash(ansible-playbook *main*)"
     ],
     "defaultMode": "acceptEdits",
-    "additionalDirectories": []
+    "additionalDirectories": [
+      "/Users/leechardes/.claude",
+      "/Users/leechardes/Projetos/inoveon/producao/i9_docs"
+    ]
   }
 }

@@ -44,3 +44,6 @@ yarn-error.log*
 .Trashes
 ehthumbs.db
 Desktop.ini
+.mcp.json
+.memory/.agent-memory.db*
+.memory/.obsidian/
